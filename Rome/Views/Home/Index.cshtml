@@ -1,19 +1,23 @@
-﻿<div ng-app="myApp">
-    <div ng-controller="mainCtrl">
-        <div ng-show="loading">
+﻿<md-bottom-sheet class="md-has-header" ng-app="myApp">
+    <md-item ng-controller="mainCtrl">
+        <md-item ng-show="loading">
             Ładuję dane klientów...
-        </div>
-        <div ng-hide="loading">
-            <div ng-repeat="Client in Clients">
-                <div ng-click="ClientShowStatus = !ClientShowStatus">{{Client.CompanyName}}</div>
-                <div ng-show="ClientShowStatus" ng-animate="{show: 'animate-enter', hide: 'animate-hide'}">
-                    <ul>
-                        <li>{{Client.ClientId}}</li>
-                        <li>{{Client.Owner}}</li>
-                        <li>{{Client.CompanyName}}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </md-item>
+        <md-item ng-hide="loading">
+            <md-item ng-repeat="Client in Clients" class="md-list">
+                <md-content>
+                    <md-card>
+                        <md-buttons ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-buttons>
+                        <md-item ng-show="ClientShowStatus" ng-animate="{show: 'animate-enter', hide: 'animate-hide'}">
+                            <md-list class="md-list">
+                                <md-item class="md-body-1">{{Client.ClientId}}</md-item>
+                                <md-item class="md-body-1">{{Client.Owner}}</md-item>
+                                <md-item class="md-body-1">{{Client.CompanyName}}</md-item>
+                            </md-list>
+                        </md-item>
+                    </md-card>
+                </md-content>
+            </md-item>
+        </md-item>
+    </md-item>
+</md-bottom-sheet>

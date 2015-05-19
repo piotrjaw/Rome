@@ -1,19 +1,19 @@
 ﻿@theme-color: #29b6f6;
 
-.vendor(@property, @value) {
-  -webkit-@{property}: @value;
-  -moz-@{property}: @value;
-  -ms-@{property}: @value;
-  -o-@{property}: @value;
-  @{property}: @value;
+.transition(@value) {
+  -webkit-transition: @value;
+  -moz-transition: @value;
+  -ms-transition: @value;
+  -o-transition: @value;
+  transition: @value;
 }
 
-.animate-enter {
-    .vendor(transition, 1s linear all);
+.animate-show {
+    .transition(1s linear all);
     opacity: 0;
 }
 
-.animate-enter.animate-enter-active {
+.animate-show.animate-enter-active {
     opacity: 1;
 }
 
@@ -22,3 +22,6 @@ body {
     background-color: @theme-color;
 }
 
+ul {
+    list-style-type: none;
+}
