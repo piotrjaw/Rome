@@ -183,6 +183,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Content\Style.less" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -190,7 +191,6 @@
     <Content Include="Scripts\angular-messages.min.js.map" />
     <Content Include="Scripts\angular-loader.min.js.map" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Content\Style.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -961,8 +961,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\ClientList.cshtml" />
+    <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
