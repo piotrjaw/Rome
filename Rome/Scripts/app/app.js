@@ -1,8 +1,10 @@
 ﻿var myApp = angular.module('myApp', ['ngMaterial']);
 
-myApp.config(function ($mdThemingProvider) {
+myApp.config(function ($locationProvider, $mdThemingProvider) {
+    $locationProvider.html5Mode(true).hashPrefix('!');
+
     $mdThemingProvider.theme('default')
-    .primaryPalette('light-blue', {
+    .primaryPalette('indigo', {
         'default': '400',
         'hue-1': '100',
         'hue-2': '600',
@@ -13,12 +15,20 @@ myApp.config(function ($mdThemingProvider) {
     });
 });
 
-myApp.controller('mainCtrl', function ($scope, $http) {
+myApp.controller('mainCtrl', ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
     $scope.loading = true;
+    $scope.toggleSidenav = toggleSidenav;
 
     $http.get('/api/Clients/').success(function (data) {
         $scope.Clients = data;
         $scope.loading = false;
+    }).error(function (err) {
+        $scope.Error = err;
+        $scope.loading = false;
     });
 
-});
+    function toggleSidenav(name) {
+        $mdSidenav(name).toggle();
+    }
+
+}])

@@ -1,23 +1,47 @@
-﻿<md-bottom-sheet class="md-has-header" ng-app="myApp">
-    <md-item ng-controller="mainCtrl">
-        <md-item ng-show="loading">
-            Ładuję dane klientów...
-        </md-item>
-        <md-item ng-hide="loading">
-            <md-item ng-repeat="Client in Clients" class="md-list">
-                <md-content>
-                    <md-card>
-                        <md-buttons ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-buttons>
-                        <md-item ng-show="ClientShowStatus" ng-animate="{show: 'animate-enter', hide: 'animate-hide'}">
-                            <md-list class="md-list">
-                                <md-item class="md-body-1">{{Client.ClientId}}</md-item>
-                                <md-item class="md-body-1">{{Client.Owner}}</md-item>
-                                <md-item class="md-body-1">{{Client.CompanyName}}</md-item>
-                            </md-list>
-                        </md-item>
-                    </md-card>
+﻿<div ng-app="myApp" lang="pl">
+    <div layout="column" data-ng-controller="mainCtrl">
+        <md-toolbar layout="row">
+            <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+                <span class="md-visually-hidden">Menu</span>
+            </button>
+            <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Nowy Cross-sell</h1>
+        </md-toolbar>
+        <div layout="row" flex class="content-wrapper">
+            <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z1" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+                <md-list layout="column" layout-align="center start" class="menu-list">
+                    <md-button>Klienci</md-button>
+                    <md-button>Dostęp</md-button>
+                    <md-button>Kalendarz</md-button>
+                    <md-button>Spotkania</md-button>
+                    <md-button>Trofea</md-button>
+                </md-list>
+            </md-sidenav>
+            <div layout="column" flex class="content-wrapper" id="primary-col">
+                <md-content layout="column" flex class="md-padding">
+                    <md-item ng-show="loading">
+                        Ładuję dane klientów...
+                    </md-item>
+                    <md-item ng-hide="loading">
+                        <md-item>{{Client.error}}</md-item>
+                        <md-list class="client-list">
+                            <md-item ng-repeat="Client in Clients">
+                                <md-item-content>
+                                    <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-button>
+                                    <md-item ng-show="ClientShowStatus">
+                                        <md-item-content layout="column">
+                                            <md-list class="attribute-list" layout="column" layout-align="space-between start">
+                                                <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
+                                                <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
+                                                <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
+                                            </md-list>
+                                        </md-item-content>
+                                    </md-item>
+                                </md-item-content>
+                            </md-item>
+                        </md-list>
+                    </md-item>
                 </md-content>
-            </md-item>
-        </md-item>
-    </md-item>
-</md-bottom-sheet>
+            </div>
+        </div>
+    </div>
+</div>

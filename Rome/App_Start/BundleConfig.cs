@@ -35,8 +35,8 @@ namespace Rome
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/style.less"));
+                      "~/Content/style.less",
+                      "~/Content/angular-material/angular-material.css"));
         }
     }
 }
