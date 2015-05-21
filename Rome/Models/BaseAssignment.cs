@@ -14,9 +14,7 @@ namespace Rome.Models
         public int BaseId { get; set; }
         public int ClientId { get; set; }
 
-        [ForeignKey("BaseId")]
         public virtual Base Base { get; set; }
-        [ForeignKey("ClientId")]
         public virtual Client Client { get; set; }
     }
 }

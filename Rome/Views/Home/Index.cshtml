@@ -28,13 +28,16 @@
                         <md-list class="client-list">
                             <md-item ng-repeat="Client in Clients">
                                 <md-item-content>
-                                    <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-button>
+                                    <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1"><span flex="33">{{Client.CompanyName}}</span><span flex="67">{{Client.BaseName}}</span></md-button>
                                     <md-item ng-show="ClientShowStatus">
                                         <md-item-content layout="column">
                                             <md-list class="attribute-list" layout="column" layout-align="space-between start">
                                                 <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
                                                 <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
                                                 <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
+                                                <md-item class="list-item">Baza: {{Client.BaseName}}</md-item>
+                                                <md-item class="list-item">Początek bazy: {{Client.BaseStart}}</md-item>
+                                                <md-item class="list-item">Koniec bazy: {{Client.BaseEnd}}</md-item>
                                             </md-list>
                                         </md-item-content>
                                     </md-item>

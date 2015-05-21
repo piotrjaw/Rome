@@ -12,6 +12,7 @@ using System.Web.DynamicData;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Rome.DAL;
+using Rome.DTOs;
 using Rome.Models;
 
 namespace Rome.Controllers
@@ -21,14 +22,14 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
         
         // GET: api/Clients
-        public IQueryable<Client> GetClients()
+        public IQueryable<ClientDTO> GetClients()
         {
             db.Configuration.ProxyCreationEnabled = false;
             var query =
                 from c in db.Clients
                 join ba in db.BaseAssignments on c.ClientId equals ba.ClientId
                 join b in db.Bases on ba.BaseId equals b.BaseId
-                select new Client()
+                select new ClientDTO
                 {
                     ClientId = c.ClientId,
                     Owner = c.Owner,
