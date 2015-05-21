@@ -9,10 +9,15 @@ namespace Rome.Models
 {
     public class Client
     {
+        [Key, ForeignKey("BaseAssignment")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ClientId { get; set; }
         public string Owner { get; set; }
         public string CompanyName { get; set; }
+        public string BaseName { get; set; }
+        public DateTime? BaseStart { get; set; }
+        public DateTime? BaseEnd { get; set; }
 
-        public virtual Base Base { get; set; }
+        public virtual BaseAssignment BaseAssignment { get; set; }
     }
 }

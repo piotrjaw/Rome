@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.DynamicData;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Rome.DAL;
@@ -22,7 +24,20 @@ namespace Rome.Controllers
         public IQueryable<Client> GetClients()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            return db.Clients;
+            var query =
+                from c in db.Clients
+                join ba in db.BaseAssignments on c.ClientId equals ba.ClientId
+                join b in db.Bases on ba.BaseId equals b.BaseId
+                select new Client()
+                {
+                    ClientId = c.ClientId,
+                    Owner = c.Owner,
+                    CompanyName = c.CompanyName,
+                    BaseName = b.BaseName,
+                    BaseStart = b.BaseStart,
+                    BaseEnd = b.BaseEnd
+                };
+            return query;
         }
 
         // GET: api/Clients/5
