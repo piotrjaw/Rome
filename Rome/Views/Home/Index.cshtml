@@ -1,6 +1,7 @@
 ﻿<div ng-app="myApp" lang="pl">
     <div layout="column" data-ng-controller="mainCtrl">
         <md-toolbar layout="row">
+            <md-icon class="logo" md-svg-src ="/Img/Svg/TaxCare.svg" aria-hidden="true"></md-icon>
             <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                 <span class="md-visually-hidden">Menu</span>
             </button>
@@ -14,7 +15,6 @@
                         <md-button>Dostęp</md-button>
                         <md-button>Kalendarz</md-button>
                         <md-button>Spotkania</md-button>
-                        <md-button>Trofea</md-button>
                     </md-list>
                 </md-sidenav>
             </div>
@@ -25,23 +25,28 @@
                     </md-item>
                     <md-item ng-hide="loading">
                         <md-item>{{Client.error}}</md-item>
-                        <md-list class="client-list">
-                            <md-item ng-repeat="Client in Clients">
-                                <md-item-content>
-                                    <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1"><span flex="33">{{Client.CompanyName}}</span><span flex="67">{{Client.BaseName}}</span></md-button>
-                                    <md-item ng-show="ClientShowStatus">
-                                        <md-item-content layout="column">
-                                            <md-list class="attribute-list" layout="column" layout-align="space-between start">
-                                                <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
-                                                <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
-                                                <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
-                                                <md-item class="list-item">Baza: {{Client.BaseName}}</md-item>
-                                                <md-item class="list-item">Początek bazy: {{Client.BaseStart}}</md-item>
-                                                <md-item class="list-item">Koniec bazy: {{Client.BaseEnd}}</md-item>
-                                            </md-list>
-                                        </md-item-content>
-                                    </md-item>
-                                </md-item-content>
+                        <md-list class="base-list" layout="column">
+                            <md-item ng-repeat="Client in Clients | unique:'BaseName'">
+                                <md-button ng-click="BaseShowStatus = !BaseShowStatus">{{Client.BaseName}}</md-button>
+                                    <md-list ng-show="BaseShowStatus" class="client-list">
+                                        <md-item ng-repeat="Client in Clients">
+                                            <md-item-content>
+                                                <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-button>
+                                                <md-item ng-show="ClientShowStatus">
+                                                    <md-item-content layout="column">
+                                                        <md-list class="attribute-list" layout="column" layout-align="space-between start">
+                                                            <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
+                                                            <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
+                                                            <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
+                                                            <md-item class="list-item">Baza: {{Client.BaseName}}</md-item>
+                                                            <md-item class="list-item">Początek bazy: {{Client.ParsedBaseStart | jsDate | date : fullDate}}</md-item>
+                                                            <md-item class="list-item">Koniec bazy: {{Client.ParsedBaseEnd | jsDate | date : fullDate}}</md-item>
+                                                        </md-list>
+                                                    </md-item-content>
+                                                </md-item>
+                                            </md-item-content>
+                                        </md-item>
+                                    </md-list>
                             </md-item>
                         </md-list>
                     </md-item>

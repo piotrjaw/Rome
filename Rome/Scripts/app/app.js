@@ -1,4 +1,4 @@
-﻿var myApp = angular.module('myApp', ['ngMaterial']);
+﻿var myApp = angular.module('myApp', ['ngMaterial', 'ui', 'ui.filters']);
 
 myApp.config(function ($locationProvider, $mdThemingProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
@@ -13,6 +13,13 @@ myApp.config(function ($locationProvider, $mdThemingProvider) {
     .accentPalette('orange', {
         'default': '200'
     });
+});
+
+myApp.filter('jsDate', function () {
+    return function (x) {
+        if (!x) { return; }
+        return new Date(parseInt(x.substr(6, 13)));
+    };
 });
 
 myApp.controller('mainCtrl', ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
@@ -31,4 +38,4 @@ myApp.controller('mainCtrl', ['$scope', '$http', '$mdSidenav', function ($scope,
         $mdSidenav(name).toggle();
     }
 
-}])
+}]);

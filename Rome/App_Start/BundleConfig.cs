@@ -17,7 +17,8 @@ namespace Rome
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-animate.js",
-                        "~/Scripts/angular-aria.js"));
+                        "~/Scripts/angular-aria.js",
+                        "~/Scripts/angular-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/app.js"));
