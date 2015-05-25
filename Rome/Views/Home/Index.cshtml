@@ -24,23 +24,24 @@
                         Ładuję dane klientów...
                     </md-item>
                     <md-item ng-hide="loading">
-                        <md-item>{{Client.error}}</md-item>
+                        <md-item>{{Bases.error}}</md-item>
                         <md-list class="base-list" layout="column">
-                            <md-item ng-repeat="Client in Clients | unique:'BaseName'">
-                                <md-button ng-click="BaseShowStatus = !BaseShowStatus">{{Client.BaseName}}</md-button>
+                            <md-item ng-repeat="Base in Bases | unique:'BaseName'">
+                                <md-button ng-click="BaseShowStatus = !BaseShowStatus" layout="row">
+                                    <span flex="70"><h3>{{Base.BaseName}}</h3></span>
+                                    <span flex="15">{{Base.ParsedBaseStart | jsDate | date : fullDate}}</span>
+                                    <span flex="15">{{Base.ParsedBaseEnd | jsDate | date : fullDate}}</span>
+                                </md-button>
                                     <md-list ng-show="BaseShowStatus" class="client-list">
-                                        <md-item ng-repeat="Client in Clients">
-                                            <md-item-content>
-                                                <md-button ng-click="ClientShowStatus = !ClientShowStatus" class="md-body-1">{{Client.CompanyName}}</md-button>
+                                        <md-item ng-repeat="Client in Base.Clients">
+                                            <md-item-content layout="column" layout-align="space-between start">
+                                                <md-button ng-click="ClientShowStatus = !ClientShowStatus"><span class="md-headline">{{Client.CompanyName}}</span></md-button>
                                                 <md-item ng-show="ClientShowStatus">
                                                     <md-item-content layout="column">
                                                         <md-list class="attribute-list" layout="column" layout-align="space-between start">
                                                             <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
                                                             <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
                                                             <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
-                                                            <md-item class="list-item">Baza: {{Client.BaseName}}</md-item>
-                                                            <md-item class="list-item">Początek bazy: {{Client.ParsedBaseStart | jsDate | date : fullDate}}</md-item>
-                                                            <md-item class="list-item">Koniec bazy: {{Client.ParsedBaseEnd | jsDate | date : fullDate}}</md-item>
                                                         </md-list>
                                                     </md-item-content>
                                                 </md-item>

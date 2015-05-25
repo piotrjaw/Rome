@@ -9,6 +9,7 @@ namespace Rome.Models
 {
     public class Client
     {
+
         [Key, ForeignKey("BaseAssignments")]
         public int ClientId { get; set; }
         public string Owner { get; set; }

@@ -26,8 +26,8 @@ myApp.controller('mainCtrl', ['$scope', '$http', '$mdSidenav', function ($scope,
     $scope.loading = true;
     $scope.toggleSidenav = toggleSidenav;
 
-    $http.get('/api/Clients/').success(function (data) {
-        $scope.Clients = data;
+    $http.get('/api/Bases/').success(function (data) {
+        $scope.Bases = data;
         $scope.loading = false;
     }).error(function (err) {
         $scope.Error = err;

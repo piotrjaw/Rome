@@ -33,10 +33,7 @@ namespace Rome.Controllers
                 {
                     ClientId = c.ClientId,
                     Owner = c.Owner,
-                    CompanyName = c.CompanyName,
-                    BaseName = b.BaseName,
-                    BaseStart = b.BaseStart,
-                    BaseEnd = b.BaseEnd
+                    CompanyName = c.CompanyName
                 };
             return query;
         }
