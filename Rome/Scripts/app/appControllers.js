@@ -2,19 +2,20 @@
 
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('tabCtrl', ['$scope',
-    function($scope) {
-        $scope.tab = 1;
+appControllers.controller('tabCtrl',
+    function() {
+        this.tab = 1;
 
-        $scope.setTab = function(newValue) {
-            $scope.tab = newValue;
+        this.setTab = function (newValue) {
+            this.tab = newValue;
+            console.log(this.tab);
         };
 
-        $scope.isSet = function(tabName) {
-            return $scope.tab === tabName;
+        this.isSet = function (tabName) {
+            return this.tab === tabName;
         };
     }
-]);
+);
 
 appControllers.controller('mainCtrl', [
     '$scope', '$http', '$mdSidenav',

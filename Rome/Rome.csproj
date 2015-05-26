@@ -391,7 +391,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\ClientList.cshtml" />
+    <Content Include="Views\Home\Templates\ClientList.cshtml" />
+    <Content Include="Views\Home\Templates\AccountCreation.cshtml" />
+    <Content Include="Views\Home\Templates\Calendar.cshtml" />
+    <Content Include="Views\Home\Templates\Meetings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

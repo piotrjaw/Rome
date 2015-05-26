@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rome</title>
@@ -12,6 +13,11 @@
     @Scripts.Render("~/bundles/material")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     @RenderBody()

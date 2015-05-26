@@ -12,5 +12,22 @@ namespace Rome.Controllers
         {
             return View();
         }
+
+        public ActionResult Templates(string id)
+        {
+            switch (id.ToLower())
+            {
+                case "clientlist":
+                    return PartialView("~/Views/Home/Templates/ClientList.cshtml");
+                case "calendar":
+                    return PartialView("~/Views/Home/Templates/Calendar.cshtml");
+                case "meetings":
+                    return PartialView("~/Views/Home/Templates/Meetings.cshtml");
+                case "accountcreation":
+                    return PartialView("~/Views/Home/Templates/AccountCreation.cshtml");
+                default:
+                    return PartialView("~/Views/Home/Templates/ClientList.cshtml");
+            }
+        }
     }
 }
