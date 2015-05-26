@@ -157,6 +157,12 @@
     <Content Include="Content\spinner.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Img\Icons\chart-line.svg" />
+    <Content Include="Img\Icons\chevron-down.svg" />
+    <Content Include="Img\Icons\chevron-up.svg" />
+    <Content Include="Img\Icons\close.svg" />
+    <Content Include="Img\Icons\information-outline.svg" />
+    <Content Include="Img\Icons\menu.svg" />
     <Content Include="Img\Svg\TaxCare.svg" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
