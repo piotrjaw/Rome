@@ -12,7 +12,7 @@ namespace Rome.DTOs
         public String BaseName { get; set; }
         public DateTime BaseStart { get; set; }
         public DateTime BaseEnd { get; set; }
-
+        public int DaysLeft { get; set; }
         public IEnumerable<ClientDTO> Clients { get; set; }
     }
 }

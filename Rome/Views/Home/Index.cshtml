@@ -1,6 +1,6 @@
 ﻿<div ng-app="myApp" lang="pl">
     <div layout="column" data-ng-controller="mainCtrl">
-        <md-toolbar layout="row">
+        <md-toolbar md-scroll-shrink layout="row">
             <md-icon class="logo" md-svg-src ="/Img/Svg/TaxCare.svg" aria-hidden="true"></md-icon>
             <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
                 <span class="md-visually-hidden">Menu</span>
@@ -27,27 +27,32 @@
                         <md-item>{{Bases.error}}</md-item>
                         <md-list class="base-list" layout="column">
                             <md-item ng-repeat="Base in Bases | unique:'BaseName'">
-                                <md-button ng-click="BaseShowStatus = !BaseShowStatus" layout="row">
-                                    <span flex="70"><h3>{{Base.BaseName}}</h3></span>
-                                    <span flex="15">{{Base.ParsedBaseStart | jsDate | date : fullDate}}</span>
-                                    <span flex="15">{{Base.ParsedBaseEnd | jsDate | date : fullDate}}</span>
+                                <md-button ng-click="BaseShowStatus = !BaseShowStatus" layout="row" layout-align="space-between center">
+                                    <span flex="75"><h3>{{Base.BaseName}} ({{Base.Clients.length}})</h3></span>
+                                    <md-button class="md-primary" flex="5" ng-click="BaseDetailStatus = !BaseDetailStatus">Baza</md-button> 
+                                    <span flex="20">Data zakończenia: {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}} ({{Base.DaysLeft}} dni)</span>
                                 </md-button>
-                                    <md-list ng-show="BaseShowStatus" class="client-list">
-                                        <md-item ng-repeat="Client in Base.Clients">
-                                            <md-item-content layout="column" layout-align="space-between start">
-                                                <md-button ng-click="ClientShowStatus = !ClientShowStatus"><span class="md-headline">{{Client.CompanyName}}</span></md-button>
-                                                <md-item ng-show="ClientShowStatus">
-                                                    <md-item-content layout="column">
-                                                        <md-list class="attribute-list" layout="column" layout-align="space-between start">
-                                                            <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
-                                                            <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
-                                                            <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
-                                                        </md-list>
-                                                    </md-item-content>
-                                                </md-item>
-                                            </md-item-content>
-                                        </md-item>
-                                    </md-list>
+                                <md-list ng-show="BaseShowStatus" class="client-list">
+                                    <md-item ng-repeat="Client in Base.Clients">
+                                        <md-item-content layout="column" layout-align="space-between start">
+                                            <md-button ng-click="ClientShowStatus = !ClientShowStatus"><span class="md-headline">{{Client.CompanyName}}</span></md-button>
+                                            <md-item ng-show="ClientShowStatus">
+                                                <md-item-content layout="column">
+                                                    <md-list class="attribute-list" layout="column" layout-align="space-between start">
+                                                        <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
+                                                        <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
+                                                        <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
+                                                    </md-list>
+                                                </md-item-content>
+                                            </md-item>
+                                        </md-item-content>
+                                    </md-item>
+                                </md-list>
+                                <md-list ng-show="BaseDetailStatus" class="detail-list">
+                                    <md-item>Data rozpoczęcia akcji: {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}}</md-item>
+                                    <md-item>Data zakończenia akcji: {{Base.BaseStart | jsDate | date : 'yyyy-MM-dd'}}</md-item>
+                                    <md-item>Dni do końca: {{Base.DaysLeft}}</md-item>
+                                </md-list>
                             </md-item>
                         </md-list>
                     </md-item>

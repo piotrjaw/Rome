@@ -30,6 +30,7 @@ namespace Rome.Controllers
             BaseName = b.BaseName,
             BaseStart = b.BaseStart,
             BaseEnd = b.BaseEnd,
+            DaysLeft = b.DaysLeft,
             Clients =
                 from ba in b.BaseAssignments 
                 join c in db.Clients on ba.ClientId equals c.ClientId

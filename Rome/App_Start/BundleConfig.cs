@@ -21,7 +21,8 @@ namespace Rome
                         "~/Scripts/angular-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/app.js"));
+                        "~/Scripts/app/app.js",
+                        "~/Scripts/app/appControllers.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/material").Include(
                         "~/Scripts/angular-material.js"));

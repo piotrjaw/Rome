@@ -29,7 +29,8 @@ namespace Rome.DAL
             var bases = new List<Base>
             {
                 new Base{BaseId=1,BaseName="Upsell BKI",BaseStart=DateTime.Parse("2015-05-20"),BaseEnd=DateTime.Parse("2015-06-20")},
-                new Base{BaseId=2,BaseName="Odnowienie limitów",BaseStart=DateTime.Parse("2015-04-20"),BaseEnd=DateTime.Parse("2015-05-21")}
+                new Base{BaseId=2,BaseName="Odnowienie limitów",BaseStart=DateTime.Parse("2015-04-20"),BaseEnd=DateTime.Parse("2015-05-21")},
+                new Base{BaseId=3,BaseName="Taniej z Księgowością",BaseStart=DateTime.Parse("2015-04-20"),BaseEnd=DateTime.Parse("2015-05-21")}
             };
             bases.ForEach(b => context.Bases.Add(b));
             context.SaveChanges();

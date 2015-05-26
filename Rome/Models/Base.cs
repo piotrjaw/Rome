@@ -15,6 +15,16 @@ namespace Rome.Models
         public DateTime BaseStart { get; set; }
         public DateTime BaseEnd { get; set; }
 
+        public int DaysLeft
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+                return (int)(BaseEnd - now).TotalDays;
+            }
+            set { DaysLeft = value; }
+        }
+
         public virtual ICollection<BaseAssignment> BaseAssignments { get; set; }
     }
 }
