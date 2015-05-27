@@ -30,6 +30,8 @@ appControllers.controller('mainCtrl', [
             $scope.loading = false;
         });
 
+        $scope.baseOrder = '-BaseStart';
+
         function toggleSidenav(name) {
             $mdSidenav(name).toggle();
 

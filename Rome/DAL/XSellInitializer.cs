@@ -7,7 +7,7 @@ using Rome.Models;
 
 namespace Rome.DAL
 {
-    public class XSellInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<XSellContext>
+    public class XSellInitializer : System.Data.Entity.DropCreateDatabaseAlways<XSellContext>
     {
         protected override void Seed(XSellContext context)
         {

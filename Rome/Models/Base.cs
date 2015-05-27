@@ -34,7 +34,17 @@ namespace Rome.Models
             get
             {
                 DateTime now = DateTime.Now;
-                return (int)(BaseEnd - now).TotalDays;
+                return (int)Math.Max((BaseEnd - now).TotalDays, 0);
+            }
+            set { }
+        }
+
+        public int Progress
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+                return (int)Math.Min(100*((now - BaseStart).TotalDays)/((BaseEnd - BaseStart).TotalDays), 100);
             }
             set { }
         }

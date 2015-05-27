@@ -8,6 +8,10 @@
 
 @icon-size: 24px;
 
+.wrapper {
+    height: 100%;
+}
+
 .icon {
     height: @icon-size;
     width: @icon-size;
@@ -19,6 +23,7 @@
 
 .icon-grey {
     .icon();
+    margin: 4px;
     color: #888 !important;
 }
 
@@ -26,18 +31,57 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+md-sidenav {
+    position: static;
+    height: 100%;
+}
+
+h4 {
+    padding: 0px 0 0px 10px !important;
+    margin: 6px 0 !important;
+}
+
+h5 {
+    margin: 10px 0 !important;
+}
+
+.paper {
+    background-color: white !important;
+    height: 64px;
+    margin: 2px;
+    z-index: 1;
+}
+
+.gray-paper {
+    background-color: white !important;
+    margin: 0 5px 5px 5px;
+    padding: 0 10px 10px 10px !important;
+    z-index: 99;
+}
+
+.md-padding {
+    background-color: transparent !important;
+}
+
 .menuBtn {
-    background-color: transparent;
-    border: none;
+    /*background-color: transparent;
+    border: none;*/
     height: 38px;
-    margin: 16px 0 0 16px;
+    /*margin: 16px 0 0 16px;*/
     width: 36px;
 }
 
-.base-list .md-button {
-    color: inherit;
-    text-align: left;
-    width: 100%;
+.base-list {
+
+    .md-button {
+        color: inherit;
+        text-align: left;
+        width: 100%;
+    }
+
+    md-item > md-item > span {
+        padding-left: 5px;
+    }
 }
 
 .client-list .md-button {
@@ -54,23 +98,43 @@ body {
     margin-left: 16px;
 }
 
-.menu-list .md-button{
-    color: inherit;
-    text-align: left;
-    width: 93%;
-    margin-left: 10px;
+.menu-list {
+
+    padding: 10px 0 0 0 !important;
+
+    .md-button{
+        color: inherit;
+        text-align: left;
+        margin-left: 10px;
+    }
 }
 
 .content-wrapper {
     position: relative;
+    background-color: #ccc !important;
+    height: 100%;
+}
+
+.tab-viewport {
+    height: 100%;
+}
+
+.layout-wrapper {
+    height: 100%;
+}
+
+.sidenav-wrapepr {
+    height: 100%;
 }
 
 #primary-col {
     overflow: hidden;
+    height: 100%;
 }
 
 #primary-col .md-button {
-    margin: 1px auto 2px 0;
+    margin: 10px;
+    /*margin: 1px auto 2px 0;*/
 }
 
 #primary-col .cell {
@@ -92,17 +156,31 @@ body {
 }
 
 .detail-button {
-    height: 100%;
-    width: 24px;
-}
-
-.md-button {
-    
-    &:active {
-        background-color: #02f;
-    }
+    height: 44px !important;
+    width: 44px !important;
 }
 
 .inner-wrapper {
     min-width: 100%;
+}
+
+md-progress-linear {
+    min-height: 10px;
+    padding: 0 20px 0 20px;
+}
+
+.md-bar {
+    min-height: inherit;
+}
+
+.md-container {
+    min-height: inherit;
+}
+
+.date-container {
+    margin: 10px 10px 10px 0;
+}
+
+md-list {
+    padding: 0 !important;
 }

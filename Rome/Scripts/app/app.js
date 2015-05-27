@@ -18,7 +18,7 @@ myApp.config(function ($locationProvider, $mdThemingProvider) {
         'hue-2': '600',
         'hue-3': 'A100'
     })
-    .accentPalette('amber', {
+    .accentPalette('pink', {
         'default': '200'
     })
     .backgroundPalette('grey');
