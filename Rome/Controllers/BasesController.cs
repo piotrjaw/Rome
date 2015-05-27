@@ -27,10 +27,12 @@ namespace Rome.Controllers
     var query = from b in db.Bases
         select new BaseDTO
         {
+            BaseId = b.BaseId,
             BaseName = b.BaseName,
             BaseStart = b.BaseStart,
             BaseEnd = b.BaseEnd,
             DaysLeft = b.DaysLeft,
+            IsActive = b.IsActive,
             Clients =
                 from ba in b.BaseAssignments 
                 join c in db.Clients on ba.ClientId equals c.ClientId
@@ -38,7 +40,15 @@ namespace Rome.Controllers
                 {
                     ClientId = c.ClientId,
                     CompanyName = c.CompanyName,
-                    Owner = c.Owner
+                    Owner = c.Owner,
+                    Events = 
+                    from e in c.Events
+                    where e.BaseId == b.BaseId
+                    select new EventDTO
+                    {
+                        EventId = e.EventId,
+                        EventDate = e.EventDate
+                    }
                 }
         };
                 

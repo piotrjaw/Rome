@@ -138,12 +138,14 @@
     <Compile Include="DAL\XSellInitializer.cs" />
     <Compile Include="DTOs\BaseDTO.cs" />
     <Compile Include="DTOs\ClientDTO.cs" />
+    <Compile Include="DTOs\EventDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\BaseAssignment.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

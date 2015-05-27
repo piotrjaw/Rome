@@ -18,9 +18,10 @@ myApp.config(function ($locationProvider, $mdThemingProvider) {
         'hue-2': '600',
         'hue-3': 'A100'
     })
-    .accentPalette('orange', {
+    .accentPalette('amber', {
         'default': '200'
-    });
+    })
+    .backgroundPalette('grey');
 });
 
 myApp.filter('jsDate', function () {

@@ -8,7 +8,6 @@ appControllers.controller('tabCtrl',
 
         this.setTab = function (newValue) {
             this.tab = newValue;
-            console.log(this.tab);
         };
 
         this.isSet = function (tabName) {

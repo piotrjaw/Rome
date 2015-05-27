@@ -2,16 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rome.Models
 {
     public class Base
     {
-        [Key, ForeignKey("BaseAssignments")]
         public int BaseId { get; set; }
         public string BaseName { get; set; }
+        public bool IsActive
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+                if (now > BaseEnd)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            set { }
+        }
         public DateTime BaseStart { get; set; }
         public DateTime BaseEnd { get; set; }
 
@@ -22,9 +36,10 @@ namespace Rome.Models
                 DateTime now = DateTime.Now;
                 return (int)(BaseEnd - now).TotalDays;
             }
-            set { DaysLeft = value; }
+            set { }
         }
 
         public virtual ICollection<BaseAssignment> BaseAssignments { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

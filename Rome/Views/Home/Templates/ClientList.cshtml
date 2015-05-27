@@ -7,7 +7,7 @@
             <md-item>{{Bases.error}}</md-item>
             <md-list class="base-list" layout="column">
                 <md-item ng-repeat="Base in Bases | unique:'BaseName'">
-                    <md-item layout="row" layout-align="start center">
+                    <md-item layout="row" layout-align="start center" ng-show="Base.Clients.length>0">
                         <md-button flex="55" ng-click="BaseShowStatus = !BaseShowStatus" layout-align="center center">
                             <h3>{{Base.BaseName}} ({{Base.Clients.length}})</h3>
                         </md-button>

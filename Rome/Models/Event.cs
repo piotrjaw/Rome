@@ -5,13 +5,14 @@ using System.Web;
 
 namespace Rome.Models
 {
-    public class BaseAssignment
+    public class Event
     {
-        public int BaseAssignmentId { get; set; }
-        public int BaseId { get; set; }
+        public int EventId { get; set; }
+        public DateTime EventDate { get; set; }
         public int ClientId { get; set; }
+        public int BaseId { get; set; }
 
-        public virtual Base Base { get; set; }
         public virtual Client Client { get; set; }
+        public virtual Base Base { get; set; }
     }
 }
