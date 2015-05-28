@@ -45,6 +45,46 @@ md-sidenav {
     }
 }
 
+.animate-if {}
+
+.animate-if.ng-leave {
+    -webkit-animation: 0.5s hide;
+    animation: 0.5s hide;
+}
+
+.animate-if.ng-enter {
+    -webkit-animation: 0.5s show;
+    animation: 0.5s show;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+        height: 100%;
+    }
+
+    75% {
+        
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+
+    100% {
+        opacity: 1;
+        height: 100%;
+    }
+}
+
 .attribute-list md-item {
     color: inherit;
     text-align: left;
