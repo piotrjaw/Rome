@@ -1,39 +1,9 @@
-﻿.transition(@value) {
-  -webkit-transition: @value;
-  -moz-transition: @value;
-  -ms-transition: @value;
-  -o-transition: @value;
-  transition: @value;
-}
-
-@icon-size: 24px;
-
-.wrapper {
-    height: 100%;
-}
-
-.icon {
-    height: @icon-size;
-    width: @icon-size;
-}
-
-.icon-white {
-    color: #fff !important;
-}
-
-.icon-grey {
-    .icon();
-    margin: 4px;
-    color: #888 !important;
-}
+﻿@icon-size: 36px;
+@logo-size: 64px;
+@button-size: 48px;
 
 body {
-    font-family: 'Roboto', sans-serif;
-}
-
-md-sidenav {
-    position: static;
-    height: 100%;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
 }
 
 h4 {
@@ -45,42 +15,57 @@ h5 {
     margin: 10px 0 !important;
 }
 
-.paper {
-    background-color: white !important;
-    height: 64px;
-    margin: 2px;
-    z-index: 1;
+md-content {
+    height: 100%;
 }
 
-.gray-paper {
-    background-color: white !important;
-    margin: 0 5px 5px 5px;
-    padding: 0 10px 10px 10px !important;
-    z-index: 99;
+md-list {
+    padding: 0 !important;
 }
 
-.md-padding {
-    background-color: transparent !important;
+md-progress-linear {
+    min-height: 10px;
 }
 
-.menuBtn {
-    /*background-color: transparent;
-    border: none;*/
-    height: 38px;
-    /*margin: 16px 0 0 16px;*/
-    width: 36px;
+md-sidenav {
+    position: static;
+    height: 100%;
+}
+
+#primary-col {
+    overflow: hidden;
+    height: 100%;
+
+    .md-button {
+        margin: 10px;
+    }
+
+    .cell {
+        flex: 1 1 auto;
+    }
+}
+
+.attribute-list md-item {
+    color: inherit;
+    text-align: left;
+    margin-left: 16px;
 }
 
 .base-list {
 
     .md-button {
         color: inherit;
-        text-align: left;
-        width: 100%;
     }
 
     md-item > md-item > span {
         padding-left: 5px;
+    }
+}
+
+.big-button {
+    
+    h4 {
+        text-align: left;
     }
 }
 
@@ -91,82 +76,59 @@ h5 {
     margin-left: 12px;
 }
 
-.attribute-list md-item {
-    color: inherit;
-    text-align: left;
-    width: 100%;
-    margin-left: 16px;
-}
-
-.menu-list {
-
-    padding: 10px 0 0 0 !important;
-
-    .md-button{
-        color: inherit;
-        text-align: left;
-        margin-left: 10px;
-    }
-}
-
 .content-wrapper {
     position: relative;
-    background-color: #ccc !important;
     height: 100%;
+    padding: 5px;
 }
 
-.tab-viewport {
-    height: 100%;
-}
-
-.layout-wrapper {
-    height: 100%;
-}
-
-.sidenav-wrapepr {
-    height: 100%;
-}
-
-#primary-col {
-    overflow: hidden;
-    height: 100%;
-}
-
-#primary-col .md-button {
-    margin: 10px;
-    /*margin: 1px auto 2px 0;*/
-}
-
-#primary-col .cell {
-    flex: 1 1 auto;
-}
-
-.logo {
-   min-width: 64px;
-   height: 64px;
-   margin-left: 10px;
-}
-
-.md-sidenav-left {
-    overflow: hidden;
-}
-
-.md-visually-hidden {
-    visibility: hidden;
+.date-container {
+    margin: 10px 10px 10px 0;
 }
 
 .detail-button {
-    height: 44px !important;
-    width: 44px !important;
+    height: @button-size;
+    width: @button-size;
+}
+
+.gray-paper {
+    background-color: white !important;
+    margin: 0px 5px 2px 5px;
+    padding: 10px 10px 10px 10px !important;
+
+    &:last-child {
+        margin-bottom: 3px;
+    }
+}
+
+.icon {
+    height: @icon-size;
+    width: @icon-size;
+}
+
+.icon-white {
+    .icon();
+    color: #fff !important;
+}
+
+.icon-grey {
+    .icon();
+    margin: 4px !important;
+    color: #999 !important;
 }
 
 .inner-wrapper {
     min-width: 100%;
 }
 
-md-progress-linear {
-    min-height: 10px;
-    padding: 0 20px 0 20px;
+.layout-wrapper {
+    height: 100%;
+}
+
+.logo {
+    height: @logo-size !important;
+    width: @logo-size !important;
+    margin-left: 10px;
 }
 
 .md-bar {
@@ -177,10 +139,75 @@ md-progress-linear {
     min-height: inherit;
 }
 
-.date-container {
-    margin: 10px 10px 10px 0;
+.md-locked-open {
+    width: 218px !important;
+    max-width: 218px !important;
+    min-width: 218px !important;
 }
 
-md-list {
-    padding: 0 !important;
+.md-sidenav-left {
+    overflow: hidden;
+    background-color: white !important;
 }
+
+.menuBtn {
+    display: block;
+    height: @button-size !important;
+    width: @button-size !important;
+}
+
+.menu-list {
+
+    .md-button{
+        color: inherit;
+        text-align: left;
+        margin-left: 10px;
+
+        &:first-child {
+            margin-top: 10px;
+        }
+    }
+}
+
+.paper {
+    background-color: white !important;
+    height: 64px;
+    margin: 2px;
+    z-index: 1;
+}
+
+.sidenav-wrapper {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

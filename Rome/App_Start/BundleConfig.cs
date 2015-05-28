@@ -15,17 +15,16 @@ namespace Rome
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-animate.js",
-                        "~/Scripts/angular-aria.js",
-                        "~/Scripts/angular-ui.js"));
+                        "~/node_modules/angular/angular.js",
+                        "~/node_modules/angular-animate/angular-animate.js",
+                        "~/node_modules/angular-aria/angular-aria.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/app.js",
                         "~/Scripts/app/appControllers.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/material").Include(
-                        "~/Scripts/angular-material.js"));
+                        "~/node_modules/angular-material/angular-material.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -38,7 +37,7 @@ namespace Rome
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/style.less",
-                      "~/Content/angular-material/angular-material.css"));
+                      "~/node_modules/angular-material/angular-material.css"));
         }
     }
 }

@@ -1,29 +1,39 @@
-﻿<div class="wrapper" ng-app="myApp" lang="pl">
-    <div layout="column" data-ng-controller="mainCtrl" class="layout-wrapper">
-        <md-toolbar layout="row" layout-align="center start">
-            <md-icon class="logo" md-svg-src ="/Img/Svg/TaxCare.svg" aria-hidden="true"></md-icon>
-            <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn md-fab md-accent" aria-label="menu" >
-                <md-icon md-svg-icon="/Img/Icons/menu.svg" class="icon-white"></md-icon>
-            </button>
-            <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Nowy Cross-sell</h1>
-        </md-toolbar>
-        <md-item layout="row" flex class="content-wrapper" ng-controller="tabCtrl as tab">
-            <md-item layout="column" class="sidenav-wrapper">
-                <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex>
+﻿<md-item class="wrapper" ng-app="myApp" lang="pl">
+    <md-item data-ng-controller="tabCtrl as tab">
+        <md-item layout="row" data-ng-controller="mainCtrl" class="layout-wrapper">
+            <md-sidenav layout="column" class="sidenav-wrapper md-whiteframe-z1" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
+                <md-toolbar>
+                    <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
+                </md-toolbar>
+                <md-content md-theme="alternate" layout="column" class="md-sidenav-left" flex>
                     <md-item>
-                        <md-list layout="column" layout-align="center start" class="menu-list">
-                            <md-button flex class="inner-wrapper" ng-class="{ active:tab.isSet(1) }" ng-click="tab.setTab(1)">Klienci</md-button>
-                            <md-button flex class="inner-wrapper" ng-class="{ active:tab.isSet(2) }" ng-click="tab.setTab(2)">Dostęp</md-button>
-                            <md-button flex class="inner-wrapper" ng-class="{ active:tab.isSet(3) }" ng-click="tab.setTab(3)">Kalendarz</md-button>
-                            <md-button flex class="inner-wrapper" ng-class="{ active:tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
+                        <md-list layout="column" layout-align="center start" class="menu-list md-3-line" flex="100">
+                            <md-button class="inner-wrapper" ng-class="{ active:tab.isSet(1) }" ng-click="tab.setTab(1)">Klienci</md-button>
+                            <md-divider></md-divider>
+                            <md-button class="inner-wrapper" ng-class="{ active:tab.isSet(2) }" ng-click="tab.setTab(2)">Dostęp</md-button>
+                            <md-divider></md-divider>
+                            <md-button class="inner-wrapper" ng-class="{ active:tab.isSet(3) }" ng-click="tab.setTab(3)">Kalendarz</md-button>
+                            <md-divider></md-divider>
+                            <md-button class="inner-wrapper" ng-class="{ active:tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
+                            <md-divider></md-divider>
                         </md-list>
                     </md-item>
-                </md-sidenav>
+                </md-content>
+            </md-sidenav>
+            <md-item layout="column" flex>
+                <md-toolbar layout="row" layout-align="center start">
+                    <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" aria-label="menu" layout-align="center center">
+                        <md-icon md-svg-icon="/Img/Icons/menu.svg" class="icon-white"></md-icon>
+                    </md-button>
+                    <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Nowy Cross-sell</h1>
+                </md-toolbar>
+                <md-content flex class="content-wrapper">
+                    <md-item flex class="tab-viewport" ng-show="tab.isSet(1)" ng-include="'Home/Templates/ClientList'"></md-item>
+                    <md-item flex class="tab-viewport" ng-show="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
+                    <md-item flex class="tab-viewport" ng-show="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
+                    <md-item flex class="tab-viewport" ng-show="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
+                </md-content>
             </md-item>
-            <md-item flex class="tab-viewport" ng-show="tab.isSet(1)" ng-include="'Home/Templates/ClientList'"></md-item>
-            <md-item flex class="tab-viewport" ng-show="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
-            <md-item flex class="tab-viewport" ng-show="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
-            <md-item flex class="tab-viewport" ng-show="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
         </md-item>
-    </div>
-</div>
+    </md-item>
+</md-item>

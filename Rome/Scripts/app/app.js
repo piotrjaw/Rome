@@ -2,26 +2,30 @@
 
 var myApp = angular.module('myApp', [
     'ngMaterial',
-    'ui',
-    'ui.filters',
 
     'appControllers'
 ]);
 
-myApp.config(function ($locationProvider, $mdThemingProvider) {
+myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
 
-    $mdThemingProvider.theme('default')
-    .primaryPalette('indigo', {
-        'default': '400',
-        'hue-1': '100',
-        'hue-2': '600',
-        'hue-3': 'A100'
-    })
-    .accentPalette('pink', {
-        'default': '200'
-    })
-    .backgroundPalette('grey');
+    $mdThemingProvider
+        .theme('default')
+        .primaryPalette('indigo', {
+            'default': '400',
+            'hue-1': '100',
+            'hue-2': '600',
+            'hue-3': 'A100'
+        })
+        .accentPalette('pink', {
+            'default': '200'
+        })
+        .backgroundPalette('grey', {
+            'default': '200'
+        });
+
+    $mdIconProvider
+        .icon("logo", "/Img/Svg/TaxCare.svg", 64);
 });
 
 myApp.filter('jsDate', function () {
