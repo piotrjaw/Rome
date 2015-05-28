@@ -32,13 +32,13 @@
                         </md-item>
                     </md-item-content>
                 </md-item>
-                <md-list ng-if="BaseDetailStatus" class="detail-list md-whiteframe-z1 gray-paper animate-if" layout="column">
+                <md-list ng-if="BaseDetailStatus" class="detail-list md-whiteframe-z1 gray-paper" layout="column" ng-animate=" 'animate' ">
                     <md-item><h5>SZCZEGÓŁY AKCJI:</h5></md-item>
                     <md-item>Data rozpoczęcia akcji: {{Base.BaseStart | jsDate | date : 'yyyy-MM-dd'}}</md-item>
                     <md-item>Data zakończenia akcji: {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}}</md-item>
                     <md-item>Dni do końca: {{Base.DaysLeft}}</md-item>
                 </md-list>
-                <md-content ng-if ="BaseShowStatus" class="client-list md-whiteframe-z1 gray-paper animate-if">
+                <md-content ng-if ="BaseShowStatus" class="client-list md-whiteframe-z1 gray-paper" ng-animate=" 'animate' ">
                     <md-list>
                         <md-item><h5>LISTA KONTAKTÓW:</h5></md-item>
                         <md-item ng-repeat="Client in Base.Clients">
