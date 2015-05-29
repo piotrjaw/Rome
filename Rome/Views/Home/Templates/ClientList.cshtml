@@ -1,13 +1,13 @@
 ﻿<md-item layout="column" flex class="content-wrapper" id="primary-col">
-    <md-item ng-show="loading">
+    <md-item ng-if="loading">
         Ładuję dane klientów...
     </md-item>
-    <md-item ng-hide="loading">
+    <md-item ng-if="!loading">
         <md-item>{{Bases.error}}</md-item>
         <md-list class="base-list" layout="column">
             <md-item ng-repeat="Base in Bases | orderBy:baseOrder">
                 <md-item layout="row" layout-align="start center" ng-show="Base.Clients.length>0" class="paper md-whiteframe-z2">
-                    <md-button flex="65" class="big-button" ng-click="BaseShowStatus = !BaseShowStatus" layout-align="center center" aria-label="lista kontaktów">
+                    <md-button layout-fill class="big-button" ng-click="BaseShowStatus = !BaseShowStatus" layout-align="center center" aria-label="lista kontaktów">
                         <h4>{{Base.BaseName}} ({{Base.Clients.length}})</h4>
                         <md-tooltip md-delay="100" md-autohide="true">Lista kontaktów</md-tooltip>
                     </md-button>
@@ -17,10 +17,7 @@
                     </md-button>
                     <md-item-content hide show-gt-md layout="column" layout-align="center center" class="date-container">
                         <md-item ng-show="Base.DaysLeft>=0">
-                            <span class="md-body-1" hide-gt-lg>
-                                {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}} ({{Base.DaysLeft}})
-                            </span>
-                            <span class="md-body-1" show-gt-lg hide>
+                            <span class="md-body-1" show-gt-md hide>
                                 Koniec: {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}} ({{Base.DaysLeft}} dni)
                             </span>
                             <md-progress-linear class="md-accent" flex md-mode="determinate" value="{{Base.Progress}}"></md-progress-linear>
@@ -43,11 +40,17 @@
                         <md-item><h5>LISTA KONTAKTÓW:</h5></md-item>
                         <md-item ng-repeat="Client in Base.Clients">
                             <md-item-content layout="column" layout-align="space-between start">
-                                <md-button ng-click="ClientShowStatus = !ClientShowStatus" aria-label="dane klienta">
-                                    <span class="md-body-2">{{Client.CompanyName}}</span>
-                                    <md-tooltip md-delay="100" md-autohide="true">Dane klienta</md-tooltip>
-                                </md-button>
-                                <md-item ng-show="ClientShowStatus" class="animate-show">
+                                <md-item-content layout-row>
+                                    <md-button layout-fill ng-click="" aria-label="dane klienta">
+                                        <span class="md-body-2">{{Client.CompanyName}}</span>
+                                        <md-tooltip md-delay="100" md-autohide="true">Dane klienta</md-tooltip>
+                                    </md-button>
+                                    <md-button class="detail-button-2" ng-click="ClientShowStatus = !ClientShowStatus" layout-align="center center" aria-label="dane klienta">
+                                        <md-icon md-svg-icon="/Img/Icons/information-outline.svg" class="icon-grey"></md-icon>
+                                        <md-tooltip md-delay="100" md-autohide="true">Szczegóły akcji</md-tooltip>
+                                    </md-button>
+                                </md-item-content>
+                                <md-item ng-if="ClientShowStatus" ng-animate=" 'animate' ">
                                     <md-item-content layout="column">
                                         <md-list class="attribute-list" layout="column" layout-align="space-between start">
                                             <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>

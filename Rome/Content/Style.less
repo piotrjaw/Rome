@@ -1,6 +1,7 @@
 ﻿@icon-size: 36px;
 @logo-size: 64px;
-@button-size: 48px;
+@button-size: 36px;
+@button-size2: 24px;
 
 body {
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
@@ -122,11 +123,23 @@ md-sidenav {
 
 .date-container {
     margin: 10px 10px 10px 0;
+    min-width: 176px;
 }
 
 .detail-button {
-    height: @button-size;
-    width: @button-size;
+
+    md-icon {
+        height: @button-size;
+        width: @button-size;
+    }
+}
+
+.detail-button-2 {
+
+    md-icon {
+        height: @button-size2;
+        width: @button-size2;
+    }
 }
 
 .gray-paper {
@@ -200,6 +213,8 @@ md-sidenav {
         color: inherit;
         text-align: left;
         margin-left: 10px;
+        margin-right: 10px;
+        max-width: 198px;
 
         &:first-child {
             margin-top: 10px;
