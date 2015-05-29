@@ -1,0 +1,43 @@
+﻿<md-item layout="column" flex class="content-wrapper" id="primary-col">
+    <md-item ng-controller="branchCtrl">
+        <md-item ng-if="loading">
+            Ładuję strukturę...
+        </md-item>
+        <md-item ng-repeat="Administration in Administrations" layout="column">
+            <md-item ng-repeat="Company in Administration.Companies" layout="column">
+                <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                    <md-button layout-fill ng-click="ShowNetworks = !ShowNetworks" class="big-button">
+                        <h4>Firma: {{Company.CompanyId}}: {{Company.CompanyName}}</h4>
+                    </md-button>
+                </md-item>
+                <md-item ng-repeat="Network in Company.Networks" layout="column" ng-if="ShowNetworks">
+                    <md-item-content layout="column" layout-align="space-between start">
+                        <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                            <md-button layout-fill ng-click="ShowRegions = !ShowRegions">
+                                <span layout-fill class="md-body-2">Sieć: {{Network.NetworkId}}: {{Network.NetworkName}}</span>
+                            </md-button>
+                        </md-item>
+                    </md-item-content>
+                    <md-item ng-repeat="Region in Network.Regions" layout="column" ng-if="ShowRegions">
+                        <md-item-content layout="column" layout-align="space-between start">
+                            <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                                <md-button layout-fill ng-click="ShowBranches = !ShowBranches">
+                                    <h5 layout-fill>Region: {{Region.RegionId}}: {{Region.RegionName}}</h5>
+                                </md-button>
+                            </md-item>
+                        </md-item-content>
+                        <md-item-content layout="column" layout-align="space-between start">
+                            <md-item ng-repeat="Branch in Region.Branches" layout="column" ng-if="ShowBranches">
+                                <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                                    <md-button layout-fill ng-click="ShowAdvisors = !ShowAdvisors">
+                                        <h6 layout-fill>Oddział: {{Branch.BranchId}}: {{Branch.BranchName}}</h6>
+                                    </md-button>
+                                </md-item>
+                            </md-item>
+                        </md-item-content>
+                    </md-item>
+                </md-item>
+            </md-item>
+        </md-item>
+    </md-item>
+</md-item>

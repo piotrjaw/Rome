@@ -24,34 +24,34 @@ namespace Rome.Controllers
         public IQueryable<BaseDTO> GetBases()
         {
             db.Configuration.ProxyCreationEnabled = false;
-    var query = from b in db.Bases
-        select new BaseDTO
-        {
-            BaseId = b.BaseId,
-            BaseName = b.BaseName,
-            BaseStart = b.BaseStart,
-            BaseEnd = b.BaseEnd,
-            DaysLeft = b.DaysLeft,
-            IsActive = b.IsActive,
-            Progress = b.Progress,
-            Clients =
-                from ba in b.BaseAssignments 
-                join c in db.Clients on ba.ClientId equals c.ClientId
-                select new ClientDTO
+            var query = from b in db.Bases
+                select new BaseDTO
                 {
-                    ClientId = c.ClientId,
-                    CompanyName = c.CompanyName,
-                    Owner = c.Owner,
-                    Events = 
-                    from e in c.Events
-                    where e.BaseId == b.BaseId
-                    select new EventDTO
-                    {
-                        EventId = e.EventId,
-                        EventDate = e.EventDate
-                    }
-                }
-        };
+                    BaseId = b.BaseId,
+                    BaseName = b.BaseName,
+                    BaseStart = b.BaseStart,
+                    BaseEnd = b.BaseEnd,
+                    DaysLeft = b.DaysLeft,
+                    IsActive = b.IsActive,
+                    Progress = b.Progress,
+                    Clients =
+                        from ba in b.BaseAssignments 
+                        join c in db.Clients on ba.ClientId equals c.ClientId
+                        select new ClientDTO
+                        {
+                            ClientId = c.ClientId,
+                            CompanyName = c.CompanyName,
+                            Owner = c.Owner,
+                            Events = 
+                            from e in c.Events
+                            where e.BaseId == b.BaseId
+                            select new EventDTO
+                            {
+                                EventId = e.EventId,
+                                EventDate = e.EventDate
+                            }
+                        }
+                };
                 
                 /*from b in db.Bases
                 group b by b.BaseId into nb

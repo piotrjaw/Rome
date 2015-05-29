@@ -16,6 +16,8 @@
                             <md-divider></md-divider>
                             <md-button layout-fill class="inner-wrapper" ng-class="{ active:tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
                             <md-divider></md-divider>
+                            <md-button layout-fill class="inner-wrapper" ng-class="{ active:tab.isSet(5) }" ng-click="tab.setTab(5)">Struktura</md-button>
+                            <md-divider></md-divider>
                         </md-list>
                     </md-item>
                 </md-content>
@@ -32,6 +34,7 @@
                     <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
                     <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
                     <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
+                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(5)" ng-include="'Home/Templates/Branches'"></md-item>
                 </md-content>
             </md-item>
         </md-item>

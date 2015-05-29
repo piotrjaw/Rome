@@ -131,21 +131,36 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministrationsController.cs" />
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\XSellContext.cs" />
     <Compile Include="DAL\XSellInitializer.cs" />
+    <Compile Include="DTOs\AdministrationDTO.cs" />
     <Compile Include="DTOs\BaseDTO.cs" />
+    <Compile Include="DTOs\BranchDTO.cs" />
     <Compile Include="DTOs\ClientDTO.cs" />
+    <Compile Include="DTOs\CompanyDTO.cs" />
     <Compile Include="DTOs\EventDTO.cs" />
+    <Compile Include="DTOs\NetworkDTO.cs" />
+    <Compile Include="DTOs\RegionDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administration.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\BaseAssignment.cs" />
+    <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Network.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RoleAssignment.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -576,6 +591,7 @@
     <Content Include="Views\Home\Templates\AccountCreation.cshtml" />
     <Content Include="Views\Home\Templates\Calendar.cshtml" />
     <Content Include="Views\Home\Templates\Meetings.cshtml" />
+    <Content Include="Views\Home\Templates\Branches.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
