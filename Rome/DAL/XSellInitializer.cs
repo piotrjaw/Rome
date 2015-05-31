@@ -88,15 +88,9 @@ namespace Rome.DAL
 
             var roles = new List<Role>
             {
-                new Role {RoleId = 1, RoleName = "Admin"},
-                new Role {RoleId = 2, RoleName = "CompanyManager"},
-                new Role {RoleId = 3, RoleName = "NetworkManager"},
-                new Role {RoleId = 4, RoleName = "NetworkDeputyManager"},
-                new Role {RoleId = 5, RoleName = "RegionManager"},
-                new Role {RoleId = 6, RoleName = "RegionDeputyManager"},
-                new Role {RoleId = 7, RoleName = "BranchManager"},
-                new Role {RoleId = 8, RoleName = "BranchDeputyManager"},
-                new Role {RoleId = 9, RoleName = "Advisor"},
+                new Role {RoleId = 1, RoleName = "Manager"},
+                new Role {RoleId = 2, RoleName = "DeputyManager"},
+                new Role {RoleId = 3, RoleName = "Advisor"}
             };
             roles.ForEach(r => context.Roles.Add(r));
             context.SaveChanges();
@@ -126,81 +120,59 @@ namespace Rome.DAL
             users.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
 
-            var administrations = new List<Administration>
+            var units = new List<Unit>
             {
-                new Administration {AdministrationId = 1}
+                new Unit {UnitId = 1, UnitName = "Adminitstration"}
+                new Unit {UnitId = 2, UnitName = "Tax Care SA", MasterUnitId = 1},
+                new Unit {UnitId = 3, UnitName = "Idea Bank SA", MasterUnitId = 1}
+                new Unit {UnitId = 4, UnitName = "TCS", MasterUnitId = 2},
+                new Unit {UnitId = 5, UnitName = "TCP", MasterUnitId = 2},
+                new Unit {UnitId = 6, UnitName = "IBS", MasterUnitId = 3}
+                new Unit {UnitId = 7, UnitName = "Region 1", MasterUnitId = 4},
+                new Unit {UnitId = 8, UnitName = "Region 2", MasterUnitId = 4},
+                new Unit {UnitId = 9, UnitName = "Region 1", MasterUnitId = 5},
+                new Unit {UnitId = 10, UnitName = "Region 2", MasterUnitId = 5},
+                new Unit {UnitId = 11, UnitName = "Region 1", MasterUnitId = 6},
+                new Unit {UnitId = 12, UnitName = "Region 2", MasterUnitId = 6},
+                new Unit {UnitId = 13, UnitName = "TAXBIA1", MasterUnitId = 7},
+                new Unit {UnitId = 14, UnitName = "TAXGDA1", MasterUnitId = 7},
+                new Unit {UnitId = 15, UnitName = "TAXKRA1", MasterUnitId = 8},
+                new Unit {UnitId = 16, UnitName = "TAXSOS1", MasterUnitId = 8},
+                new Unit {UnitId = 17, UnitName = "TCPBIA1", MasterUnitId = 9},
+                new Unit {UnitId = 18, UnitName = "TCPSUW1", MasterUnitId = 9},
+                new Unit {UnitId = 19, UnitName = "TCPWAW1", MasterUnitId = 10},
+                new Unit {UnitId = 20, UnitName = "TCPPIA1", MasterUnitId = 10},
+                new Unit {UnitId = 21, UnitName = "TCIB WAW1", MasterUnitId = 11},
+                new Unit {UnitId = 22, BranchName = "TCIB WAW6", MasterUnitId = 11},
+                new Unit {UnitId = 23, BranchName = "TCIB KRA1", MasterUnitId = 12},
+                new Unit {UnitId = 24, BranchName = "TCIB WRO2", MasterUnitId = 12}
             };
-            administrations.ForEach(a => context.Administrations.Add(a));
+            units.ForEach(u => context.Units.Add(u));
             context.SaveChanges();
 
-            var companies = new List<Company>
-            {
-                new Company {CompanyId = 1, CompanyName = "Tax Care SA", AdministrationId = 1},
-                new Company {CompanyId = 2, CompanyName = "Idea Bank SA", AdministrationId = 1}
-            };
-            companies.ForEach(c => context.Companies.Add(c));
-            context.SaveChanges();
-
-            var networks = new List<Network>
-            {
-                new Network {NetworkId = 1, NetworkName = "TCS", CompanyId = 1},
-                new Network {NetworkId = 2, NetworkName = "TCP", CompanyId = 1},
-                new Network {NetworkId = 3, NetworkName = "IBS", CompanyId = 2}
-            };
-            networks.ForEach(n => context.Networks.Add(n));
-            context.SaveChanges();
-
-            var regions = new List<Region>
-            {
-                new Region {RegionId = 1, RegionName = "Region 1", NetworkId = 1},
-                new Region {RegionId = 2, RegionName = "Region 2", NetworkId = 1},
-                new Region {RegionId = 3, RegionName = "Region 1", NetworkId = 2},
-                new Region {RegionId = 4, RegionName = "Region 2", NetworkId = 2},
-                new Region {RegionId = 5, RegionName = "Region 1", NetworkId = 3},
-                new Region {RegionId = 6, RegionName = "Region 2", NetworkId = 3},
-            };
-            regions.ForEach(r => context.Regions.Add(r));
-            context.SaveChanges();
-
-            var branches = new List<Branch>
-            {
-                new Branch {BranchId = 1, BranchName = "TAXBIA1", RegionId = 1},
-                new Branch {BranchId = 2, BranchName = "TAXGDA1", RegionId = 1},
-                new Branch {BranchId = 3, BranchName = "TAXKRA1", RegionId = 2},
-                new Branch {BranchId = 4, BranchName = "TAXSOS1", RegionId = 2},
-                new Branch {BranchId = 5, BranchName = "TCPBIA1", RegionId = 3},
-                new Branch {BranchId = 6, BranchName = "TCPSUW1", RegionId = 3},
-                new Branch {BranchId = 7, BranchName = "TCPWAW1", RegionId = 4},
-                new Branch {BranchId = 8, BranchName = "TCPPIA1", RegionId = 4},
-                new Branch {BranchId = 9, BranchName = "TCIB WAW1", RegionId = 5},
-                new Branch {BranchId = 10, BranchName = "TCIB WAW6", RegionId = 5},
-                new Branch {BranchId = 11, BranchName = "TCIB KRA1", RegionId = 6},
-                new Branch {BranchId = 12, BranchName = "TCIB WRO2", RegionId = 6}
-            };
-            branches.ForEach(b => context.Branches.Add(b));
-            context.SaveChanges();
+            var unittypes = new List<Unit>
 
             var roleassignments = new List<RoleAssignment>
             {
-                new RoleAssignment {RoleAssignmentId = 1, UnitId = 1, RoleId = 2, UserId = 1},
-                new RoleAssignment {RoleAssignmentId = 2, UnitId = 1, RoleId = 2, UserId = 2},
-                new RoleAssignment {RoleAssignmentId = 3, UnitId = 1, RoleId = 3, UserId = 3},
-                new RoleAssignment {RoleAssignmentId = 4, UnitId = 2, RoleId = 3, UserId = 4},
+                new RoleAssignment {RoleAssignmentId = 1, UnitId = 2, RoleId = 1, UserId = 1},
+                new RoleAssignment {RoleAssignmentId = 2, UnitId = 2, RoleId = 1, UserId = 2},
+                new RoleAssignment {RoleAssignmentId = 3, UnitId = 3, RoleId = 1, UserId = 3},
+                new RoleAssignment {RoleAssignmentId = 4, UnitId = 4, RoleId = 1, UserId = 4},
                 new RoleAssignment {RoleAssignmentId = 5, UnitId = 1, RoleId = 1, UserId = 5},
-                new RoleAssignment {RoleAssignmentId = 6, UnitId = 1, RoleId = 4, UserId = 6},
-                new RoleAssignment {RoleAssignmentId = 7, UnitId = 1, RoleId = 4, UserId = 7},
-                new RoleAssignment {RoleAssignmentId = 8, UnitId = 2, RoleId = 4, UserId = 8},
-                new RoleAssignment {RoleAssignmentId = 9, UnitId = 2, RoleId = 4, UserId = 9},
-                new RoleAssignment {RoleAssignmentId = 10, UnitId = 1, RoleId = 5, UserId = 10},
-                new RoleAssignment {RoleAssignmentId = 11, UnitId = 1, RoleId = 5, UserId = 11},
-                new RoleAssignment {RoleAssignmentId = 12, UnitId = 1, RoleId = 5, UserId = 12},
-                new RoleAssignment {RoleAssignmentId = 13, UnitId = 1, RoleId = 6, UserId = 13},
-                new RoleAssignment {RoleAssignmentId = 14, UnitId = 1, RoleId = 6, UserId = 14},
-                new RoleAssignment {RoleAssignmentId = 15, UnitId = 1, RoleId = 6, UserId = 15},
-                new RoleAssignment {RoleAssignmentId = 16, UnitId = 1, RoleId = 7, UserId = 16},
-                new RoleAssignment {RoleAssignmentId = 17, UnitId = 1, RoleId = 8, UserId = 17},
-                new RoleAssignment {RoleAssignmentId = 18, UnitId = 1, RoleId = 8, UserId = 18},
-                new RoleAssignment {RoleAssignmentId = 18, UnitId = 1, RoleId = 9, UserId = 19}
+                new RoleAssignment {RoleAssignmentId = 6, UnitId = 6, RoleId = 1, UserId = 6},
+                new RoleAssignment {RoleAssignmentId = 7, UnitId = 7, RoleId = 1, UserId = 7},
+                new RoleAssignment {RoleAssignmentId = 8, UnitId = 7, RoleId = 2, UserId = 8},
+                new RoleAssignment {RoleAssignmentId = 9, UnitId = 7, RoleId = 2, UserId = 9},
+                new RoleAssignment {RoleAssignmentId = 10, UnitId = 8, RoleId = 1, UserId = 10},
+                new RoleAssignment {RoleAssignmentId = 11, UnitId = 8, RoleId = 2, UserId = 11},
+                new RoleAssignment {RoleAssignmentId = 12, UnitId = 8, RoleId = 2, UserId = 12},
+                new RoleAssignment {RoleAssignmentId = 13, UnitId = 13, RoleId = 1, UserId = 13},
+                new RoleAssignment {RoleAssignmentId = 14, UnitId = 13, RoleId = 2, UserId = 14},
+                new RoleAssignment {RoleAssignmentId = 15, UnitId = 13, RoleId = 2, UserId = 15},
+                new RoleAssignment {RoleAssignmentId = 16, UnitId = 13, RoleId = 3, UserId = 16},
+                new RoleAssignment {RoleAssignmentId = 17, UnitId = 13, RoleId = 3, UserId = 17},
+                new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 18},
+                new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 19}
             };
         }
     }

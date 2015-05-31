@@ -23,20 +23,84 @@ namespace Rome.Controllers
         public IQueryable<AdministrationDTO> GetAdministrations()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var query = from a in db.Administrations
+            var query = from u in db.Units
+                        where u.UnitTypeId = 1
                         select new AdministrationDTO
                         {
-                            AdministrationId = a.AdministrationId,
-                            Admins = from ra in a.RoleAssignments
-                                     join u in db.Users on 
-                                     new {
+                            AdministrationId = u.UnitId,
+                            Admins = from ra in u.RoleAssignments
+                                     join us in db.Users on
+                                     new
+                                     {
                                          JoinProperty1 = ra.UserId,
-                                         JoinProperty2 = ra.RoleId
+                                         JoinProperty2 = ra.RoleId,
+                                         JoinProperty3 = ra.UnitId
+                                     }
+                                     equals
+                                     new
+                                     {
+                                         JoinProperty1 = us.UserId,
+                                         JoinProperty2 = 1,
+                                         JoinProperty3 = u.UnitId
+                                     }
+                                     select new UserDTO
+                                     {
+                                         UserId = us.UserId,
+                                         UserFirstName = us.UserFirstName,
+                                         UserSurname = us.UserSurname,
+                                         UserName = us.UserName,
+                                         Email = us.Email
+                                     },
+                            Companies = from s in u.SlaveUnits
+                                        select new CompanyDTO
+                                        {
+                                            CompanyId = s.UnitId,
+                                            CompanyName = s.UnitName,
+                                            CompanyManagers = from ra in s.RoleAssignments
+                                                              join us in db.Users on
+                                                              new
+                                                              {
+                                                                  JoinProperty1 = ra.UserId,
+                                                                  JoinProperty2 = ra.RoleId,
+                                                                  JoinProperty3 = ra.UnitId
+                                                              }
+                                                              equals
+                                                              new
+                                                              {
+                                                                  JoinProperty1 = us.UserId,
+                                                                  JoinProperty2 = 1,
+                                                                  JoinProperty3 = s.UnitId
+                                                              }
+                                                              select new UserDTO
+                                                              {
+                                                                  UserId = us.UserId,
+                                                                  UserFirstName = us.UserFirstName,
+                                                                  UserSurname = us.UserSurname,
+                                                                  UserName = us.UserName,
+                                                                  Email = us.Email
+                                                              },
+
+                                        }
+                        }
+
+            var query = from u in db.Units
+                        where u.UnitTypeId = 1
+                        select new AdministrationDTO
+                        {
+                            AdministrationId = u.UnitId,
+                            Admins = from ra in u.RoleAssignments
+                                     join us in db.Users on 
+                                     new
+                                     {
+                                         JoinProperty1 = ra.UserId,
+                                         JoinProperty2 = ra.RoleId,
+                                         JoinProperty3 = ra.UnitId
                                      }
                                      equals
                                      new {
-                                         JoinProperty1 = u.UserId,
-                                         JoinProperty2 = 1
+                                         JoinProperty1 = us.UserId,
+                                         JoinProperty2 = 1,
+                                         JoinProperty3 = u.UnitId
                                      }
                                      select new UserDTO
                                      {
@@ -56,13 +120,15 @@ namespace Rome.Controllers
                                                               new
                                                               {
                                                                   JoinProperty1 = ra.UserId,
-                                                                  JoinProperty2 = ra.RoleId
+                                                                  JoinProperty2 = ra.RoleId,
+                                                                  JoinProperty3 = ra.UnitId
                                                               }
                                                               equals
                                                               new
                                                               {
                                                                   JoinProperty1 = u.UserId,
-                                                                  JoinProperty2 = 2
+                                                                  JoinProperty2 = 2,
+                                                                  JoinProperty3 = u.UnitId
                                                               }
                                                               select new UserDTO
                                                               {
@@ -82,13 +148,15 @@ namespace Rome.Controllers
                                                                             new
                                                                             {
                                                                                 JoinProperty1 = ra.UserId,
-                                                                                JoinProperty2 = ra.RoleId
+                                                                                JoinProperty2 = ra.RoleId,
+                                                                                JoinProperty3 = ra.UnitId
                                                                             }
                                                                             equals
                                                                             new
                                                                             {
                                                                                 JoinProperty1 = u.UserId,
-                                                                                JoinProperty2 = 3
+                                                                                JoinProperty2 = 3,
+                                                                                JoinProperty3 = u.UnitId
                                                                             }
                                                                             select new UserDTO
                                                                             {
@@ -103,13 +171,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 4
+                                                                                       JoinProperty2 = 4,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
@@ -129,13 +199,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = ra.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 5
+                                                                                       JoinProperty2 = 5,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
@@ -150,13 +222,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = ra.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 6
+                                                                                       JoinProperty2 = 6,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
@@ -176,13 +250,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = ra.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 7
+                                                                                       JoinProperty2 = 7,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
@@ -197,13 +273,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = ra.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 8
+                                                                                       JoinProperty2 = 8,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
@@ -218,13 +296,15 @@ namespace Rome.Controllers
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = ra.UserId,
-                                                                                       JoinProperty2 = ra.RoleId
+                                                                                       JoinProperty2 = ra.RoleId,
+                                                                                       JoinProperty3 = ra.UnitId
                                                                                    }
                                                                                    equals
                                                                                    new
                                                                                    {
                                                                                        JoinProperty1 = u.UserId,
-                                                                                       JoinProperty2 = 9
+                                                                                       JoinProperty2 = 9,
+                                                                                       JoinProperty3 = u.UnitId
                                                                                    }
                                                                                    select new UserDTO
                                                                                    {
