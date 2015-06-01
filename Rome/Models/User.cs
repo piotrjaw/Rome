@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Rome.DTOs;
 
 namespace Rome.Models
 {
@@ -14,6 +15,6 @@ namespace Rome.Models
         public string Password { get; set; }
         public string Email { get; set; }
 
-        public virtual RoleAssignment RoleAssignment { get; set; }
+        public virtual ICollection<RoleAssignment> RoleAssignments { get; set; }
     }
 }

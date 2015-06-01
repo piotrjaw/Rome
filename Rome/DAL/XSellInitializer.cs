@@ -122,42 +122,80 @@ namespace Rome.DAL
 
             var units = new List<Unit>
             {
-                new Unit {UnitId = 1, UnitName = "Adminitstration"}
-                new Unit {UnitId = 2, UnitName = "Tax Care SA", MasterUnitId = 1},
-                new Unit {UnitId = 3, UnitName = "Idea Bank SA", MasterUnitId = 1}
-                new Unit {UnitId = 4, UnitName = "TCS", MasterUnitId = 2},
-                new Unit {UnitId = 5, UnitName = "TCP", MasterUnitId = 2},
-                new Unit {UnitId = 6, UnitName = "IBS", MasterUnitId = 3}
-                new Unit {UnitId = 7, UnitName = "Region 1", MasterUnitId = 4},
-                new Unit {UnitId = 8, UnitName = "Region 2", MasterUnitId = 4},
-                new Unit {UnitId = 9, UnitName = "Region 1", MasterUnitId = 5},
-                new Unit {UnitId = 10, UnitName = "Region 2", MasterUnitId = 5},
-                new Unit {UnitId = 11, UnitName = "Region 1", MasterUnitId = 6},
-                new Unit {UnitId = 12, UnitName = "Region 2", MasterUnitId = 6},
-                new Unit {UnitId = 13, UnitName = "TAXBIA1", MasterUnitId = 7},
-                new Unit {UnitId = 14, UnitName = "TAXGDA1", MasterUnitId = 7},
-                new Unit {UnitId = 15, UnitName = "TAXKRA1", MasterUnitId = 8},
-                new Unit {UnitId = 16, UnitName = "TAXSOS1", MasterUnitId = 8},
-                new Unit {UnitId = 17, UnitName = "TCPBIA1", MasterUnitId = 9},
-                new Unit {UnitId = 18, UnitName = "TCPSUW1", MasterUnitId = 9},
-                new Unit {UnitId = 19, UnitName = "TCPWAW1", MasterUnitId = 10},
-                new Unit {UnitId = 20, UnitName = "TCPPIA1", MasterUnitId = 10},
-                new Unit {UnitId = 21, UnitName = "TCIB WAW1", MasterUnitId = 11},
-                new Unit {UnitId = 22, BranchName = "TCIB WAW6", MasterUnitId = 11},
-                new Unit {UnitId = 23, BranchName = "TCIB KRA1", MasterUnitId = 12},
-                new Unit {UnitId = 24, BranchName = "TCIB WRO2", MasterUnitId = 12}
+                new Unit {UnitId = 1, UnitTypeId = 1, UnitName = "Adminitstration"},
+                new Unit {UnitId = 2, UnitTypeId = 2, UnitName = "Tax Care SA"},
+                new Unit {UnitId = 3, UnitTypeId = 2, UnitName = "Idea Bank SA"},
+                new Unit {UnitId = 4, UnitTypeId = 3, UnitName = "TCS"},
+                new Unit {UnitId = 5, UnitTypeId = 3, UnitName = "TCP"},
+                new Unit {UnitId = 6, UnitTypeId = 3, UnitName = "IBS"},
+                new Unit {UnitId = 7, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 8, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 9, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 10, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 11, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 12, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 13, UnitTypeId = 5, UnitName = "TAXBIA1"},
+                new Unit {UnitId = 14, UnitTypeId = 5, UnitName = "TAXGDA1"},
+                new Unit {UnitId = 15, UnitTypeId = 5, UnitName = "TAXKRA1"},
+                new Unit {UnitId = 16, UnitTypeId = 5, UnitName = "TAXSOS1"},
+                new Unit {UnitId = 17, UnitTypeId = 5, UnitName = "TCPBIA1"},
+                new Unit {UnitId = 18, UnitTypeId = 5, UnitName = "TCPSUW1"},
+                new Unit {UnitId = 19, UnitTypeId = 5, UnitName = "TCPWAW1"},
+                new Unit {UnitId = 20, UnitTypeId = 5, UnitName = "TCPPIA1"},
+                new Unit {UnitId = 21, UnitTypeId = 5, UnitName = "TCIB WAW1"},
+                new Unit {UnitId = 22, UnitTypeId = 5, UnitName = "TCIB WAW6"},
+                new Unit {UnitId = 23, UnitTypeId = 5, UnitName = "TCIB KRA1"},
+                new Unit {UnitId = 24, UnitTypeId = 5, UnitName = "TCIB WRO2"}
             };
             units.ForEach(u => context.Units.Add(u));
             context.SaveChanges();
 
-            var unittypes = new List<Unit>
+            var unitrelations = new List<UnitRelation>
+            {
+                new UnitRelation {UnitId = 1, ChildUnitId = 2},
+                new UnitRelation {UnitId = 1, ChildUnitId = 3},
+                new UnitRelation {UnitId = 2, ChildUnitId = 4},
+                new UnitRelation {UnitId = 2, ChildUnitId = 5},
+                new UnitRelation {UnitId = 3, ChildUnitId = 6},
+                new UnitRelation {UnitId = 4, ChildUnitId = 7},
+                new UnitRelation {UnitId = 4, ChildUnitId = 8},
+                new UnitRelation {UnitId = 5, ChildUnitId = 9},
+                new UnitRelation {UnitId = 5, ChildUnitId = 10},
+                new UnitRelation {UnitId = 6, ChildUnitId = 11},
+                new UnitRelation {UnitId = 6, ChildUnitId = 12},
+                new UnitRelation {UnitId = 7, ChildUnitId = 13},
+                new UnitRelation {UnitId = 7, ChildUnitId = 14},
+                new UnitRelation {UnitId = 8, ChildUnitId = 15},
+                new UnitRelation {UnitId = 8, ChildUnitId = 16},
+                new UnitRelation {UnitId = 9, ChildUnitId = 17},
+                new UnitRelation {UnitId = 9, ChildUnitId = 18},
+                new UnitRelation {UnitId = 10, ChildUnitId = 19},
+                new UnitRelation {UnitId = 10, ChildUnitId = 20},
+                new UnitRelation {UnitId = 11, ChildUnitId = 21},
+                new UnitRelation {UnitId = 11, ChildUnitId = 22},
+                new UnitRelation {UnitId = 12, ChildUnitId = 23},
+                new UnitRelation {UnitId = 12, ChildUnitId = 24}
+            };
+            unitrelations.ForEach(u => context.UnitRelations.Add(u));
+            context.SaveChanges();
+
+            var unittypes = new List<UnitType>
+            {
+                new UnitType {UnitTypeId = 1, UnitTypeName = "Administration"},
+                new UnitType {UnitTypeId = 2, UnitTypeName = "Company"},
+                new UnitType {UnitTypeId = 3, UnitTypeName = "Network"},
+                new UnitType {UnitTypeId = 4, UnitTypeName = "Region"},
+                new UnitType {UnitTypeId = 5, UnitTypeName = "Branch"}
+            };
+            unittypes.ForEach(u => context.UnitTypes.Add(u));
+            context.SaveChanges();
 
             var roleassignments = new List<RoleAssignment>
             {
                 new RoleAssignment {RoleAssignmentId = 1, UnitId = 2, RoleId = 1, UserId = 1},
                 new RoleAssignment {RoleAssignmentId = 2, UnitId = 2, RoleId = 1, UserId = 2},
-                new RoleAssignment {RoleAssignmentId = 3, UnitId = 3, RoleId = 1, UserId = 3},
-                new RoleAssignment {RoleAssignmentId = 4, UnitId = 4, RoleId = 1, UserId = 4},
+                new RoleAssignment {RoleAssignmentId = 3, UnitId = 4, RoleId = 1, UserId = 3},
+                new RoleAssignment {RoleAssignmentId = 4, UnitId = 5, RoleId = 1, UserId = 4},
                 new RoleAssignment {RoleAssignmentId = 5, UnitId = 1, RoleId = 1, UserId = 5},
                 new RoleAssignment {RoleAssignmentId = 6, UnitId = 6, RoleId = 1, UserId = 6},
                 new RoleAssignment {RoleAssignmentId = 7, UnitId = 7, RoleId = 1, UserId = 7},
@@ -174,6 +212,8 @@ namespace Rome.DAL
                 new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 18},
                 new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 19}
             };
+            roleassignments.ForEach(r => context.RoleAssignments.Add(r));
+            context.SaveChanges();
         }
     }
 }

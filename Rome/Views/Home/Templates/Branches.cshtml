@@ -5,33 +5,115 @@
         </md-item>
         <md-item ng-repeat="Administration in Administrations" layout="column">
             <md-item ng-repeat="Company in Administration.Companies" layout="column">
-                <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                <md-item layout="row" layout-align="start center" class="paper2 md-whiteframe-z2">
                     <md-button layout-fill ng-click="ShowNetworks = !ShowNetworks" class="big-button">
                         <h4>Firma: {{Company.CompanyId}}: {{Company.CompanyName}}</h4>
                     </md-button>
+                    <md-button class="detail-button-2" ng-click="CompanyShowPeople = !CompanyShowPeople" layout-align="center center" aria-label="dane firmy">
+                        <md-icon md-svg-icon="/Img/Icons/information-outline.svg" class="icon-grey"></md-icon>
+                        <md-tooltip md-delay="100" md-autohide="true">Dane Firmy</md-tooltip>
+                    </md-button>
+                </md-item>
+                <md-item ng-if="CompanyShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                    <h4>Zarząd Firmy</h4>
+                    <md-item-content layout="column" ng-repeat="CompanyManager in Company.CompanyManagers">
+                        <md-list class="attribute-list">
+                            <md-item class="md-list-item-content">{{CompanyManager.UserFirstName}} {{CompanyManager.UserSurname}}</md-item>
+                            <md-item class="md-list-item-content">{{CompanyManager.Email}}</md-item>
+                        </md-list>
+                    </md-item-content>
                 </md-item>
                 <md-item ng-repeat="Network in Company.Networks" layout="column" ng-if="ShowNetworks">
                     <md-item-content layout="column" layout-align="space-between start">
-                        <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                        <md-item layout="row" layout-align="start center" class="paper2 md-whiteframe-z2">
                             <md-button layout-fill ng-click="ShowRegions = !ShowRegions">
                                 <span layout-fill class="md-body-2">Sieć: {{Network.NetworkId}}: {{Network.NetworkName}}</span>
                             </md-button>
+                            <md-button class="detail-button-2" ng-click="NetworkShowPeople = !NetworkShowPeople" layout-align="center center" aria-label="dane sieci">
+                                <md-icon md-svg-icon="/Img/Icons/information-outline.svg" class="icon-grey"></md-icon>
+                                <md-tooltip md-delay="100" md-autohide="true">Dane Sieci</md-tooltip>
+                            </md-button>
                         </md-item>
                     </md-item-content>
+                    <md-item ng-if="NetworkShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                        <h5>Dyrektor Sieci</h5>
+                        <md-item-content layout="column" ng-repeat="NetworkManager in Network.NetworkManagers">
+                            <md-list class="attribute-list">
+                                <md-item class="md-list-item-content">{{NetworkManager.UserFirstName}} {{NetworkManager.UserSurname}}</md-item>
+                                <md-item class="md-list-item-content">{{NetworkManager.Email}}</md-item>
+                            </md-list>
+                        </md-item-content>
+                        <h5>Osoby z uprawnieniami Dyrektora Sieci</h5>
+                        <md-item-content layout="column" ng-repeat="NetworkDeputyManager in Network.NetworkDeputyManagers">
+                            <md-list class="attribute-list">
+                                <md-item class="md-list-item-content">{{NetworkDeputyManager.UserFirstName}} {{NetworkDeputyManager.UserSurname}}</md-item>
+                                <md-item class="md-list-item-content">{{NetworkDeputyManager.Email}}</md-item>
+                            </md-list>
+                        </md-item-content>
+                    </md-item>
                     <md-item ng-repeat="Region in Network.Regions" layout="column" ng-if="ShowRegions">
                         <md-item-content layout="column" layout-align="space-between start">
-                            <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
+                            <md-item layout="row" layout-align="start center" class="paper2 md-whiteframe-z2">
                                 <md-button layout-fill ng-click="ShowBranches = !ShowBranches">
                                     <h5 layout-fill>Region: {{Region.RegionId}}: {{Region.RegionName}}</h5>
                                 </md-button>
+                                <md-button class="detail-button-2" ng-click="RegionShowPeople = !RegionShowPeople" layout-align="center center" aria-label="dane regionu">
+                                    <md-icon md-svg-icon="/Img/Icons/information-outline.svg" class="icon-grey"></md-icon>
+                                    <md-tooltip md-delay="100" md-autohide="true">Dane Regionu</md-tooltip>
+                                </md-button>
                             </md-item>
                         </md-item-content>
+                        <md-item ng-if="RegionShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                            <h5>Dyrektor Regionu</h5>
+                            <md-item-content layout="column" ng-repeat="RegionManager in Region.RegionManagers">
+                                <md-list class="attribute-list">
+                                    <md-item class="md-list-item-content">{{RegionManager.UserFirstName}} {{RegionManager.UserSurname}}</md-item>
+                                    <md-item class="md-list-item-content">{{RegionManager.Email}}</md-item>
+                                </md-list>
+                            </md-item-content>
+                            <h5>Osoby z uprawnieniami Dyrektora Regionu</h5>
+                            <md-item-content layout="column" ng-repeat="RegionDeputyManager in Region.RegionDeputyManagers">
+                                <md-list class="attribute-list">
+                                    <md-item class="md-list-item-content">{{RegionDeputyManager.UserFirstName}} {{RegionDeputyManager.UserSurname}}</md-item>
+                                    <md-item class="md-list-item-content">{{RegionDeputyManager.Email}}</md-item>
+                                </md-list>
+                            </md-item-content>
+                        </md-item>
                         <md-item-content layout="column" layout-align="space-between start">
                             <md-item ng-repeat="Branch in Region.Branches" layout="column" ng-if="ShowBranches">
-                                <md-item layout="row" layout-align="start center" class="paper md-whiteframe-z2">
-                                    <md-button layout-fill ng-click="ShowAdvisors = !ShowAdvisors">
+                                <md-item-content layout="column" layout-align="space-between start" class="paper2 md-whiteframe-z2">
+                                    <md-button layout-fill ng-click="BranchShowPeople = !BranchShowPeople">
                                         <h6 layout-fill>Oddział: {{Branch.BranchId}}: {{Branch.BranchName}}</h6>
                                     </md-button>
+                                </md-item-content>
+                                <md-item ng-if="BranchShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                                    <md-item ng-if="Branch.BranchManagers.length>0">
+                                        <h5>Dyrektor Oddziału</h5>
+                                        <md-item-content layout="column" ng-repeat="BranchManager in Branch.BranchManagers">
+                                            <md-list class="attribute-list">
+                                                <md-item class="md-list-item-content">{{BranchManager.UserFirstName}} {{BranchManager.UserSurname}}</md-item>
+                                                <md-item class="md-list-item-content">{{BranchManager.Email}}</md-item>
+                                            </md-list>
+                                        </md-item-content>
+                                    </md-item>
+                                    <md-item ng-if="Branch.BranchDeputyManagers.length>0">
+                                        <h5>Osoby z uprawnieniami Dyrektora Oddziału</h5>
+                                        <md-item-content layout="column" ng-repeat="BranchDeputyManager in Branch.BranchDeputyManagers">
+                                            <md-list class="attribute-list">
+                                                <md-item class="md-list-item-content">{{BranchDeputyManager.UserFirstName}} {{BranchDeputyManager.UserSurname}}</md-item>
+                                                <md-item class="md-list-item-content">{{BranchDeputyManager.Email}}</md-item>
+                                            </md-list>
+                                        </md-item-content>
+                                    </md-item>
+                                    <md-item ng-if="Branch.Advisors.length>0">
+                                        <h5>Doradcy</h5>
+                                        <md-item-content layout="column" ng-repeat="Advisor in Branch.Advisors">
+                                            <md-list class="attribute-list">
+                                                <md-item class="md-list-item-content">{{Advisor.UserFirstName}} {{Advisor.UserSurname}}</md-item>
+                                                <md-item class="md-list-item-content">{{Advisor.Email}}</md-item>
+                                            </md-list>
+                                        </md-item-content>
+                                    </md-item>
                                 </md-item>
                             </md-item>
                         </md-item-content>

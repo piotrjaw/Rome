@@ -155,6 +155,7 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoleAssignment.cs" />
+    <Compile Include="Models\UnitRelation.cs" />
     <Compile Include="Models\UnitType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
