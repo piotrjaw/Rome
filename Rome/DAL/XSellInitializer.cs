@@ -42,59 +42,6 @@ namespace Rome.DAL
             bases.ForEach(b => context.Bases.Add(b));
             context.SaveChanges();
 
-            var baseAssignments = new List<BaseAssignment>
-            {
-                new BaseAssignment {ClientId = 1, BaseId = 1},
-                new BaseAssignment {ClientId = 2, BaseId = 2},
-                new BaseAssignment {ClientId = 3, BaseId = 2},
-                new BaseAssignment {ClientId = 4, BaseId = 1},
-                new BaseAssignment {ClientId = 5, BaseId = 2},
-                new BaseAssignment {ClientId = 6, BaseId = 1},
-                new BaseAssignment {ClientId = 7, BaseId = 1},
-                new BaseAssignment {ClientId = 8, BaseId = 2},
-                new BaseAssignment {ClientId = 9, BaseId = 2},
-                new BaseAssignment {ClientId = 10, BaseId = 1},
-                new BaseAssignment {ClientId = 11, BaseId = 1},
-                new BaseAssignment {ClientId = 12, BaseId = 1},
-                new BaseAssignment {ClientId = 13, BaseId = 2},
-                new BaseAssignment {ClientId = 14, BaseId = 2},
-                new BaseAssignment {ClientId = 15, BaseId = 1},
-                new BaseAssignment {ClientId = 1, BaseId = 3},
-                new BaseAssignment {ClientId = 2, BaseId = 3},
-                new BaseAssignment {ClientId = 3, BaseId = 3},
-                new BaseAssignment {ClientId = 4, BaseId = 3},
-                new BaseAssignment {ClientId = 5, BaseId = 3},
-                new BaseAssignment {ClientId = 6, BaseId = 3},
-                new BaseAssignment {ClientId = 7, BaseId = 3},
-                new BaseAssignment {ClientId = 8, BaseId = 3},
-                new BaseAssignment {ClientId = 9, BaseId = 3},
-                new BaseAssignment {ClientId = 10, BaseId = 4},
-                new BaseAssignment {ClientId = 11, BaseId = 4},
-                new BaseAssignment {ClientId = 12, BaseId = 4},
-                new BaseAssignment {ClientId = 13, BaseId = 4},
-                new BaseAssignment {ClientId = 14, BaseId = 4},
-                new BaseAssignment {ClientId = 15, BaseId = 4}
-            };
-            baseAssignments.ForEach(b => context.BaseAssignments.Add(b));
-            context.SaveChanges();
-
-            var events = new List<Event>
-            {
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23")},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24")}
-            };
-            events.ForEach(e => context.Events.Add(e));
-            context.SaveChanges();
-
-            var roles = new List<Role>
-            {
-                new Role {RoleId = 1, RoleName = "Manager"},
-                new Role {RoleId = 2, RoleName = "DeputyManager"},
-                new Role {RoleId = 3, RoleName = "Advisor"}
-            };
-            roles.ForEach(r => context.Roles.Add(r));
-            context.SaveChanges();
-
             var users = new List<User>
             {
                 new User {UserId = 1, UserFirstName = "Adam", UserSurname = "Głos", UserName = "aglos", Email = "adam.glos@taxcare.pl", Password = "abc123"},
@@ -118,6 +65,67 @@ namespace Rome.DAL
                 new User {UserId = 19, UserFirstName = "Anna", UserSurname = "Masztalerz", UserName = "amasztalerz", Email = "anna.masztalerz@taxcare.pl", Password = "abc123"}
             };
             users.ForEach(u => context.Users.Add(u));
+            context.SaveChanges();
+
+            var baseAssignments = new List<BaseAssignment>
+            {
+                new BaseAssignment {ClientId = 1, BaseId = 1, UserId = 18},
+                new BaseAssignment {ClientId = 2, BaseId = 2, UserId = 18},
+                new BaseAssignment {ClientId = 3, BaseId = 2, UserId = 18},
+                new BaseAssignment {ClientId = 4, BaseId = 1, UserId = 18},
+                new BaseAssignment {ClientId = 5, BaseId = 2, UserId = 18},
+                new BaseAssignment {ClientId = 6, BaseId = 1, UserId = 18},
+                new BaseAssignment {ClientId = 7, BaseId = 1, UserId = 18},
+                new BaseAssignment {ClientId = 8, BaseId = 2, UserId = 18},
+                new BaseAssignment {ClientId = 9, BaseId = 2, UserId = 18},
+                new BaseAssignment {ClientId = 10, BaseId = 1, UserId = 19},
+                new BaseAssignment {ClientId = 11, BaseId = 1, UserId = 19},
+                new BaseAssignment {ClientId = 12, BaseId = 1, UserId = 19},
+                new BaseAssignment {ClientId = 13, BaseId = 2, UserId = 19},
+                new BaseAssignment {ClientId = 14, BaseId = 2, UserId = 19},
+                new BaseAssignment {ClientId = 15, BaseId = 1, UserId = 19},
+                new BaseAssignment {ClientId = 1, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 2, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 3, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 4, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 5, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 6, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 7, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 8, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 9, BaseId = 3, UserId = 19},
+                new BaseAssignment {ClientId = 10, BaseId = 4, UserId = 18},
+                new BaseAssignment {ClientId = 11, BaseId = 4, UserId = 18},
+                new BaseAssignment {ClientId = 12, BaseId = 4, UserId = 18},
+                new BaseAssignment {ClientId = 13, BaseId = 4, UserId = 18},
+                new BaseAssignment {ClientId = 14, BaseId = 4, UserId = 18},
+                new BaseAssignment {ClientId = 15, BaseId = 4, UserId = 18}
+            };
+            baseAssignments.ForEach(b => context.BaseAssignments.Add(b));
+            context.SaveChanges();
+
+            var events = new List<Event>
+            {
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17}
+            };
+            events.ForEach(e => context.Events.Add(e));
+            context.SaveChanges();
+
+            var roles = new List<Role>
+            {
+                new Role {RoleId = 1, RoleName = "Manager"},
+                new Role {RoleId = 2, RoleName = "DeputyManager"},
+                new Role {RoleId = 3, RoleName = "Advisor"}
+            };
+            roles.ForEach(r => context.Roles.Add(r));
             context.SaveChanges();
 
             var units = new List<Unit>

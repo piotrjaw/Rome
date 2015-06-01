@@ -9,5 +9,6 @@ namespace Rome.DTOs
     {
         public int EventId { get; set; }
         public DateTime EventDate { get; set; }
+        public int UserId { get; set; }
     }
 }

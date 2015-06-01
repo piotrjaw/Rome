@@ -4,7 +4,8 @@ var myApp = angular.module('myApp', [
     'ngMaterial',
     'ngAnimate',
 
-    'appControllers'
+    'appControllers',
+    'appDirectives'
 ]);
 
 myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {

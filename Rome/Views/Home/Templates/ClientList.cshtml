@@ -43,7 +43,7 @@
                                 <md-item-content layout="column" layout-align="space-between start">
                                     <md-item-content layout-fill layout="row">
                                         <md-button layout-fill ng-click="ContactShowStatus = !ContactShowStatus" aria-label="historia kontaktów">
-                                            <span class="md-body-2">{{Client.CompanyName}}</span>
+                                            <span class="md-body-2">{{Client.CompanyName}} ({{Client.UserId}})</span>
                                             <md-tooltip md-delay="100" md-autohide="true">Historia kontaktów</md-tooltip>
                                         </md-button>
                                         <md-button class="detail-button-2" ng-click="ClientShowStatus = !ClientShowStatus" layout-align="center center" aria-label="dane klienta">
@@ -68,6 +68,7 @@
                                                 <md-list class="contact-list" layout="column" layout-align="space-between start">
                                                     <md-item class="list-item">Id zdarzenia: {{Event.EventId}}</md-item>
                                                     <md-item class="list-item">Data zdarzenia: {{Event.EventDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
+                                                    <md-item class="list-item">Id Doradcy: {{Event.UserId}}</md-item>
                                                 </md-list>
                                             </md-item-content>
                                         </md-item>

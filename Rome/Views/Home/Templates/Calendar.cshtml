@@ -1,17 +1,5 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        KALENDARZ
-    </div>
-</body>
-</html>
+﻿<md-item layout="column" flex class="content-wrapper" id="primary-col">
+    <md-item ng-controller="calendarCtrl">
+        <calendar selected="day"></calendar>
+    </md-item>
+</md-item>

@@ -60,3 +60,10 @@ appControllers.controller('branchCtrl', [
         });
     }
 ]);
+
+appControllers.controller('calendarCtrl', [
+    '$scope',
+    function ($scope) {
+        $scope.day = moment();
+    }
+]);

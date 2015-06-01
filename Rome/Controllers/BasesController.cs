@@ -42,13 +42,15 @@ namespace Rome.Controllers
                             ClientId = c.ClientId,
                             CompanyName = c.CompanyName,
                             Owner = c.Owner,
+                            UserId = ba.UserId,
                             Events = 
                             from e in c.Events
                             where e.BaseId == b.BaseId
                             select new EventDTO
                             {
                                 EventId = e.EventId,
-                                EventDate = e.EventDate
+                                EventDate = e.EventDate,
+                                UserId = e.UserId
                             }
                         }
                 };
