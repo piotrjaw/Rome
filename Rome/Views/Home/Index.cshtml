@@ -30,11 +30,11 @@
                     <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Nowy Cross-sell</h1>
                 </md-toolbar>
                 <md-content flex class="content-wrapper">
-                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(1)" ng-include="'Home/Templates/ClientList'"></md-item>
-                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
-                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
-                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
-                    <md-item flex class="tab-viewport animate-show" ng-if="tab.isSet(5)" ng-include="'Home/Templates/Branches'"></md-item>
+                    <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(1)" ng-include="'Home/Templates/ClientList'"></md-item>
+                    <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
+                    <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
+                    <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
+                    <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(5)" ng-include="'Home/Templates/Branches'"></md-item>
                 </md-content>
             </md-item>
         </md-item>

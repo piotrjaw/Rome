@@ -1,5 +1,7 @@
-﻿<md-item layout="column" flex class="content-wrapper" id="primary-col">
+﻿<md-item layout="column" flex class="content-wrapper" id="primary-col" layout-fill>
     <md-item ng-controller="calendarCtrl">
-        <calendar selected="day"></calendar>
+        <md-item-content class="md-whiteframe-z2">
+            <calendar selected="day"></calendar>
+        </md-item-content>
     </md-item>
 </md-item>
