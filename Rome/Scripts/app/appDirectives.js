@@ -3,6 +3,9 @@
 var appDirectives = angular.module('appDirectives', []);
 
 appDirectives.directive('calendar', function ($http) {
+
+    moment.locale('pl');
+
     return {
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarTemplate',
@@ -10,8 +13,6 @@ appDirectives.directive('calendar', function ($http) {
             selected: '='
         },
         link: function (scope) {
-            moment.locale('pl');
-            alert(moment().startOf('week'));
 
             scope.selected = _removeTime(scope.selected || moment());
             scope.month = scope.selected.clone();
@@ -43,7 +44,7 @@ appDirectives.directive('calendar', function ($http) {
     };
 
     function _removeTime(date) {
-        return date.day(0).hour(0).minute(0).second(0).millisecond(0);
+        return date.day(1).hour(0).minute(0).second(0).millisecond(0);
     }
 
     function _buildMonth(scope, start, month) {
@@ -67,8 +68,8 @@ appDirectives.directive('calendar', function ($http) {
                 isToday: date.isSame(new Date(), "day"),
                 date: date
             });
-            date = date.clone();
             date.add(1, "d");
+            date = date.clone();
         }
         return days;
     }
