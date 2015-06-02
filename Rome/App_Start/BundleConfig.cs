@@ -17,7 +17,8 @@ namespace Rome
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/node_modules/angular/angular.js",
                         "~/node_modules/angular-animate/angular-animate.js",
-                        "~/node_modules/angular-aria/angular-aria.js"));
+                        "~/node_modules/angular-aria/angular-aria.js",
+                        "~/node_modules/angular-filter/dist/angular-filter.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
                         "~/node_modules/moment/moment.js",

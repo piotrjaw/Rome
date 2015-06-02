@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var appDirectives = angular.module('appDirectives', ['appServices']);
+var appDirectives = angular.module('appDirectives', ['appServices', 'appControllers']);
 
 appDirectives.directive('calendar', ['globalFunctions', function (globalFunctions) {
 

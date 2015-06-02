@@ -9,3 +9,11 @@ appFilters.filter('momentDate', [
         };
     }
 ]);
+
+appFilters.filter('truncDate', [
+    '$filter', function ($filter) {
+        return function (input) {
+            return $filter('date')(input.hour(-22).minute(0).second(0).millisecond(0));
+        };
+    }
+]);

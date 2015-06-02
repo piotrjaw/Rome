@@ -17,8 +17,14 @@
     <md-item class="calendar">               
         <md-item layout="column" layout-align="space-around center">
             <md-item class="week md-body-1" ng-repeat="week in weeks" layout-fill layout-align="space-around center" layout="row">
-                <md-button layout="row" layout-align="center center" layout-fill class="day md-whiteframe-z1" ng-disabled="!day.isCurrentMonth" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days"><md-item>{{day.number}}</md-item></md-button>
+                <md-button layout="row" layout-align="center center" layout-fill class="day md-whiteframe-z1" ng-disabled="!day.isCurrentMonth" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">
+                    <md-item>{{day.number}}</md-item>
+                    <md-item>{{day.date | truncDate}}</md-item>
+                </md-button>
             </md-item>
         </md-item>
+    </md-item>
+    <md-item>
+        <md-item>{{Events}}</md-item>
     </md-item>
 </md-item>

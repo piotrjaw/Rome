@@ -3,6 +3,7 @@
 var myApp = angular.module('myApp', [
     'ngMaterial',
     'ngAnimate',
+    'angular.filter',
 
     'appControllers',
     'appDirectives',
