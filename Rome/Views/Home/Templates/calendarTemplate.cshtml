@@ -24,7 +24,7 @@
             </md-item>
         </md-item>
     </md-item>
-    <md-item>
-        <md-item>{{Events}}</md-item>
+    <md-item ng-repeat="event in events track by $index">
+        <md-item>{{event.EventDate.length | groupBy: EventDate}}</md-item>
     </md-item>
 </md-item>

@@ -10,7 +10,8 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarTemplate',
         scope: {
-            selected: '='
+            selected: '=',
+            events: '@'
         },
         link: function (scope) {
 
@@ -51,7 +52,8 @@ appDirectives.directive('calendar-week', ['globalFunctions', function (globalFun
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarWeekTemplate',
         scope: {
-            selected: "="
+            selected: "=",
+            events: '@'
         },
         link: function (scope) {
 
