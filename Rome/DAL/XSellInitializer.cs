@@ -105,16 +105,16 @@ namespace Rome.DAL
 
             var events = new List<Event>
             {
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-23"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-24"), UserId = 17}
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 17},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 17},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 17}
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();

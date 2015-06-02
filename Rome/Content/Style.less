@@ -35,7 +35,6 @@ md-sidenav {
 
 #primary-col {
     overflow: hidden;
-    height: 100% !important;
 
     .md-button {
         margin: 10px;
@@ -108,6 +107,10 @@ md-sidenav {
     }
 }
 
+.calendar {
+    overflow: hidden !important;
+}
+
 .client-list .md-button {
     color: inherit;
     text-align: left;
@@ -117,12 +120,18 @@ md-sidenav {
 
 .content-wrapper {
     position: relative;
-    height: 100%;
     padding: 5px;
 }
 
 .day {
     background-color: white !important;
+    margin: 4px !important;
+    padding: 10px 25px !important;
+}
+
+.day-header {
+    margin: 3px !important;
+    padding: 15px 25px !important;
 }
 
 .date-container {
@@ -155,9 +164,11 @@ md-sidenav {
 }
 
 .different-month {
-    span {
-        color: #999;
+    md-item {
+        color: #999 !important;
         }
+    
+    background-color: #eeeeee !important;
 }
 
 .gray-paper {
@@ -244,15 +255,12 @@ md-sidenav {
     background-color: white !important;
     height: 64px;
     margin: 2px;
-    z-index: 1;
 }
 
 .paper2 {
     background-color: white !important;
-    height: auto;
     width: 100%;
     margin: 0 2px 2px 2px;
-    z-index: 1;
 
     button {
         text-align: left;
@@ -262,6 +270,14 @@ md-sidenav {
     height: 100%;
 }
 
+.week {
+    padding: 1px 10px;
+
+    &:last-child {
+        padding-bottom: 10px !important;
+    }
+}
+
 .white {
     background-color: white !important;
 }
@@ -269,31 +285,3 @@ md-sidenav {
 .wrapper {
     height: 100%;
 }
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/

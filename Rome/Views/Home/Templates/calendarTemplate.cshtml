@@ -1,23 +1,24 @@
-﻿<md-content layout-column layout-fill class="md-whiteframe-z2 white">
-    <md-item class="header">
+﻿<md-item layout-column class="md-whiteframe-z2 white">
+    <md-item class="header" layout="row" layout-align="space-between center">
         <md-button ng-click="previous()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni miesiąc"></md-icon></md-button>
-        <md-item>{{month.format("MMMM YYYY")}}</md-item>
+        <md-item class="md-title">{{month.format("MMMM YYYY")}}</md-item>
         <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny miesiąc"></md-icon></md-button>
     </md-item>
-    <md-item-content layout="column" layout-fill>
-        <md-item class="week names paper" layout="row" layout-fill  flex>
-            <md-item layout-fill flex class="day">Po</md-item>
-            <md-item layout-fill flex class="day">Wt</md-item>
-            <md-item layout-fill flex class="day">Śr</md-item>
-            <md-item layout-fill flex class="day">Cz</md-item>
-            <md-item layout-fill flex class="day">Pi</md-item>
-            <md-item layout-fill flex class="day">So</md-item>
-            <md-item layout-fill flex class="day">Ni</md-item>
-        </md-item>
-        <md-item layout="column">
-            <md-item class="week" ng-repeat="week in weeks" layout-fill flex layout-align="center center">
-                <md-button  flex class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}</md-button>
+    <md-item layout="column">
+        <md-content class="week names paper2 md-body-2" layout="row" layout-fill flex>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Poniedziałek</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Wtorek</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Środa</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Czwartek</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Piątek</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Sobota</md-toolbar>
+            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Niedziela</md-toolbar>
+    </md-item>
+    <md-item class="calendar">               
+        <md-item layout="column" layout-align="space-around center">
+            <md-item class="week md-body-1" ng-repeat="week in weeks" layout-fill layout-align="space-around center" layout="row">
+                <md-button layout="row" layout-align="center center" layout-fill class="day md-whiteframe-z1" ng-disabled="!day.isCurrentMonth" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days"><md-item>{{day.number}}</md-item></md-button>
             </md-item>
         </md-item>
-    </md-item-content>
-</md-content>
+    </md-item>
+</md-item>

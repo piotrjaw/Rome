@@ -23,9 +23,13 @@ namespace Rome
                         "~/node_modules/moment/moment.js",
                         "~/node_modules/moment/locale/pl.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include(
+                        "~/node_modules/d3/d3.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/app.js",
                         "~/Scripts/app/appControllers.js",
+                        "~/Scripts/app/appFilters.js",
                         "~/Scripts/app/appDirectives.js",
                         "~/Scripts/app/appServices.js"));
 

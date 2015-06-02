@@ -1,7 +1,7 @@
-﻿<md-item layout="column" flex class="content-wrapper" id="primary-col" layout-fill>
+﻿<md-item layout="column" flex class="content-wrapper" layout-fill>
     <md-item ng-controller="calendarCtrl">
         <md-item-content class="md-whiteframe-z2">
-            <md-tabs class="md-whiteframe-z2 paper">
+            <md-tabs md-dynamic-height class="md-whiteframe-z2 paper2">
                 <md-tab label="miesiąc">
                     <calendar selected="day"></calendar>
                 </md-tab>
@@ -10,6 +10,12 @@
                     test
                 </md-tab>
                 <md-tab label="dzień">
+                    <md-item class="md-title">{{Events}}</md-item>
+                    <md-item ng-repeat="Event in Events">
+                        <md-item>
+                            {{Event.EventDate | momentDate}}
+                        </md-item>
+                    </md-item>
                     test2
                 </md-tab>
             </md-tabs>

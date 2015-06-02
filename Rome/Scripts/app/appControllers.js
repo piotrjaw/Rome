@@ -62,8 +62,18 @@ appControllers.controller('branchCtrl', [
 ]);
 
 appControllers.controller('calendarCtrl', [
-    '$scope',
-    function ($scope) {
+    '$scope', '$http',
+    function ($scope, $http) {
         $scope.day = moment();
+        $scope.loading = true;
+
+        $http.get('/api/Events/').success(function (data) {
+            $scope.Events = data;
+            $scope.loading = false;
+        }).error(function (err) {
+            $scope.Error = err;
+            $scope.loading = false;
+        });
+
     }
 ]);
