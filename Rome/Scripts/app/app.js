@@ -5,7 +5,8 @@ var myApp = angular.module('myApp', [
     'ngAnimate',
 
     'appControllers',
-    'appDirectives'
+    'appDirectives',
+    'appServices'
 ]);
 
 myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {

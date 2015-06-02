@@ -1,7 +1,18 @@
 ﻿<md-item layout="column" flex class="content-wrapper" id="primary-col" layout-fill>
     <md-item ng-controller="calendarCtrl">
         <md-item-content class="md-whiteframe-z2">
-            <calendar selected="day"></calendar>
+            <md-tabs class="md-whiteframe-z2 paper">
+                <md-tab label="miesiąc">
+                    <calendar selected="day"></calendar>
+                </md-tab>
+                <md-tab label="tydzień">
+                    <calendar-week selected="day"></calendar-week>
+                    test
+                </md-tab>
+                <md-tab label="dzień">
+                    test2
+                </md-tab>
+            </md-tabs>
         </md-item-content>
     </md-item>
 </md-item>

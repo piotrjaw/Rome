@@ -29,6 +29,8 @@ namespace Rome.Controllers
                     return PartialView("~/Views/Home/Templates/Branches.cshtml");
                 case "calendartemplate":
                     return PartialView("~/Views/Home/Templates/calendarTemplate.cshtml");
+                case "calendarweektemplate":
+                    return PartialView("~/Views/Home/Templates/calendarWeekTemplate.cshtml");
                 default:
                     return PartialView("~/Views/Home/Templates/ClientList.cshtml");
             }

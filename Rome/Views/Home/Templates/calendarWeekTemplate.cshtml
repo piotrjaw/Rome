@@ -5,7 +5,7 @@
         <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny miesiąc"></md-icon></md-button>
     </md-item>
     <md-item-content layout="column" layout-fill>
-        <md-item class="week names paper" layout="row" layout-fill  flex>
+        <md-item class="week names paper" layout="row" layout-fill flex>
             <md-item layout-fill flex class="day">Po</md-item>
             <md-item layout-fill flex class="day">Wt</md-item>
             <md-item layout-fill flex class="day">Śr</md-item>
@@ -16,7 +16,7 @@
         </md-item>
         <md-item layout="column">
             <md-item class="week" ng-repeat="week in weeks" layout-fill flex layout-align="center center">
-                <md-button  flex class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}</md-button>
+                <md-button flex class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}</md-button>
             </md-item>
         </md-item>
     </md-item-content>

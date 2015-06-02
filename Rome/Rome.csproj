@@ -588,6 +588,7 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\appControllers.js" />
     <Content Include="Scripts\app\appDirectives.js" />
+    <Content Include="Scripts\app\appServices.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Style.less" />
@@ -689,6 +690,7 @@
     <Content Include="Views\Home\Templates\Calendar.cshtml" />
     <Content Include="Views\Home\Templates\Meetings.cshtml" />
     <Content Include="Views\Home\Templates\Branches.cshtml" />
+    <Content Include="Views\Home\Templates\calendarWeekTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
