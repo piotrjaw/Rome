@@ -1,0 +1,15 @@
+﻿<md-item layout-column class="md-whiteframe-z2 white">
+    <md-item class="header" layout="row" layout-align="space-between center">
+        <md-button ng-click="previous()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni dzień"></md-icon></md-button>
+        <md-item class="md-title">{{selected.format("d MMMM YYYY")}}</md-item>
+        <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny dzień"></md-icon></md-button>
+    </md-item>
+    <md-item layout="column">
+        <md-item ng-repeat="hour in hours" layout="column">
+            <md-divider></md-divider>
+            <md-item layout="row" layout-align="start center" class="paper md-padding">
+                <md-item>{{hour.name}}</md-item>
+            </md-item>
+        </md-item>
+    </md-item>
+</md-item>

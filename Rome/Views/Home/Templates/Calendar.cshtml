@@ -1,24 +1,17 @@
 ﻿<md-item layout="column" flex class="content-wrapper" layout-fill>
     <md-item ng-controller="calendarCtrl">
-        <md-item-content class="md-whiteframe-z2">
+        <md-item class="md-whiteframe-z2">
             <md-tabs md-dynamic-height class="md-whiteframe-z2 paper2">
                 <md-tab label="miesiąc">
-                    <calendar selected="day" events="{{Events}}"></calendar>
+                    <calendar selected="day" events="Events"></calendar>
                 </md-tab>
                 <md-tab label="tydzień">
-                    <calendar-week selected="day" events="{{Events}}"></calendar-week>
-                    test
+                    <calendar-week selected="day" events="Events"></calendar-week>
                 </md-tab>
                 <md-tab label="dzień">
-                    <md-item class="md-title">{{Events}}</md-item>
-                    <md-item ng-repeat="Event in Events">
-                        <md-item>
-                            {{Event.EventDate | momentDate}}
-                        </md-item>
-                    </md-item>
-                    test2
+                    <calendar-day selected="day" events="Events"></calendar-day>
                 </md-tab>
             </md-tabs>
-        </md-item-content>
+        </md-item>
     </md-item>
 </md-item>

@@ -2,6 +2,7 @@
 @logo-size: 64px;
 @button-size: 36px;
 @button-size2: 24px;
+@small-fab: 24px;
 
 body {
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
@@ -124,7 +125,7 @@ md-sidenav {
 }
 
 .day {
-    background-color: white !important;
+    background-color: white;
     margin: 4px !important;
     padding: 10px 25px !important;
 }
@@ -132,6 +133,7 @@ md-sidenav {
 .day-header {
     margin: 3px !important;
     padding: 15px 25px !important;
+    border-radius: 3px;
 }
 
 .date-container {
@@ -268,6 +270,13 @@ md-sidenav {
 }
 .sidenav-wrapper {
     height: 100%;
+}
+
+.small-button {
+    height: @small-fab !important;
+    min-height: @small-fab !important;
+    line-height: @small-fab !important;
+    width: @small-fab !important;
 }
 
 .week {

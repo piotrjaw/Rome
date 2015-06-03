@@ -11,32 +11,32 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
         templateUrl: '/Home/Templates/calendarTemplate',
         scope: {
             selected: '=',
-            events: '@'
+            events: '='
         },
         link: function (scope) {
 
             scope.selected = globalFunctions._removeTime(scope.selected || moment());
-            scope.month = scope.selected.clone();
+            scope.month = angular.copy(scope.selected);
 
-            var start = scope.selected.clone();
+            var start = angular.copy(scope.selected);
             start.date(1);
             globalFunctions._removeTime(start.day(0));
 
             globalFunctions._buildMonth(scope, start, scope.month);
 
-            scope.select = function (day) {
+            scope.moveTo = function (day) {
                 scope.selected = day.date;
             };
 
             scope.next = function () {
-                var next = scope.month.clone();
+                var next = angular.copy(scope.month);
                 globalFunctions._removeTime(next.month(next.month() + 1).date(1));
                 scope.month.month(scope.month.month() + 1);
                 globalFunctions._buildMonth(scope, next, scope.month);
             };
 
             scope.previous = function () {
-                var previous = scope.month.clone();
+                var previous = angular.copy(scope.month);
                 globalFunctions._removeTime(previous.month(previous.month() - 1).date(1));
                 scope.month.month(scope.month.month() - 1);
                 globalFunctions._buildMonth(scope, previous, scope.month);
@@ -44,23 +44,25 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
         }
     }
 
-}]);
+}])
 
-appDirectives.directive('calendar-week', ['globalFunctions', function (globalFunctions) {
+appDirectives.directive('calendarWeek', ['globalFunctions', function (globalFunctions) {
+
+    moment.locale('pl');
 
     return {
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarWeekTemplate',
         scope: {
-            selected: "=",
-            events: '@'
+            selected: '=',
+            events: '='
         },
         link: function (scope) {
 
             scope.selected = globalFunctions._removeTime(scope.selected || moment());
-            scope.month = scope.selected.clone();
+            scope.month = angular.copy(scope.selected);
 
-            var start = scope.selected.clone();
+            var start = angular.copy(scope.selected);
             start.date(1);
             globalFunctions._removeTime(start.day(0));
 
@@ -71,14 +73,14 @@ appDirectives.directive('calendar-week', ['globalFunctions', function (globalFun
             };
 
             scope.next = function () {
-                var next = scope.month.clone();
+                var next = angular.copy(scope.month);
                 globalFunctions._removeTime(next.month(next.month() + 1).date(1));
                 scope.month.month(scope.month.month() + 1);
                 globalFunctions._buildMonth(scope, next, scope.month);
             };
 
             scope.previous = function () {
-                var previous = scope.month.clone();
+                var previous = angular.copy(scope.month);
                 globalFunctions._removeTime(previous.month(previous.month() - 1).date(1));
                 scope.month.month(scope.month.month() - 1);
                 globalFunctions._buildMonth(scope, previous, scope.month);
@@ -87,4 +89,27 @@ appDirectives.directive('calendar-week', ['globalFunctions', function (globalFun
 
     }
 
+}]);
+
+appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunctions) {
+
+    moment.locale('pl');
+
+    return {
+        restrict: 'E',
+        templateUrl: '/Home/Templates/calendarDayTemplate',
+        scope: {
+            selected: '=',
+            events: '='
+        },
+        link: function (scope) {
+
+            scope.selected = globalFunctions._removeDayTime(scope.selected || moment());
+            var today = angular.copy(scope.selected);
+
+            globalFunctions._buildDay(scope, today);
+
+
+        }
+    }
 }])

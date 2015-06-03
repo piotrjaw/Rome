@@ -16,14 +16,16 @@ myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {
 
     $mdThemingProvider
         .theme('default')
-        .primaryPalette('indigo', {
-            'default': '400',
-            'hue-1': '100',
-            'hue-2': '600',
-            'hue-3': 'A100'
+        .primaryPalette('purple', {
+            'default': '500',
+            'hue-1': '800',
+            'hue-2': '100',
+            'hue-3': '50'
         })
-        .accentPalette('pink', {
-            'default': '200'
+        .accentPalette('lime', {
+            'default': 'A400',
+            'hue-1': 'A100',
+            'hue-2': 'A700'
         })
         .backgroundPalette('grey', {
             'default': '200'

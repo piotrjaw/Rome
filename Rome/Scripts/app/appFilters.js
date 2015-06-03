@@ -13,7 +13,26 @@ appFilters.filter('momentDate', [
 appFilters.filter('truncDate', [
     '$filter', function ($filter) {
         return function (input) {
-            return $filter('date')(input.hour(-22).minute(0).second(0).millisecond(0));
+            var newDate = moment(input).hour(-22).minute(0).second(0).millisecond(0);
+            return $filter('date')(newDate);
+        };
+    }
+]);
+
+appFilters.filter('truncDate2', [
+    '$filter', function ($filter) {
+        return function (input) {
+            var newDate = moment(input).hour(0).minute(0).second(0).millisecond(0);
+            return $filter('date')(newDate);
+        };
+    }
+]);
+
+appFilters.filter('truncDate3', [
+    '$filter', function ($filter) {
+        return function (input) {
+            var newDate = moment(input).hour(2).minute(0).second(0).millisecond(0);
+            return $filter('date')(newDate);
         };
     }
 ]);

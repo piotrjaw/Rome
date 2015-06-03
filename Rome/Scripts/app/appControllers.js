@@ -63,7 +63,7 @@ appControllers.controller('branchCtrl', [
 
 appControllers.controller('calendarCtrl', [
     '$scope', '$http',
-    function ($scope, $http) {
+    function ($scope, $http, $mdDialog) {
         $scope.day = moment();
         $scope.loading = true;
 
@@ -74,6 +74,7 @@ appControllers.controller('calendarCtrl', [
             $scope.Error = err;
             $scope.loading = false;
         });
+
 
     }
 ]);

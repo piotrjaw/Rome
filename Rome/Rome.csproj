@@ -1113,8 +1113,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lodash.js" />
-    <Content Include="Scripts\lodash.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1140,6 +1138,7 @@
     <Content Include="Views\Home\Templates\Meetings.cshtml" />
     <Content Include="Views\Home\Templates\Branches.cshtml" />
     <Content Include="Views\Home\Templates\calendarWeekTemplate.cshtml" />
+    <Content Include="Views\Home\Templates\calendarDayTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
