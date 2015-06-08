@@ -10,7 +10,7 @@ appServices.service('globalFunctions', function () {
         },
 
         _removeDayTime: function (date) {
-            return date.startOf('day');
+            return moment(date).startOf('day').subtract(22, 'h');
         },
 
         _buildMonth: function (scope, start, month) {
@@ -24,6 +24,33 @@ appServices.service('globalFunctions', function () {
             }
         },
 
+        _buildWeekDays: function (scope, date) {
+            var hours = [];
+            var anyDate = angular.copy(date);
+            anyDate.hour(0).minute(0).second(0).millisecond(0);
+            for (var i = 0; i < 24; i++) {
+                hours.push({
+                    name: anyDate.format("HH:mm"),
+                    hour: anyDate.hour(),
+                    minute: anyDate.minute()
+                });
+                anyDate.add(1, 'H');
+                anyDate = angular.copy(anyDate);
+            }
+            scope.days = [];
+            for (var i = 0; i < 7; i++) {
+                scope.days.push({
+                    name: date.format("dd").substring(0, 2),
+                    number: date.date(),
+                    isToday: date.isSame(new Date(), "day"),
+                    date: date,
+                    hours: hours
+                });
+                date.add(1, "d");
+                date = angular.copy(date);
+            }
+        },
+
         _buildWeek: function (date, month) {
             var days = [];
             for (var i = 0; i < 7; i++) {
@@ -32,10 +59,10 @@ appServices.service('globalFunctions', function () {
                     number: date.date(),
                     isCurrentMonth: date.month() === month.month(),
                     isToday: date.isSame(new Date(), "day"),
-                    date: date
+                    date: date,
                 });
                 date.add(1, "d");
-                date = date.clone();
+                date = angular.copy(date);
             }
             return days;
         },

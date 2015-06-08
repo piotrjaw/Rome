@@ -49,6 +49,7 @@ namespace Rome
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/style.less",
                       "~/node_modules/angular-material/angular-material.css"));
+
         }
     }
 }

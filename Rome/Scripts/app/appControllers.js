@@ -65,6 +65,7 @@ appControllers.controller('calendarCtrl', [
     '$scope', '$http',
     function ($scope, $http, $mdDialog) {
         $scope.day = moment();
+        $scope.selectedIndex = 0;
         $scope.loading = true;
 
         $http.get('/api/Events/').success(function (data) {

@@ -1,9 +1,9 @@
 ﻿<md-item layout="column" flex class="content-wrapper" layout-fill>
     <md-item ng-controller="calendarCtrl">
         <md-item class="md-whiteframe-z2">
-            <md-tabs md-dynamic-height class="md-whiteframe-z2 paper2">
+            <md-tabs md-selected="selectedIndex" md-dynamic-height class="md-whiteframe-z2 paper2">
                 <md-tab label="miesiąc">
-                    <calendar selected="day" events="Events"></calendar>
+                    <calendar selected="day" events="Events" selectedindex="selectedIndex"></calendar>
                 </md-tab>
                 <md-tab label="tydzień">
                     <calendar-week selected="day" events="Events"></calendar-week>

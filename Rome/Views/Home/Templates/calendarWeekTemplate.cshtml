@@ -14,9 +14,13 @@
             <md-item layout-fill flex class="day">So</md-item>
             <md-item layout-fill flex class="day">Ni</md-item>
         </md-item>
-        <md-item layout="column">
-            <md-item class="week" ng-repeat="week in weeks" layout-fill flex layout-align="center center">
-                <md-button flex class="day" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="select(day)" ng-repeat="day in week.days">{{day.number}}</md-button>
+        <md-item layout="row">
+            <md-item class="week" ng-repeat="day in days" layout-fill flex layout-align="center center" layout="column">
+                <md-item>{{day.date}}</md-item>
+                <md-item ng-repeat="hour in day.hours" >
+                    <md-divider></md-divider>
+                    <md-item>{{hour.name}}</md-item>
+                </md-item>
             </md-item>
         </md-item>
     </md-item-content>
