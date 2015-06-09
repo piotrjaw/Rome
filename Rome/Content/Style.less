@@ -46,12 +46,12 @@ md-sidenav {
     }
 }
 
-.animate-leave {
-    -webkit-animation: 0.5s hide;
-    animation: 0.5s hide;
+.animate.ng-leave {
+    -webkit-animation: 0.4s hide;
+    animation: 0.4s hide;
 }
 
-.animate-enter {
+.animate.ng-enter {
     -webkit-animation: 0.5s show;
     animation: 0.5s show;
 }
@@ -59,28 +59,31 @@ md-sidenav {
 @keyframes hide {
     0% {
         opacity: 1;
-        height: 100%;
+        color: rgba(0, 0, 0, 1);
+        max-height: 9999px;
     }
 
-    75% {
-        
+    95% {
+        opacity: 1;
+        max-height: 20px;
     }
 
     100% {
         opacity: 0;
-        height: 0;
+        color: rgba(0, 0, 0, 0);
+        max-height: 0;
     }
 }
 
 @keyframes show {
     0% {
         opacity: 0;
-        height: 0;
+        max-height: 0;
     }
 
     100% {
         opacity: 1;
-        height: 100%;
+        max-height: 9999px;
     }
 }
 

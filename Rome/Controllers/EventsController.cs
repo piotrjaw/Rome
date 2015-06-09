@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json.Linq;
 using Rome.DAL;
 using Rome.DTOs;
 using Rome.Models;
+using Rome.QueryObjects;
 
 namespace Rome.Controllers
 {
@@ -20,6 +22,7 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
 
         // GET: api/Events
+        [ActionName("getEvents")]
         public IQueryable<EventDTO> GetEvents()
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -37,17 +40,33 @@ namespace Rome.Controllers
             return query;
         }
 
-        // GET: api/Events/5
-        [ResponseType(typeof(Event))]
-        public async Task<IHttpActionResult> GetEvent(int id)
+        [ActionName("getSelectedEvents")]
+        [HttpPost]
+        public IQueryable<EventDTO> GetEventList([FromBody] String QueryString)
         {
-            Event @event = await db.Events.FindAsync(id);
-            if (@event == null)
-            {
-                return NotFound();
-            }
+            db.Configuration.ProxyCreationEnabled = false;
 
-            return Ok(@event);
+            var tempid = JObject.Parse(QueryString);
+
+            EventQO id = new EventQO();
+            id.UserId = (int)tempid["UserId"];
+            id.MaxEventDate = (DateTime)tempid["MaxEventDate"];
+            id.MinEventDate = (DateTime)tempid["MinEventDate"];
+
+            var query = from e in db.Events
+                        where e.EventDate <= id.MaxEventDate &&
+                              e.EventDate >= id.MinEventDate &&
+                              e.UserId == id.UserId
+                        select new EventDTO
+                        {
+                            EventId = e.EventId,
+                            EventDate = e.EventDate,
+                            UserId = e.UserId,
+                            ClientId = e.ClientId,
+                            BaseId = e.BaseId
+                        };
+
+            return query;
         }
 
         // PUT: api/Events/5

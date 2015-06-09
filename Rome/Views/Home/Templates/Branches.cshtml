@@ -14,7 +14,7 @@
                         <md-tooltip md-delay="100" md-autohide="true">Dane Firmy</md-tooltip>
                     </md-button>
                 </md-item>
-                <md-item ng-if="CompanyShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                <md-item ng-if="CompanyShowPeople" class="md-whiteframe-z2 paper2 animate" layout-column layout-fill>
                     <h4>Zarząd Firmy</h4>
                     <md-item-content layout="column" ng-repeat="CompanyManager in Company.CompanyManagers">
                         <md-list class="attribute-list">
@@ -23,7 +23,7 @@
                         </md-list>
                     </md-item-content>
                 </md-item>
-                <md-item ng-repeat="Network in Company.Networks" layout="column" ng-if="ShowNetworks">
+                <md-item ng-repeat="Network in Company.Networks" layout="column" ng-if="ShowNetworks" class="animate">
                     <md-item-content layout="column" layout-align="space-between start">
                         <md-item layout="row" layout-align="start center" class="paper2 md-whiteframe-z2">
                             <md-button layout-fill ng-click="ShowRegions = !ShowRegions">
@@ -35,7 +35,7 @@
                             </md-button>
                         </md-item>
                     </md-item-content>
-                    <md-item ng-if="NetworkShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                    <md-item ng-if="NetworkShowPeople" class="md-whiteframe-z2 paper2 animate" layout-column layout-fill>
                         <h5>Dyrektor Sieci</h5>
                         <md-item-content layout="column" ng-repeat="NetworkManager in Network.NetworkManagers">
                             <md-list class="attribute-list">
@@ -51,7 +51,7 @@
                             </md-list>
                         </md-item-content>
                     </md-item>
-                    <md-item ng-repeat="Region in Network.Regions" layout="column" ng-if="ShowRegions">
+                    <md-item ng-repeat="Region in Network.Regions" layout="column" ng-if="ShowRegions" class="animate">
                         <md-item-content layout="column" layout-align="space-between start">
                             <md-item layout="row" layout-align="start center" class="paper2 md-whiteframe-z2">
                                 <md-button layout-fill ng-click="ShowBranches = !ShowBranches">
@@ -63,7 +63,7 @@
                                 </md-button>
                             </md-item>
                         </md-item-content>
-                        <md-item ng-if="RegionShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                        <md-item ng-if="RegionShowPeople" class="md-whiteframe-z2 paper2 animate" layout-column layout-fill>
                             <h5>Dyrektor Regionu</h5>
                             <md-item-content layout="column" ng-repeat="RegionManager in Region.RegionManagers">
                                 <md-list class="attribute-list">
@@ -80,13 +80,13 @@
                             </md-item-content>
                         </md-item>
                         <md-item-content layout="column" layout-align="space-between start">
-                            <md-item ng-repeat="Branch in Region.Branches" layout="column" ng-if="ShowBranches">
-                                <md-item-content layout="column" layout-align="space-between start" class="paper2 md-whiteframe-z2">
+                            <md-item ng-repeat="Branch in Region.Branches" layout="column" ng-if="ShowBranches" class="animate">
+                                <md-item-content layout="column" layout-align="space-between start" class="paper2 md-whiteframe-z2 animate">
                                     <md-button layout-fill ng-click="BranchShowPeople = !BranchShowPeople">
                                         <h6 layout-fill>Oddział: {{Branch.BranchId}}: {{Branch.BranchName}}</h6>
                                     </md-button>
                                 </md-item-content>
-                                <md-item ng-if="BranchShowPeople" class="md-whiteframe-z2 paper2" layout-column layout-fill>
+                                <md-item ng-if="BranchShowPeople" class="md-whiteframe-z2 paper2 animate" layout-column layout-fill>
                                     <md-item ng-if="Branch.BranchManagers.length>0">
                                         <h5>Dyrektor Oddziału</h5>
                                         <md-item-content layout="column" ng-repeat="BranchManager in Branch.BranchManagers">

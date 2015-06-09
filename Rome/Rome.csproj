@@ -160,6 +160,7 @@
     <Compile Include="Models\UnitType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\EventQO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

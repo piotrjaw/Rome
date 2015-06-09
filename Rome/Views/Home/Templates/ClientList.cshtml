@@ -6,7 +6,7 @@
         <md-item ng-if="!loading">
             <md-item>{{Bases.error}}</md-item>
             <md-list class="base-list" layout="column">
-                <md-item ng-repeat="Base in Bases | orderBy:baseOrder">
+                <md-item ng-repeat="Base in Bases track by Base.BaseId | orderBy:baseOrder">
                     <md-item layout="row" layout-align="start center" ng-show="Base.Clients.length>0" class="paper md-whiteframe-z2">
                         <md-button layout-fill class="big-button" ng-click="BaseShowStatus = !BaseShowStatus" layout-align="center center" aria-label="lista kontaktów">
                             <h4>{{Base.BaseName}} ({{Base.Clients.length}})</h4>
@@ -30,16 +30,16 @@
                             </md-item>
                         </md-item-content>
                     </md-item>
-                    <md-list ng-if="BaseDetailStatus" class="detail-list md-whiteframe-z1 gray-paper" layout="column" ng-animate=" 'animate' ">
+                    <md-list ng-if="BaseDetailStatus" class="detail-list md-whiteframe-z1 gray-paper animate" layout="column">
                         <md-item><h5>SZCZEGÓŁY AKCJI:</h5></md-item>
                         <md-item>Data rozpoczęcia akcji: {{Base.BaseStart | jsDate | date : 'yyyy-MM-dd'}}</md-item>
                         <md-item>Data zakończenia akcji: {{Base.BaseEnd | jsDate | date : 'yyyy-MM-dd'}}</md-item>
                         <md-item>Dni do końca: {{Base.DaysLeft}}</md-item>
                     </md-list>
-                    <md-content ng-if="BaseShowStatus" class="client-list md-whiteframe-z1 gray-paper" ng-animate=" 'animate' ">
+                    <md-content ng-if="BaseShowStatus" class="client-list md-whiteframe-z1 gray-paper animate">
                         <md-list>
                             <md-item><h5>LISTA KLIENTÓW:</h5></md-item>
-                            <md-item ng-repeat="Client in Base.Clients">
+                            <md-item ng-repeat="Client in Base.Clients track by Client.ClientId">
                                 <md-item-content layout="column" layout-align="space-between start">
                                     <md-item-content layout-fill layout="row">
                                         <md-button layout-fill ng-click="ContactShowStatus = !ContactShowStatus" aria-label="historia kontaktów">
@@ -51,7 +51,7 @@
                                             <md-tooltip md-delay="100" md-autohide="true">Dane klienta</md-tooltip>
                                         </md-button>
                                     </md-item-content>
-                                    <md-item ng-if="ClientShowStatus" ng-animate=" 'animate' ">
+                                    <md-item ng-if="ClientShowStatus" class="animate">
                                         <md-item-content layout="column">
                                             <md-list class="attribute-list" layout="column" layout-align="space-between start">
                                                 <md-item><h5>DANE KLIENTA:</h5></md-item>
@@ -61,9 +61,9 @@
                                             </md-list>
                                         </md-item-content>
                                     </md-item>
-                                    <md-item ng-if="ContactShowStatus" ng-animate=" 'animate' ">
+                                    <md-item ng-if="ContactShowStatus" class="animate">
                                         <md-item><h5>HISTORIA KONTAKTÓW:</h5></md-item>
-                                        <md-item ng-repeat="Event in Client.Events">
+                                        <md-item ng-repeat="Event in Client.Events track by Event.EventId">
                                             <md-item-content>
                                                 <md-list class="contact-list" layout="column" layout-align="space-between start">
                                                     <md-item class="list-item">Id zdarzenia: {{Event.EventId}}</md-item>

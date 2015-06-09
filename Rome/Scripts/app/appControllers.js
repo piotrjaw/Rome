@@ -68,14 +68,16 @@ appControllers.controller('calendarCtrl', [
         $scope.selectedIndex = 0;
         $scope.loading = true;
 
-        $http.get('/api/Events/').success(function (data) {
+        /*$http.get('/api/Events/').success(function (data) {
             $scope.Events = data;
             $scope.loading = false;
         }).error(function (err) {
             $scope.Error = err;
             $scope.loading = false;
-        });
+        });*/
 
+
+        $scope.json = JSON.stringify({ UserId: 17, MinEventDate: "2015-04-23", MaxEventDate: "2015-04-25" });
 
     }
 ]);
