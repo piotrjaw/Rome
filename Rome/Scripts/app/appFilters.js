@@ -36,3 +36,10 @@ appFilters.filter('truncDate3', [
         };
     }
 ]);
+
+appFilters.filter('jsDate', function () {
+    return function (x) {
+        if (!x) { return; }
+        return new Date(parseInt(x.substr(6, 13)));
+    };
+});

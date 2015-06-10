@@ -15,17 +15,17 @@ namespace Rome
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/node_modules/angular/angular.js",
-                        "~/node_modules/angular-animate/angular-animate.js",
-                        "~/node_modules/angular-aria/angular-aria.js",
-                        "~/node_modules/angular-filter/dist/angular-filter.js"));
+                        "~/Scripts/angular/angular.js",
+                        "~/Scripts/angular-animate/angular-animate.js",
+                        "~/Scripts/angular-aria/angular-aria.js",
+                        "~/Scripts/angular-filter/dist/angular-filter.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
-                        "~/node_modules/moment/moment.js",
-                        "~/node_modules/moment/locale/pl.js"));
+                        "~/Scripts/moment/moment.js",
+                        "~/Scripts/moment/locale/pl.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/d3").Include(
-                        "~/node_modules/d3/d3.js"));
+                        "~/Scripts/d3/d3.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/app.js",
@@ -35,7 +35,7 @@ namespace Rome
                         "~/Scripts/app/appServices.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/material").Include(
-                        "~/node_modules/angular-material/angular-material.js"));
+                        "~/Scripts/angular-material/angular-material.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -48,7 +48,7 @@ namespace Rome
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/style.less",
-                      "~/node_modules/angular-material/angular-material.css"));
+                      "~/Scripts/angular-material/angular-material.css"));
 
         }
     }

@@ -18,12 +18,11 @@ appControllers.controller('tabCtrl',
 
 appControllers.controller('mainCtrl', [
     '$scope', '$mdSidenav',
-    function($scope, $http, $mdSidenav) {
+    function($scope, $mdSidenav) {
         $scope.toggleSidenav = toggleSidenav;
 
         function toggleSidenav(name) {
             $mdSidenav(name).toggle();
-
         }
     }
 ]);
@@ -33,11 +32,11 @@ appControllers.controller('baseCtrl', [
     function ($scope, $http) {
         $scope.loading = true;
 
-        $http.get('/api/Bases/').success(function (data) {
+        $http.get('/api/Bases/getBases/').success(function (data) {
             $scope.Bases = data;
             $scope.loading = false;
-        }).error(function (err) {
-            $scope.Error = err;
+        }).error(function (data) {
+            $scope.Error = data;
             $scope.loading = false;
         });
 
@@ -51,11 +50,11 @@ appControllers.controller('branchCtrl', [
     function ($scope, $http) {
         $scope.loading = true;
 
-        $http.get('/api/Administrations/').success(function (data) {
+        $http.get('/api/Administrations/getAdm/').success(function (data) {
             $scope.Administrations = data;
             $scope.loading = false;
-        }).error(function (err) {
-            $scope.Error = err;
+        }).error(function (data) {
+            $scope.Error = data;
             $scope.loading = false;
         });
     }
@@ -72,12 +71,26 @@ appControllers.controller('calendarCtrl', [
             $scope.Events = data;
             $scope.loading = false;
         }).error(function (err) {
-            $scope.Error = err;
+            $scope.Error = data;
             $scope.loading = false;
         });*/
+        
+        var dataBody = JSON.stringify({"UserId":17,"MinEventDate":"2015-04-23T00:00:00.000Z","MaxEventDate":"2015-04-25T00:00:00.000Z"});
 
+        var request = {
+            method: 'POST',
+            url: '/api/Events/getSelectedEvents/',
+            data: dataBody
+        }
 
-        $scope.json = JSON.stringify({ UserId: 17, MinEventDate: "2015-04-23", MaxEventDate: "2015-04-25" });
+        $http(request).success(function (data) {
+            $scope.Events = data;
+            $scope.loading = false;
+        }).error(function (data) {
+            $scope.Error = data;
+            $scope.loading = false;
+        });
+
 
     }
 ]);

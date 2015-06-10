@@ -35,9 +35,3 @@ myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {
         .icon("logo", "/Img/Svg/TaxCare.svg", 64);
 });
 
-myApp.filter('jsDate', function () {
-    return function (x) {
-        if (!x) { return; }
-        return new Date(parseInt(x.substr(6, 13)));
-    };
-});

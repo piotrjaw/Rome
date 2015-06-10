@@ -20,6 +20,7 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
 
         // GET: api/Administrations
+        [ActionName("GetAdm")]
         public IQueryable<AdministrationDTO> GetAdministrations()
         {
             db.Configuration.ProxyCreationEnabled = false;

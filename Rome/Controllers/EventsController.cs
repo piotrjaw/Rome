@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Rome.DAL;
 using Rome.DTOs;
@@ -22,6 +23,7 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
 
         // GET: api/Events
+        [HttpPost]
         [ActionName("getEvents")]
         public IQueryable<EventDTO> GetEvents()
         {
@@ -40,19 +42,17 @@ namespace Rome.Controllers
             return query;
         }
 
-        [ActionName("getSelectedEvents")]
         [HttpPost]
-        public IQueryable<EventDTO> GetEventList([FromBody] String QueryString)
+        [ActionName("getSelectedEvents")]
+        public EventQO Post([FromBody]JToken id)
         {
             db.Configuration.ProxyCreationEnabled = false;
 
-            var tempid = JObject.Parse(QueryString);
-
-            EventQO id = new EventQO();
-            id.UserId = (int)tempid["UserId"];
-            id.MaxEventDate = (DateTime)tempid["MaxEventDate"];
-            id.MinEventDate = (DateTime)tempid["MinEventDate"];
-
+            /*
+            EventQO id = new EventQO(jsonBody["UserId"].Value<int>(), jsonBody["MinEventDate"].Value<DateTime>(), jsonBody["MaxEventDate"].Value<DateTime>());            
+            */
+ 
+            /*
             var query = from e in db.Events
                         where e.EventDate <= id.MaxEventDate &&
                               e.EventDate >= id.MinEventDate &&
@@ -67,6 +67,9 @@ namespace Rome.Controllers
                         };
 
             return query;
+            */
+
+            return null;
         }
 
         // PUT: api/Events/5
