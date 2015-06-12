@@ -34,6 +34,11 @@ md-sidenav {
     height: 100%;
 }
 
+#login-submit {
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
 #primary-col {
     overflow: hidden;
 
@@ -84,6 +89,36 @@ md-sidenav {
     100% {
         opacity: 1;
         max-height: 9999px;
+    }
+}
+
+.animate-login.ng-enter {
+    -webkit-animation: 1s show-login;
+    animation: 1s show-login;
+}
+
+.animate-login.ng-leave {
+    -webkit-animation: 1s hide-login;
+    animation: 1s hide-login;
+}
+
+@keyframes show-login {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hide-login {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
     }
 }
 
@@ -210,6 +245,14 @@ md-sidenav {
     height: 100%;
 }
 
+.login-form {
+    background-color: white !important;
+    
+    md-item {
+        margin: 10px;
+    }
+}
+
 .logo {
     height: @logo-size !important;
     width: @logo-size !important;
@@ -280,6 +323,10 @@ md-sidenav {
     min-height: @small-fab !important;
     line-height: @small-fab !important;
     width: @small-fab !important;
+}
+
+.warning {
+    color: #F44336;
 }
 
 .week {

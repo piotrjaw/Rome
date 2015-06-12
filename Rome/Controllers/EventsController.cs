@@ -44,19 +44,12 @@ namespace Rome.Controllers
 
         [HttpPost]
         [ActionName("getSelectedEvents")]
-        public EventQO Post([FromBody]JToken id)
+        public IQueryable<EventDTO> Post(EventQO id)
         {
             db.Configuration.ProxyCreationEnabled = false;
 
-            /*
-            EventQO id = new EventQO(jsonBody["UserId"].Value<int>(), jsonBody["MinEventDate"].Value<DateTime>(), jsonBody["MaxEventDate"].Value<DateTime>());            
-            */
- 
-            /*
             var query = from e in db.Events
-                        where e.EventDate <= id.MaxEventDate &&
-                              e.EventDate >= id.MinEventDate &&
-                              e.UserId == id.UserId
+                        where e.UserId == id.UserId
                         select new EventDTO
                         {
                             EventId = e.EventId,
@@ -67,9 +60,6 @@ namespace Rome.Controllers
                         };
 
             return query;
-            */
-
-            return null;
         }
 
         // PUT: api/Events/5

@@ -1,6 +1,34 @@
 ﻿'use strict';
 
-var appControllers = angular.module('appControllers', []);
+var appControllers = angular.module('appControllers', ['appServices']);
+
+appControllers.controller('loginCtrl', [
+    '$scope', 'loginService',
+    function ($scope, loginService) {
+        $scope.login = null;
+        $scope.password = null;
+        $scope.invalidPassword = false;
+        $scope.$watch(function() { return loginService.loggedIn },
+            function (newValue, oldValue) {
+                $scope.isLoggedIn = loginService.loggedIn;
+            }
+        );
+
+        this.tryLogin = function (login, password) {
+            if (login === "pjaworski" && password === "test1234") {
+                loginService.loggedIn = true;
+                loginService.UserId = 17;
+                $scope.invalidPassword = false;
+            } else {
+                $scope.invalidPassword = true;
+            }
+        };
+
+        this.tryLogout = function () {
+            loginService.loggedIn = false;
+        }
+    }
+]);
 
 appControllers.controller('tabCtrl',
     function() {
@@ -61,8 +89,8 @@ appControllers.controller('branchCtrl', [
 ]);
 
 appControllers.controller('calendarCtrl', [
-    '$scope', '$http',
-    function ($scope, $http, $mdDialog) {
+    '$scope', '$http', 'loginService',
+    function ($scope, $http, loginService) {
         $scope.day = moment();
         $scope.selectedIndex = 0;
         $scope.loading = true;
@@ -75,7 +103,7 @@ appControllers.controller('calendarCtrl', [
             $scope.loading = false;
         });*/
         
-        var dataBody = JSON.stringify({"UserId":17,"MinEventDate":"2015-04-23T00:00:00.000Z","MaxEventDate":"2015-04-25T00:00:00.000Z"});
+        var dataBody = JSON.stringify({"UserId": loginService.UserId});
 
         var request = {
             method: 'POST',
