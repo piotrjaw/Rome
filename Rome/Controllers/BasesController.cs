@@ -23,7 +23,6 @@ namespace Rome.Controllers
         // GET: api/Bases
         public IQueryable<BaseDTO> GetBases()
         {
-            db.Configuration.ProxyCreationEnabled = false;
             var query = from b in db.Bases
                 select new BaseDTO
                 {

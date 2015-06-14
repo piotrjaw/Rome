@@ -22,13 +22,10 @@ namespace Rome.Controllers
     {
         private XSellContext db = new XSellContext();
 
-        // GET: api/Events
         [HttpPost]
         [ActionName("getEvents")]
         public IQueryable<EventDTO> GetEvents()
         {
-            db.Configuration.ProxyCreationEnabled = false;
-            
             var query = from e in db.Events
                         select new EventDTO
                         {
@@ -46,8 +43,6 @@ namespace Rome.Controllers
         [ActionName("getSelectedEvents")]
         public IQueryable<EventDTO> Post(EventQO id)
         {
-            db.Configuration.ProxyCreationEnabled = false;
-
             var query = from e in db.Events
                         where e.UserId == id.UserId
                         select new EventDTO

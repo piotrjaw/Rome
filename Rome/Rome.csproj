@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\XSellContext.cs" />
     <Compile Include="DAL\XSellInitializer.cs" />
     <Compile Include="DTOs\AdministrationDTO.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryObjects\EventQO.cs" />
+    <Compile Include="QueryObjects\UserQO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -1140,6 +1142,7 @@
     <Content Include="Views\Home\Templates\Branches.cshtml" />
     <Content Include="Views\Home\Templates\calendarWeekTemplate.cshtml" />
     <Content Include="Views\Home\Templates\calendarDayTemplate.cshtml" />
+    <Content Include="Views\Home\Templates\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

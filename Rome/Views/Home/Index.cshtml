@@ -1,26 +1,41 @@
 ﻿<md-content class="wrapper" ng-app="myApp" lang="pl">
     <md-item data-ng-controller="loginCtrl as log">
         <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login">
-            <form name="loginForm" class="md-whiteframe-z2 login-form"  layout="column" layout-align="center center">
+            <md-item class="md-whiteframe-z2 login-form">
                 <md-toolbar layout="row" layout-align="center start">
                     <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
                     <md-item layout="row" layout-align="center center">
                         <md-item>Nowy Cross-sell</md-item>
                     </md-item>
                 </md-toolbar>
-                <md-item layout="row" layout-align="center center">
-                    <md-input-container md-padding md-primary>
-                        <label for="login">Login</label>
-                        <input name="login" type="text" ng-model="login" ng-required="true" autocomplete="off" />
-                    </md-input-container>
-                    <md-input-container md-padding md-primary>
-                        <label for="password" md-padding>Hasło</label>
-                        <input name="password" type="password" ng-model="password" ng-required="true" autocomplete="off" />
-                    </md-input-container>
+                <md-item ng-if="!passwordForgot" class="animate" layout="column" layout-align="center center">
+                    <form name="loginForm" layout="column" layout-align="center center">
+                        <md-item layout="row" layout-align="center center">
+                            <md-input-container md-padding md-primary>
+                                <label for="login">Login</label>
+                                <input name="login" type="text" ng-model="login" ng-required="true" autocomplete="off" />
+                            </md-input-container>
+                            <md-input-container md-padding md-primary>
+                                <label for="password" md-padding>Hasło</label>
+                                <input name="password" type="password" ng-model="password" ng-required="true" autocomplete="off" />
+                            </md-input-container>
+                        </md-item>
+                        <md-item ng-if="invalidPassword" class="warning animate">Błędny login lub hasło!</md-item>
+                        <md-button class="md-raised md-primary" id="login-submit" ng-click="log.tryLogin(login, password)">Zaloguj się</md-button>
+                    </form>
+                    <md-button ng-click="passwordForgot = !passwordForgot" class="md-primary">Nie pamiętam hasła</md-button>
                 </md-item>
-                <md-item ng-if="invalidPassword" class="warning animate">Błędne hasło!</md-item>
-                <md-button class="md-raised md-primary" id="login-submit" ng-click="log.tryLogin(login, password)">Zaloguj się</md-button>
-            </form>
+                <md-item ng-if="passwordForgot" class="animate" layout="column" layout-align="center center">
+                    <form name="remindForm" layout="column" layout-allign="center center">
+                        <md-input-container md-padding md-primary>
+                            <label for="email">E-mail</label>
+                            <input name="email" type="email" ng-model="email" ng-required="true" autocomplete="off" />
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" id="remind-submit" ng-click="">Przypomnij hasło</md-button>
+                    </form>
+                    <md-button ng-click="passwordForgot = !passwordForgot" class="md-primary">Chcę się zalogować</md-button>
+                </md-item>
+            </md-item>
         </md-content>
         <md-content data-ng-controller="tabCtrl as tab" ng-if="isLoggedIn" class="animate-login">
             <md-item layout="row" data-ng-controller="mainCtrl" class="layout-wrapper">
@@ -31,11 +46,12 @@
                     <md-content layout="column" class="md-sidenav-left" flex>
                         <md-item>
                             <md-list layout="column" layout-align="center start" class="menu-list md-3-line" flex="100">
-                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-accent' :tab.isSet(1) }" ng-click="tab.setTab(1)">Klienci</md-button>
-                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-accent' :tab.isSet(2) }" ng-click="tab.setTab(2)">Dostęp</md-button>
-                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-accent' :tab.isSet(3) }" ng-click="tab.setTab(3)">Kalendarz</md-button>
-                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-accent' :tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
-                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-accent' :tab.isSet(5) }" ng-click="tab.setTab(5)">Struktura</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(1) }" ng-click="tab.setTab(1)">Klienci</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(2) }" ng-click="tab.setTab(2)">Dostęp</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(3) }" ng-click="tab.setTab(3)">Kalendarz</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(5) }" ng-click="tab.setTab(5)">Struktura</md-button>
+                                <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(6) }" ng-click="tab.setTab(6)">Profil</md-button>
                                 <md-button layout-fill class="inner-wrapper md-warn" ng-click="log.tryLogout()">Wyloguj</md-button>
                             </md-list>
                         </md-item>
@@ -54,6 +70,7 @@
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(4)" ng-include="'Home/Templates/Meetings'"></md-item>
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(5)" ng-include="'Home/Templates/Branches'"></md-item>
+                        <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(6)" ng-include="'Home/Templates/Profile'"></md-item>
                     </md-content>
                 </md-item>
             </md-item>

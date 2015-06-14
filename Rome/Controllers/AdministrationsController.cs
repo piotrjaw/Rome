@@ -23,7 +23,6 @@ namespace Rome.Controllers
         [ActionName("GetAdm")]
         public IQueryable<AdministrationDTO> GetAdministrations()
         {
-            db.Configuration.ProxyCreationEnabled = false;
             var query = from u in db.Units
                         where u.UnitTypeId == 1
                         select new AdministrationDTO

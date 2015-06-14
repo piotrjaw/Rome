@@ -17,10 +17,11 @@
     <md-item class="calendar">               
         <md-item layout="column" layout-align="space-around center">
             <md-item class="week md-body-1" ng-repeat="week in weeks" layout-fill layout-align="center space-around" layout="row">
-                <md-button class="day md-whiteframe-z1" ng-class="{ 'md-primary md-raised md-hue-2': day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="moveTo(day)" ng-repeat="day in week.days track by day.date" layout="row" layout-align="space-between center" layout-fill>
+                <md-button class="day md-whiteframe-z1" ng-class="{ 'md-primary md-raised md-hue-2': day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="moveTo(day)" ng-repeat="day in week.days track by day.date" layout-fill layout="row" layout-align="space-between center">
                     <md-item>{{day.number}}</md-item>
-                    <md-item ng-repeat="(GroupEventDay, GroupedEvents) in events | groupBy: 'EventDate | truncDate'" ng-show='"" + (GroupEventDay | truncDate) == "" + (day.date | truncDate) && day.isCurrentMonth'>
-                        <md-button class="md-fab md-warn small-button" aria-label="notification">{{GroupedEvents.length}}</md-button>
+                    <md-item flex></md-item>
+                    <md-item ng-repeat="(GroupEventDay, GroupedEvents) in events | groupBy: 'EventDate | truncDate'">
+                        <md-button class="md-fab md-warn small-button" aria-label="notification" ng-if='"" + (GroupEventDay | truncDate) == "" + (day.date | truncDate) && day.isCurrentMonth' layout="row" layout-align="center center">{{GroupedEvents.length}}</md-button>
                     </md-item>
                 </md-button>
             </md-item>

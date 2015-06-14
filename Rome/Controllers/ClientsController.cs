@@ -24,7 +24,6 @@ namespace Rome.Controllers
         // GET: api/Clients
         public IQueryable<ClientDTO> GetClients()
         {
-            db.Configuration.ProxyCreationEnabled = false;
             var query =
                 from c in db.Clients
                 join ba in db.BaseAssignments on c.ClientId equals ba.ClientId

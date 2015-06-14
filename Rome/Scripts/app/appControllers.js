@@ -3,25 +3,40 @@
 var appControllers = angular.module('appControllers', ['appServices']);
 
 appControllers.controller('loginCtrl', [
-    '$scope', 'loginService',
-    function ($scope, loginService) {
-        $scope.login = null;
-        $scope.password = null;
+    '$scope', '$http', 'loginService',
+    function ($scope, $http, loginService) {
         $scope.invalidPassword = false;
-        $scope.$watch(function() { return loginService.loggedIn },
+        $scope.$watch(function () { return loginService.loggedIn },
             function (newValue, oldValue) {
                 $scope.isLoggedIn = loginService.loggedIn;
             }
         );
 
         this.tryLogin = function (login, password) {
-            if (login === "pjaworski" && password === "test1234") {
-                loginService.loggedIn = true;
-                loginService.UserId = 17;
-                $scope.invalidPassword = false;
-            } else {
-                $scope.invalidPassword = true;
+            var user = {
+                UserName: login,
+                Password: password
+            };
+
+            var requestBody = JSON.stringify(user);
+
+            var request = {
+                method: 'POST',
+                url: '/api/Users/getUser/',
+                data: requestBody
             }
+
+            $http(request).success(function (data) {
+                if (data != null) {
+                    loginService.user = data;
+                    loginService.loggedIn = true;
+                    $scope.invalidPassword = false;
+                } else {
+                    $scope.invalidPassword = true;
+                }
+            }).error(function (error) {
+                $scope.Error = error
+            });
         };
 
         this.tryLogout = function () {
@@ -95,15 +110,7 @@ appControllers.controller('calendarCtrl', [
         $scope.selectedIndex = 0;
         $scope.loading = true;
 
-        /*$http.get('/api/Events/').success(function (data) {
-            $scope.Events = data;
-            $scope.loading = false;
-        }).error(function (err) {
-            $scope.Error = data;
-            $scope.loading = false;
-        });*/
-        
-        var dataBody = JSON.stringify({"UserId": loginService.UserId});
+        var dataBody = JSON.stringify({"UserId": loginService.user.UserId});
 
         var request = {
             method: 'POST',
@@ -118,7 +125,12 @@ appControllers.controller('calendarCtrl', [
             $scope.Error = data;
             $scope.loading = false;
         });
-
-
     }
 ]);
+
+appControllers.controller('profileCtrl', [
+    '$scope', 'loginService',
+    function ($scope, loginService) {
+        $scope.user = loginService.user;
+    }
+])

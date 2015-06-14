@@ -13,6 +13,7 @@ namespace Rome.DAL
     {
         public XSellContext() : base("XSellContext")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Client> Clients { get; set; }
