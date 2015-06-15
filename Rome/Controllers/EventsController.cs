@@ -44,6 +44,7 @@ namespace Rome.Controllers
         public IQueryable<EventDTO> Post(EventQO id)
         {
             var query = from e in db.Events
+                        join c in db.Clients on e.ClientId equals c.ClientId
                         where e.UserId == id.UserId
                         select new EventDTO
                         {
@@ -51,7 +52,8 @@ namespace Rome.Controllers
                             EventDate = e.EventDate,
                             UserId = e.UserId,
                             ClientId = e.ClientId,
-                            BaseId = e.BaseId
+                            BaseId = e.BaseId,
+                            Client = c
                         };
 
             return query;

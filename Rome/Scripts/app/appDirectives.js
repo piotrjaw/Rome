@@ -53,7 +53,8 @@ appDirectives.directive('calendarWeek', ['globalFunctions', function (globalFunc
         templateUrl: '/Home/Templates/calendarWeekTemplate',
         scope: {
             selected: '=',
-            events: '='
+            events: '=',
+            selectedindex: '='
         },
         link: function (scope) {
 
@@ -77,7 +78,8 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
         templateUrl: '/Home/Templates/calendarDayTemplate',
         scope: {
             selected: '=',
-            events: '='
+            events: '=',
+            selectedindex: '='
         },
         link: function (scope) {
 
@@ -96,6 +98,10 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
 
             scope.previousDay = function () {
                 scope.selected = angular.copy(scope.selected.subtract(1, 'days'));
+            };
+
+            scope.pickDate = function (day) {
+                scope.selectedindex = 0;
             };
         }
     }

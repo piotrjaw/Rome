@@ -1,7 +1,7 @@
 ﻿<md-item layout-column class="md-whiteframe-z2 white"> 
     <md-item class="header" layout="row" layout-align="space-between center">
         <md-button ng-click="previousDay()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni dzień"></md-icon></md-button>
-        <md-item class="md-title">{{selected.format('LL')}}</md-item>
+        <md-button ng-click="scope.selectedIndex = 0" class="md-title">{{selected.format('LL')}}</md-button>
         <md-button ng-click="nextDay()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny dzień"></md-icon></md-button>
     </md-item>
     <md-item layout="column">
@@ -13,7 +13,7 @@
                     <md-item ng-repeat="event in groupedEvents" flex class="event-wrapper">
                         <md-item layout="column" layout-align="space-between center">
                             <md-item>Wydarzenie: {{event.EventDate | jsDate | date: 'h:mm'}}</md-item>
-                            <md-item>Id Klienta: {{event.ClientId}}</md-item>
+                            <md-item>Klient: {{event.Client.Owner}}, {{event.Client.CompanyName}}</md-item>
                         </md-item>
                     </md-item>
                 </md-item>

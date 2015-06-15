@@ -13,5 +13,6 @@ namespace Rome.DTOs
         public int UserId { get; set; }
         public int ClientId { get; set; }
         public int BaseId { get; set; }
+        public Client Client { get; set; }
     }
 }

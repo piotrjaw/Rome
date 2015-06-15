@@ -1,3 +1,11 @@
-﻿<md-item ng-controller="profileCtrl">
-    {{user}}
+﻿<md-item layout="column" flex class="content-wrapper" layout-fill>
+    <md-item ng-controller="profileCtrl">
+        <md-content md-theme="default" layout="column" class="md-whiteframe-z1 profile">
+            <md-item>Imię: {{user.UserFirstName}}</md-item>
+            <md-item>Nazwisko: {{user.UserSurname}}</md-item>
+            <md-item>Email: {{user.Email}}</md-item>
+            <md-item>Id: {{user.UserId}}</md-item>
+            <md-item>Login: {{user.UserName}}</md-item>
+        </md-content>
+    </md-item>
 </md-item>
