@@ -35,7 +35,6 @@ md-sidenav {
 }
 
 #login-submit {
-    margin-bottom: 20px;
     padding: 0 15px;
 }
 
@@ -93,32 +92,32 @@ md-sidenav {
 }
 
 .animate-login.ng-enter {
-    -webkit-animation: 1s show-login;
-    animation: 1s show-login;
+    -webkit-animation: show-login 0.3s ease normal;
+    animation: show-login 0.3s ease normal;
 }
 
 .animate-login.ng-leave {
-    -webkit-animation: 1s hide-login;
-    animation: 1s hide-login;
+    -webkit-animation: hide-login 0.3s ease normal;
+    animation: hide-login 0.3s ease normal;
 }
 
 @keyframes show-login {
     0% {
-        transform: translateX(100%);
+        opacity: 0;
     }
 
     100% {
-        transform: translateX(0);
+        opacity: 1;
     }
 }
 
 @keyframes hide-login {
     0% {
-        transform: translateX(0);
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(-100%);
+        opacity: 0;
     }
 }
 
@@ -211,6 +210,18 @@ md-sidenav {
     background-color: #eeeeee !important;
 }
 
+.event-wrapper {
+    height: 100%;
+    background-color: #E91E63;
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    
+    &:1st-child {
+        margin-left: 10px;
+    }
+}
+
 .gray-paper {
     background-color: white !important;
     margin: 0px 5px 2px 5px;
@@ -247,9 +258,13 @@ md-sidenav {
 
 .login-form {
     background-color: white !important;
-    
-    >md-button {
-        margin: 10px;
+
+    >* {
+        padding: 10px;
+    }
+
+    >md-toolbar>* {
+        margin: 0 10px;
     }
 }
 

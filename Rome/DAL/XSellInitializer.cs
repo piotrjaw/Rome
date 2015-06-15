@@ -114,7 +114,8 @@ namespace Rome.DAL
                 new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 17},
                 new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 17},
                 new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 17},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 17}
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 17},
+                new Event {ClientId = 4, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 17}
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();

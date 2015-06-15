@@ -11,6 +11,15 @@ appFilters.filter('truncDate', [
     }
 ]);
 
+appFilters.filter('truncHour', [
+    '$filter', function ($filter) {
+        return function (input) {
+            var newDate = moment(input).local().startOf('hour');
+            return $filter('date')(newDate);
+        };
+    }
+]);
+
 appFilters.filter('jsDate', function () {
     return function (x) {
         if (!x) { return; }

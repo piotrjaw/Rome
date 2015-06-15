@@ -83,7 +83,20 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
 
             var today = angular.copy(scope.selected.startOf('day'));
 
-            globalFunctions._buildDay(scope, today);
+            scope.$watch(function () { return scope.selected },
+            function (newValue, oldValue) {
+                    today = angular.copy(scope.selected.startOf('day'));
+                    globalFunctions._buildDay(scope, today);
+                }
+            );
+
+            scope.nextDay = function () {
+                scope.selected = angular.copy(scope.selected.add(1, 'days'));
+            };
+
+            scope.previousDay = function () {
+                scope.selected = angular.copy(scope.selected.subtract(1, 'days'));
+            };
         }
     }
 }])

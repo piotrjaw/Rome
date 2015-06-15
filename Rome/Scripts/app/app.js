@@ -11,9 +11,14 @@ var myApp = angular.module('myApp', [
     'appServices'
 ]);
 
-myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {
+myApp.config(function ($locationProvider, $mdIconProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
 
+    $mdIconProvider
+        .icon("logo", "/Img/Svg/TaxCare.svg", 64);
+});
+
+myApp.config(function ($mdThemingProvider) {
     $mdThemingProvider
         .theme('default')
         .primaryPalette('indigo', {
@@ -27,11 +32,12 @@ myApp.config(function ($locationProvider, $mdThemingProvider, $mdIconProvider) {
             'hue-1': 'A100',
             'hue-2': 'A700'
         })
+});
+
+myApp.config(function ($mdThemingProvider) {
+    $mdThemingProvider
+        .theme('altTheme')
         .backgroundPalette('grey', {
             'default': '200'
         });
-
-    $mdIconProvider
-        .icon("logo", "/Img/Svg/TaxCare.svg", 64);
 });
-

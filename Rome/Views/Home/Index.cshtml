@@ -1,8 +1,8 @@
 ﻿<md-content class="wrapper" ng-app="myApp" lang="pl">
     <md-item data-ng-controller="loginCtrl as log">
-        <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login">
+        <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login" md-theme="altTheme">
             <md-item class="md-whiteframe-z2 login-form">
-                <md-toolbar layout="row" layout-align="center start">
+                <md-toolbar layout="row" layout-align="start center">
                     <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
                     <md-item layout="row" layout-align="center center">
                         <md-item>Nowy Cross-sell</md-item>
@@ -64,7 +64,7 @@
                         </md-button>
                         <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Nowy Cross-sell</h1>
                     </md-toolbar>
-                    <md-content flex class="content-wrapper">
+                    <md-content flex class="content-wrapper" md-theme="altTheme">
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(1)" ng-include="'Home/Templates/ClientList'"></md-item>
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(2)" ng-include="'Home/Templates/AccountCreation'"></md-item>
                         <md-item flex layout-fill class="tab-viewport animate-show" ng-if="tab.isSet(3)" ng-include="'Home/Templates/Calendar'"></md-item>
