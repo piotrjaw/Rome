@@ -1143,6 +1143,7 @@
     <Content Include="Views\Home\Templates\calendarWeekTemplate.cshtml" />
     <Content Include="Views\Home\Templates\calendarDayTemplate.cshtml" />
     <Content Include="Views\Home\Templates\Profile.cshtml" />
+    <Content Include="Views\Home\Templates\monthPicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

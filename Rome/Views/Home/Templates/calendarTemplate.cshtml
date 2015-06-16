@@ -1,7 +1,7 @@
 ﻿<md-item layout-column class="md-whiteframe-z2 white">
     <md-item class="header" layout="row" layout-align="space-between center">
         <md-button ng-click="previous()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni miesiąc"></md-icon></md-button>
-        <md-button class="md-title">{{month.format("MMMM YYYY")}}</md-button>
+        <md-button data-ng-click="showMonthPicker($event)" class="md-title">{{month.format("MMMM YYYY")}}</md-button>
         <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny miesiąc"></md-icon></md-button>
     </md-item>
     <md-item layout="column">

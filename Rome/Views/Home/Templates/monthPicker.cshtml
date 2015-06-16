@@ -1,0 +1,21 @@
+﻿<md-dialog aria-label="month picker" layout="column" layout-align="center center">
+    <form>
+        <md-toolbar layout="row" layout-align="center center">
+            <md-item>Wybierz miesiąc i rok</md-item>
+        </md-toolbar>
+        <md-dialog-content layout="column" layout-align="center center">
+            <md-item layout="row" layout-align="space-between center">
+                <md-select ng-model="pickerData.selectedMonth" aria-label="wybierz miesiąc">
+                    <md-option ng-repeat="month in months" value="{{$index}}">{{month}}</md-option>
+                </md-select>
+                <md-select ng-model="pickerData.selectedYear">
+                    <md-option ng-repeat="year in years" value="{{year}}">{{year}}</md-option>
+                </md-select>
+            </md-item>
+            <md-item layout="row" layout-align="space-between center" aria-label="wybierz rok">
+                <md-button ng-click="submitMonthPicker()">Wybierz</md-button>
+                <md-button ng-click="cancelMonthPicker()">Anuluj</md-button>
+            </md-item>
+        </md-dialog-content>
+    </form>
+</md-dialog>

@@ -7,6 +7,7 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
     moment.locale('pl');
 
     return {
+        controller: "calendarCtrl",
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarTemplate',
         scope: {
@@ -17,11 +18,14 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
         link: function (scope) {
 
             scope.selected = (scope.selected || moment().local().startOf('day'));
-            scope.month = angular.copy(scope.selected); 
 
-            var start = angular.copy(scope.selected);
-
-            globalFunctions._buildMonth(scope, start, scope.month);
+            scope.$watch(function () { return scope.selected },
+            function (newValue, oldValue) {
+                    scope.month = angular.copy(scope.selected);
+                    var start = angular.copy(scope.selected);
+                    globalFunctions._buildMonth(scope, start, scope.month);
+                }
+            );
 
             scope.moveTo = function (day) {
                 scope.selected = day.date.startOf('day');
@@ -49,6 +53,7 @@ appDirectives.directive('calendarWeek', ['globalFunctions', function (globalFunc
     moment.locale('pl');
 
     return {
+        controller: "calendarCtrl",
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarWeekTemplate',
         scope: {
@@ -74,6 +79,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
     moment.locale('pl');
 
     return {
+        controller: "calendarCtrl",
         restrict: 'E',
         templateUrl: '/Home/Templates/calendarDayTemplate',
         scope: {
@@ -101,6 +107,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
             };
 
             scope.pickDate = function (day) {
+                scope.selected = angular.copy(day);
                 scope.selectedindex = 0;
             };
         }

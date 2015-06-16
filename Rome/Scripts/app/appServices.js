@@ -74,6 +74,20 @@ appServices.service('globalFunctions', function () {
             }
         },
 
+        _createMonths: function (scope) {
+            scope.months = [];
+            for (var i = 0; i < 12; i++) {
+                scope.months.push(moment({ month: i }).format("MMMM"));
+            };
+        },
+
+        _createYears: function (scope, diff) {
+            scope.years = [];
+            var currentYear = parseInt(moment().format("YYYY"));
+            for (var i = 0; i < 2 * diff + 1; i++) {
+                scope.years.push(currentYear + i - diff);
+            }
+        },
     }
 
     return service;
@@ -86,6 +100,14 @@ appServices.service('loginService', function () {
         this.userId = null,
         this.loggedIn = false;
     };
-    
+
     return user;
+});
+
+appServices.service('selectedDayService', function() {
+
+    var selectedDay = null;
+
+    return null;
+
 })

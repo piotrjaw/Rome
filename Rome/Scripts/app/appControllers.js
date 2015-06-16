@@ -104,11 +104,21 @@ appControllers.controller('branchCtrl', [
 ]);
 
 appControllers.controller('calendarCtrl', [
-    '$scope', '$http', 'loginService',
-    function ($scope, $http, loginService) {
+    '$scope', '$http', 'loginService', '$mdDialog', 'globalFunctions', 'selectedDayService',
+    function ($scope, $http, loginService, $mdDialog, globalFunctions, selectedDayService) {
+        
         $scope.day = moment();
+
+        $scope.$watch(function () { return selectedDayService.selectedDay },
+            function (newValue, oldValue) {
+                $scope.day = angular.copy(selectedDayService.selectedDay);
+            }
+        );
+
         $scope.selectedIndex = 0;
         $scope.loading = true;
+
+        $scope.showMonthPicker = showMonthPicker;
 
         var dataBody = JSON.stringify({"UserId": loginService.user.UserId});
 
@@ -125,6 +135,22 @@ appControllers.controller('calendarCtrl', [
             $scope.Error = data;
             $scope.loading = false;
         });
+
+        function showMonthPicker($event) {
+            var parentE = angular.element('#calendar');
+            $mdDialog.show({
+                parent: parentE,
+                targetEvent: $event,
+                templateUrl: '/Home/Templates/monthPicker',
+                locals: {
+                    years: $scope.years,
+                    months: $scope.months
+                },
+                controller: 'dateDialogCtrl'
+            }).then(function (answer) {
+                selectedDayService.selectedDay = moment({ year: answer["selectedYear"], month: answer["selectedMonth"] });
+            });
+        };
     }
 ]);
 
@@ -133,4 +159,29 @@ appControllers.controller('profileCtrl', [
     function ($scope, loginService) {
         $scope.user = loginService.user;
     }
-])
+]);
+
+appControllers.controller('dateDialogCtrl', [
+    '$scope', '$mdDialog', 'globalFunctions', 
+    function ($scope, $mdDialog, globalFunctions) {
+
+        globalFunctions._createMonths($scope);
+        globalFunctions._createYears($scope, 5);
+
+        $scope.submitMonthPicker = submitMonthPicker;
+        $scope.cancelMonthPicker = cancelMonthPicker;
+
+        $scope.pickerData = {
+            selectedMonth: moment().format('MMMM'),
+            selectedYear: parseInt(moment().year('YYYY'))
+        };
+
+        function submitMonthPicker() {
+            $mdDialog.hide($scope.pickerData);
+        };
+
+        function cancelMonthPicker() {
+            $mdDialog.cancel();
+        };
+    }
+]);

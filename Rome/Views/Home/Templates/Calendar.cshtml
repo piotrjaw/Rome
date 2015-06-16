@@ -1,7 +1,6 @@
 ﻿<md-item layout="column" flex class="content-wrapper" layout-fill>
-    <md-item ng-controller="calendarCtrl">
+    <md-item ng-controller="calendarCtrl" id="calendar">
         <md-item class="md-whiteframe-z2">
-            <md-item>{{json}}</md-item>
             <md-tabs md-selected="selectedIndex" md-dynamic-height class="md-whiteframe-z2 paper2">
                 <md-tab label="miesiąc">
                     <calendar selected="day" events="Events" selectedindex="selectedIndex"></calendar>
@@ -10,7 +9,7 @@
                     <calendar-week selected="day" events="Events"></calendar-week>
                 </md-tab>
                 <md-tab label="dzień">
-                    <calendar-day selected="day" events="Events"></calendar-day>
+                    <calendar-day selected="day" events="Events" selectedindex="selectedIndex"></calendar-day>
                 </md-tab>
             </md-tabs>
         </md-item>
