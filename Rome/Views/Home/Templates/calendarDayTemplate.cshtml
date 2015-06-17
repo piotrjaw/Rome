@@ -1,7 +1,7 @@
 ﻿<md-item layout-column class="md-whiteframe-z2 white"> 
     <md-item class="header" layout="row" layout-align="space-between center">
         <md-button ng-click="previousDay()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni dzień"></md-icon></md-button>
-        <md-button ng-click="pickDate(selected)" class="md-title">{{selected.format('LL')}}</md-button>
+        <md-button ng-click="pickDate(selected)" class="calendar-button md-headline">{{selected.format('LL')}}</md-button>
         <md-button ng-click="nextDay()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny dzień"></md-icon></md-button>
     </md-item>
     <md-item layout="column">

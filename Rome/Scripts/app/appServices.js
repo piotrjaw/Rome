@@ -18,8 +18,13 @@ appServices.service('globalFunctions', function () {
         },
 
         _buildWeekDays: function (scope, date) {
+            var start = angular.copy(moment(date));
+            var end = angular.copy(moment(start)).add(6, 'days');
+            var additionalString = "";
+            if (start.format('MM') !== end.format('MM')) { additionalString = start.format('-MM-YYYY') };
+            scope.title = start.format('DD') + additionalString + " - " + end.format('DD-MM-YYYY');
             var hours = [];
-            var anyDate = angular.copy(date);
+            var anyDate = angular.copy(moment(date));
             anyDate.hour(0).minute(0).second(0).millisecond(0);
             for (var i = 0; i < 24; i++) {
                 hours.push({
@@ -33,9 +38,9 @@ appServices.service('globalFunctions', function () {
             scope.days = [];
             for (var i = 0; i < 7; i++) {
                 scope.days.push({
-                    name: date.format("dd").substring(0, 2),
+                    name: date.format('dddd').toUpperCase(),
                     number: date.date(),
-                    isToday: date.isSame(new Date(), "day"),
+                    isToday: date.isSame(new Date(), 'day'),
                     date: moment(date),
                     hours: hours
                 });
@@ -88,6 +93,13 @@ appServices.service('globalFunctions', function () {
                 scope.years.push(currentYear + i - diff);
             }
         },
+
+        _createWeekDays: function (scope) {
+            scope.weekdays = [];
+            for (var i = 0; i < 7; i++) {
+                scope.weekdays.push(moment().day(i).format("DDDD"));
+            }
+        }
     }
 
     return service;

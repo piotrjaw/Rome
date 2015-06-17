@@ -2,7 +2,7 @@
 
 var appDirectives = angular.module('appDirectives', ['appServices', 'appControllers']);
 
-appDirectives.directive('calendar', ['globalFunctions', function (globalFunctions) {
+appDirectives.directive('calendar', ['globalFunctions', 'selectedDayService', function (globalFunctions, selectedDayService) {
 
     moment.locale('pl');
 
@@ -17,18 +17,18 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
         },
         link: function (scope) {
 
-            scope.selected = (scope.selected || moment().local().startOf('day'));
+            selectedDayService.selectedDay = (scope.selected || moment().local().startOf('day'));
 
-            scope.$watch(function () { return scope.selected },
+            scope.$watch(function () { return selectedDayService.selectedDay },
             function (newValue, oldValue) {
-                    scope.month = angular.copy(scope.selected);
-                    var start = angular.copy(scope.selected);
+                    scope.month = angular.copy(selectedDayService.selectedDay);
+                    var start = angular.copy(selectedDayService.selectedDay);
                     globalFunctions._buildMonth(scope, start, scope.month);
                 }
             );
 
             scope.moveTo = function (day) {
-                scope.selected = day.date.startOf('day');
+                selectedDayService.selectedDay = day.date.startOf('day');
                 scope.selectedindex = 2;
             };
 
@@ -48,7 +48,7 @@ appDirectives.directive('calendar', ['globalFunctions', function (globalFunction
 
 }])
 
-appDirectives.directive('calendarWeek', ['globalFunctions', function (globalFunctions) {
+appDirectives.directive('calendarWeek', ['globalFunctions', 'selectedDayService', function (globalFunctions, selectedDayService) {
 
     moment.locale('pl');
 
@@ -62,19 +62,27 @@ appDirectives.directive('calendarWeek', ['globalFunctions', function (globalFunc
             selectedindex: '='
         },
         link: function (scope) {
+            scope.$watch(function () { return selectedDayService.selectedDay },
+                function (newValue, oldValue) {
+                    globalFunctions._buildWeekDays(scope, moment(selectedDayService.selectedDay).startOf('week'));
+                }
+            );
 
-            scope.selected = (scope.selected || moment().local().startOf('day'));
+            scope.nextWeek = function () {
+                selectedDayService.selectedDay.add(1, 'weeks');
+                globalFunctions._buildWeekDays(scope, moment(selectedDayService.selectedDay).startOf('week'));
+            };
 
-            var start = angular.copy(scope.selected);
-
-            globalFunctions._buildWeekDays(scope, start);
+            scope.previousWeek = function () {
+                selectedDayService.selectedDay.subtract(1, 'weeks');
+                globalFunctions._buildWeekDays(scope, moment(selectedDayService.selectedDay).startOf('week'));
+            };
         }
-
     }
 
 }]);
 
-appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunctions) {
+appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService', function (globalFunctions, selectedDayService) {
 
     moment.locale('pl');
 
@@ -89,21 +97,19 @@ appDirectives.directive('calendarDay', ['globalFunctions', function (globalFunct
         },
         link: function (scope) {
 
-            var today = angular.copy(scope.selected.startOf('day'));
-
-            scope.$watch(function () { return scope.selected },
+            scope.$watch(function () { return selectedDayService.selectedDay },
             function (newValue, oldValue) {
-                    today = angular.copy(scope.selected.startOf('day'));
+                    var today = angular.copy(moment(selectedDayService.selectedDay).startOf('day'));
                     globalFunctions._buildDay(scope, today);
                 }
             );
 
             scope.nextDay = function () {
-                scope.selected = angular.copy(scope.selected.add(1, 'days'));
+                selectedDayService.selectedDay = angular.copy(selectedDayService.selectedDay.add(1, 'days'));
             };
 
             scope.previousDay = function () {
-                scope.selected = angular.copy(scope.selected.subtract(1, 'days'));
+                selectedDayService.selectedDay = angular.copy(selectedDayService.selectedDay.subtract(1, 'days'));
             };
 
             scope.pickDate = function (day) {

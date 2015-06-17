@@ -1,18 +1,18 @@
 ﻿<md-item layout-column class="md-whiteframe-z2 white">
     <md-item class="header" layout="row" layout-align="space-between center">
         <md-button ng-click="previous()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni miesiąc"></md-icon></md-button>
-        <md-button data-ng-click="showMonthPicker($event)" class="md-title">{{month.format("MMMM YYYY")}}</md-button>
+        <md-button data-ng-click="showMonthPicker($event)" class="calendar-button md-headline">{{month.format("MMMM YYYY")}}</md-button>
         <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny miesiąc"></md-icon></md-button>
     </md-item>
     <md-item layout="column">
         <md-content class="week names paper2 md-body-2" layout="row" layout-fill flex>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Poniedziałek</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Wtorek</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Środa</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Czwartek</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Piątek</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Sobota</md-toolbar>
-            <md-toolbar layout-fill flex class="day-header md-whiteframe-z1 md-accent md-subhead">Niedziela</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">PONIEDZIAŁEK</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">WTOREK</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">ŚRODA</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">CZWARTEK</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">PIĄTEK</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">SOBOTA</md-toolbar>
+            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">NIEDZIELA</md-toolbar>
     </md-item>
     <md-item class="calendar">               
         <md-item layout="column" layout-align="space-around center">

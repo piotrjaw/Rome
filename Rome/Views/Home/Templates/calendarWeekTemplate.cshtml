@@ -1,23 +1,17 @@
 ﻿<md-content layout-column layout-fill class="md-whiteframe-z2 white">
-    <md-item class="header">
-        <md-button ng-click="previous()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni miesiąc"></md-icon></md-button>
-        <md-button>{{month.format("MMMM YYYY")}}</md-button>
-        <md-button ng-click="next()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny miesiąc"></md-icon></md-button>
+    <md-item class="header" layout="row" layout-align="space-between center">
+        <md-button ng-click="previousWeek()"><md-icon md-svg-icon="/Img/Icons/chevron-left.svg" class="icon-grey" aria-label="poprzedni tydzień"></md-icon></md-button>
+        <md-button class="calendar-button md-headline">{{title}}</md-button>
+        <md-button ng-click="nextWeek()"><md-icon md-svg-icon="/Img/Icons/chevron-right.svg" class="icon-grey" aria-label="następny tydzień"></md-icon></md-button>
     </md-item>
     <md-item-content layout="column" layout-fill>
-        <md-item class="week names paper" layout="row" layout-fill flex>
-            <md-item layout-fill flex class="day">Po</md-item>
-            <md-item layout-fill flex class="day">Wt</md-item>
-            <md-item layout-fill flex class="day">Śr</md-item>
-            <md-item layout-fill flex class="day">Cz</md-item>
-            <md-item layout-fill flex class="day">Pi</md-item>
-            <md-item layout-fill flex class="day">So</md-item>
-            <md-item layout-fill flex class="day">Ni</md-item>
-        </md-item>
         <md-item layout="row">
             <md-item class="week" ng-repeat="day in days" layout-fill flex layout-align="center center" layout="column">
-                <md-item>{{day.date}}</md-item>
-                <md-item ng-repeat="hour in day.hours" >
+                <md-toolbar layout="column" layout-align="center center" md-theme="default" class="day-header md-accent">
+                    <md-item class="md-subhead">{{day.name}}</md-item>
+                    <md-item class="md-subhead">{{day.date.local().format("YYYY-MM-DD")}}</md-item>
+                </md-toolbar>
+                <md-item ng-repeat="hour in day.hours" class="paper md-padding">
                     <md-divider></md-divider>
                     <md-item>{{hour.name}}</md-item>
                 </md-item>
