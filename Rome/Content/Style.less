@@ -17,6 +17,17 @@ h5 {
     margin: 10px 0 !important;
 }
 
+iframe {
+    position: fixed;
+    z-index: 1;
+    width: 120%;
+    height: 120%;
+    padding: 0 !important;
+    top: -10%;
+    left: -10%;
+
+}
+
 md-content {
     height: 100%;
 }
@@ -36,6 +47,16 @@ md-select {
 md-sidenav {
     position: static;
     height: 100%;
+}
+
+#control-blocker {
+    position: fixed;
+    z-index: 50;
+    width: 120%;
+    height: 120%;
+    padding: 0 !important;
+    top: -10%;
+    left: -10%;
 }
 
 #login-submit {
@@ -269,6 +290,7 @@ md-sidenav {
 
 .login-form {
     background-color: white !important;
+    z-index: 99;
 
     >* {
         padding: 10px;

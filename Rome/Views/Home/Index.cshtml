@@ -1,11 +1,14 @@
 ﻿<md-content class="wrapper" ng-app="myApp" lang="pl">
     <md-item data-ng-controller="loginCtrl as log">
         <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login" md-theme="altTheme">
+            <iframe src="https://www.youtube.com/v/a-PqJTAqba0?iv_load_policy=3&version=3&rel=0&autoplay=1&controls=0&loop=1&playlist=a-PqJTAqba0" frameborder="0" allowfullscreen></iframe>
+            <!--<iframe src="http://gfycat.com/ifr/AccurateVapidGrunion" frameborder="0" scrolling="no" width="1920" height="1080" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1.2);"></iframe>-->
+            <md-item id="control-blocker"></md-item>
             <md-item class="md-whiteframe-z2 login-form">
                 <md-toolbar layout="row" layout-align="start center">
                     <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
                     <md-item layout="row" layout-align="center center">
-                        <md-item>Nowy Cross-sell</md-item>
+                        <md-item layout="row" layout-align="center">Aplikacja</md-item>
                     </md-item>
                 </md-toolbar>
                 <md-item ng-if="!passwordForgot" class="animate" layout="column" layout-align="center center">

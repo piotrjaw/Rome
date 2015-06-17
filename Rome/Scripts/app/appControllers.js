@@ -3,8 +3,8 @@
 var appControllers = angular.module('appControllers', ['appServices']);
 
 appControllers.controller('loginCtrl', [
-    '$scope', '$http', 'loginService',
-    function ($scope, $http, loginService) {
+    '$scope', '$http', 'loginService', 'selectedDayService',
+    function ($scope, $http, loginService, selectedDayService) {
         $scope.invalidPassword = false;
         $scope.$watch(function () { return loginService.loggedIn },
             function (newValue, oldValue) {
@@ -17,6 +17,8 @@ appControllers.controller('loginCtrl', [
                 UserName: login,
                 Password: password
             };
+
+            selectedDayService.selectedDay = undefined;
 
             var requestBody = JSON.stringify(user);
 

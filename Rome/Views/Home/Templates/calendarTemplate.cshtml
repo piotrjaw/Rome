@@ -6,18 +6,18 @@
     </md-item>
     <md-item layout="column">
         <md-content class="week names paper2 md-body-2" layout="row" layout-fill flex>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">PONIEDZIAŁEK</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">WTOREK</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">ŚRODA</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">CZWARTEK</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">PIĄTEK</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">SOBOTA</md-toolbar>
-            <md-toolbar layout-fill md-theme="default" class="day-header md-subhead md-accent">NIEDZIELA</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">PONIEDZIAŁEK</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">WTOREK</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">ŚRODA</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">CZWARTEK</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">PIĄTEK</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">SOBOTA</md-toolbar>
+            <md-toolbar layout-align="center center" md-theme="default" class="day-header md-subhead md-accent">NIEDZIELA</md-toolbar>
     </md-item>
     <md-item class="calendar">               
         <md-item layout="column" layout-align="space-around center">
-            <md-item class="week md-body-1" ng-repeat="week in weeks" layout-fill layout-align="center space-around" layout="row">
-                <md-button class="day md-whiteframe-z1" ng-class="{ 'md-primary md-raised md-hue-2': day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="moveTo(day)" ng-repeat="day in week.days track by day.date" layout-fill layout="row" layout-align="space-between center">
+            <md-item class="week md-body-1" ng-repeat="week in weeks" layout-fill layout="row">
+                <md-button class="day md-whiteframe-z1" ng-class="{ 'md-primary md-raised md-hue-2': day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" ng-click="moveTo(day)" ng-repeat="day in week.days track by day.date" layout-fill layout="row" layout-align="start center">
                     <md-item>{{day.number}}</md-item>
                     <md-item flex></md-item>
                     <md-item ng-repeat="(GroupEventDay, GroupedEvents) in events | groupBy: 'EventDate | truncDate'">

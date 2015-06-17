@@ -21,13 +21,13 @@ myApp.config(function ($locationProvider, $mdIconProvider) {
 myApp.config(function ($mdThemingProvider) {
     $mdThemingProvider
         .theme('default')
-        .primaryPalette('indigo', {
-            'default': '500',
-            'hue-1': '800',
-            'hue-2': '100',
-            'hue-3': '50'
+        .primaryPalette('light-blue', {
+            'default': '800',
+            'hue-1': '900',
+            'hue-2': '200',
+            'hue-3': '100'
         })
-        .accentPalette('pink', {
+        .accentPalette('deep-orange', {
             'default': 'A400',
             'hue-1': 'A100',
             'hue-2': 'A700'
