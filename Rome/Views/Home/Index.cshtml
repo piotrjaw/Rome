@@ -1,7 +1,7 @@
-﻿<md-content class="wrapper" ng-app="myApp" lang="pl">
+﻿<md-content class="wrapper">
     <md-item data-ng-controller="loginCtrl as log">
         <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login" md-theme="altTheme">
-            <iframe src="https://www.youtube.com/v/a-PqJTAqba0?iv_load_policy=3&version=3&rel=0&autoplay=1&controls=0&loop=1&playlist=a-PqJTAqba0" frameborder="0" allowfullscreen></iframe>
+            <!--<iframe src="https://www.youtube.com/v/a-PqJTAqba0?iv_load_policy=3&version=3&rel=0&autoplay=1&controls=0&loop=1&playlist=a-PqJTAqba0" frameborder="0" allowfullscreen></iframe>-->
             <!--<iframe src="http://gfycat.com/ifr/AccurateVapidGrunion" frameborder="0" scrolling="no" width="1920" height="1080" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1.2);"></iframe>-->
             <md-item id="control-blocker"></md-item>
             <md-item class="md-whiteframe-z2 login-form">
@@ -43,7 +43,7 @@
         <md-content data-ng-controller="tabCtrl as tab" ng-if="isLoggedIn" class="animate-login">
             <md-item layout="row" data-ng-controller="mainCtrl" class="layout-wrapper">
                 <md-sidenav layout="column" class="sidenav-wrapper md-whiteframe-z1" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
-                    <md-toolbar class="md-hue-1">
+                    <md-toolbar>
                         <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
                     </md-toolbar>
                     <md-content layout="column" class="md-sidenav-left" flex>
@@ -55,13 +55,13 @@
                                 <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(4) }" ng-click="tab.setTab(4)">Spotkania</md-button>
                                 <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(5) }" ng-click="tab.setTab(5)">Struktura</md-button>
                                 <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(6) }" ng-click="tab.setTab(6)">Profil</md-button>
-                                <md-button layout-fill class="inner-wrapper md-warn" ng-click="log.tryLogout()">Wyloguj</md-button>
+                                <md-button layout-fill class="inner-wrapper md-accent md-hue-2" ng-click="log.tryLogout()">Wyloguj</md-button>
                             </md-list>
                         </md-item>
                     </md-content>
                 </md-sidenav>
                 <md-item layout="column" flex>
-                    <md-toolbar layout="row" layout-align="center start" class="md-hue-1">
+                    <md-toolbar layout="row" layout-align="center start">
                         <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" aria-label="menu" layout-align="center center">
                             <md-icon md-svg-icon="/Img/Icons/menu.svg" class="icon-white"></md-icon>
                         </md-button>

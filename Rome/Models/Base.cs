@@ -34,7 +34,7 @@ namespace Rome.Models
             get
             {
                 DateTime now = DateTime.Now;
-                return (int)Math.Max((BaseEnd - now).TotalDays, -1);
+                return (int)Math.Max((BaseEnd - now).TotalDays + 1, -1);
             }
             set { }
         }

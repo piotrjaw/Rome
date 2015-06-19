@@ -13,6 +13,7 @@ using System.Web.UI;
 using Rome.DAL;
 using Rome.DTOs;
 using Rome.Models;
+using Rome.QueryObjects;
 
 namespace Rome.Controllers
 {
@@ -53,37 +54,45 @@ namespace Rome.Controllers
                             }
                         }
                 };
-                
-                /*from b in db.Bases
-                group b by b.BaseId into nb
-                join ba in db.BaseAssignments on nb.FirstOrDefault().BaseId equals ba.BaseId
-                join c in db.Clients on ba.ClientId equals c.ClientId
-                select new BaseDTO
-                {
-                    BaseName = nb.FirstOrDefault().BaseName,
-                    BaseStart = nb.FirstOrDefault().BaseStart,
-                    BaseEnd = nb.FirstOrDefault().BaseEnd,
-                    Clients = new ClientDTO
-                    {
-                        ClientId = c.ClientId,
-                        CompanyName = c.CompanyName,
-                        Owner = c.Owner
-                    }
-                };*/
             return query;
         }
 
-        // GET: api/Bases/5
-        [ResponseType(typeof(Base))]
-        public async Task<IHttpActionResult> GetBase(int id)
+        [HttpPost]
+        [ActionName("getSelectedBases")]
+        public IQueryable<BaseDTO> Post(UserQO id)
         {
-            Base @base = await db.Bases.FindAsync(id);
-            if (@base == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(@base);
+            var query = from b in db.Bases
+                        select new BaseDTO
+                        {
+                            BaseId = b.BaseId,
+                            BaseName = b.BaseName,
+                            BaseStart = b.BaseStart,
+                            BaseEnd = b.BaseEnd,
+                            DaysLeft = b.DaysLeft,
+                            IsActive = b.IsActive,
+                            Progress = b.Progress,
+                            Clients =
+                                from ba in b.BaseAssignments
+                                join c in db.Clients on ba.ClientId equals c.ClientId
+                                where ba.UserId == id.UserId
+                                select new ClientDTO
+                                {
+                                    ClientId = c.ClientId,
+                                    CompanyName = c.CompanyName,
+                                    Owner = c.Owner,
+                                    UserId = ba.UserId,
+                                    Events =
+                                    from e in c.Events
+                                    where e.BaseId == b.BaseId && e.UserId == id.UserId
+                                    select new EventDTO
+                                    {
+                                        EventId = e.EventId,
+                                        EventDate = e.EventDate,
+                                        UserId = e.UserId
+                                    }
+                                }
+                        };
+            return query;
         }
 
         // PUT: api/Bases/5

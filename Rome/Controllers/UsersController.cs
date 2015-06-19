@@ -22,7 +22,7 @@ namespace Rome.Controllers
 
         [HttpPost]
         [ActionName("getUser")]
-        public UserDTO Post(UserQO id)
+        public UserDTO Post(LoginQO id)
         {
             var query = (from u in db.Users
                         where u.UserName == id.UserName &&

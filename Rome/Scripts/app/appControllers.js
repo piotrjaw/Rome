@@ -73,16 +73,24 @@ appControllers.controller('mainCtrl', [
 ]);
 
 appControllers.controller('baseCtrl', [
-    '$scope', '$http',
-    function ($scope, $http) {
-        $scope.loading = true;
+    '$scope', '$http', 'loginService',
+    function ($scope, $http, loginService) {
+        $scope.baseLoading = true;
 
-        $http.get('/api/Bases/getBases/').success(function (data) {
+        var dataBody = JSON.stringify({ "UserId": loginService.user.UserId });
+
+        var request = {
+            method: 'POST',
+            url: '/api/Bases/getSelectedBases/',
+            data: dataBody
+        }
+
+        $http(request).success(function (data) {
             $scope.Bases = data;
-            $scope.loading = false;
+            $scope.baseLoading = false;
         }).error(function (data) {
-            $scope.Error = data;
-            $scope.loading = false;
+            $scope.Bases = data;
+            $scope.baseLoading = false;
         });
 
         $scope.baseOrder = '-BaseStart';

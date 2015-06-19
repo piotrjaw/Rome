@@ -1,9 +1,9 @@
 ﻿<md-item layout="column" flex class="content-wrapper" id="primary-col">
     <md-item ng-controller="baseCtrl">
-        <md-item ng-if="loading">
+        <md-item ng-if="baseLoading">
             Ładuję dane klientów...
         </md-item>
-        <md-item ng-if="!loading">
+        <md-item ng-if="!baseLoading">
             <md-item>{{Bases.error}}</md-item>
             <md-list class="base-list" layout="column">
                 <md-item ng-repeat="Base in Bases track by Base.BaseId | orderBy:baseOrder">

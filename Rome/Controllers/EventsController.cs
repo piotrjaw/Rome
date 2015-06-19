@@ -23,25 +23,8 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
 
         [HttpPost]
-        [ActionName("getEvents")]
-        public IQueryable<EventDTO> GetEvents()
-        {
-            var query = from e in db.Events
-                        select new EventDTO
-                        {
-                            EventId = e.EventId,
-                            EventDate = e.EventDate,
-                            UserId = e.UserId,
-                            ClientId = e.ClientId,
-                            BaseId = e.BaseId
-                        };
-
-            return query;
-        }
-
-        [HttpPost]
         [ActionName("getSelectedEvents")]
-        public IQueryable<EventDTO> Post(EventQO id)
+        public IQueryable<EventDTO> Post(UserQO id)
         {
             var query = from e in db.Events
                         join c in db.Clients on e.ClientId equals c.ClientId

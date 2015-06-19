@@ -9,23 +9,23 @@ namespace Rome
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate.min.js",
+                        "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular/angular.js",
-                        "~/Scripts/angular-animate/angular-animate.js",
-                        "~/Scripts/angular-aria/angular-aria.js",
-                        "~/Scripts/angular-filter/dist/angular-filter.js"));
+                        "~/Scripts/angular/angular.min.js",
+                        "~/Scripts/angular-animate/angular-animate.min.js",
+                        "~/Scripts/angular-aria/angular-aria.min.js",
+                        "~/Scripts/angular-filter/dist/angular-filter.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
-                        "~/Scripts/moment/moment.js",
-                        "~/Scripts/moment/locale/pl.js"));
+                        "~/Scripts/moment/min/moment-with-locales.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/d3").Include(
-                        "~/Scripts/d3/d3.js"));
+                        "~/Scripts/d3/d3.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/app.js",
@@ -35,7 +35,7 @@ namespace Rome
                         "~/Scripts/app/appServices.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/material").Include(
-                        "~/Scripts/angular-material/angular-material.js"));
+                        "~/Scripts/angular-material/angular-material.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

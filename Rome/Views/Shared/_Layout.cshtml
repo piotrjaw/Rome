@@ -1,10 +1,15 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="myApp" lang="pl" ng-strict-di>
 <head>
     <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rome</title>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic" />
     @Styles.Render("~/Content/css")
@@ -12,17 +17,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/material")
-    @Scripts.Render("~/bundles/moment")
-    @Scripts.Render("~/bundles/d3")
-    @Scripts.Render("~/bundles/app")
-    @RenderSection("scripts", required: false)
-    <style type="text/css">
-        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-            display: none !important;
-        }
-    </style>
+
 </head>
 <body>
-    @RenderBody()
+        @RenderBody()
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/d3")
+        @Scripts.Render("~/bundles/app")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
