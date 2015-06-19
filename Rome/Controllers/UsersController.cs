@@ -22,7 +22,7 @@ namespace Rome.Controllers
 
         [HttpPost]
         [ActionName("getUser")]
-        public UserDTO Post(LoginQO id)
+        public async Task<UserDTO> Post(LoginQO id)
         {
             var query = (from u in db.Users
                         where u.UserName == id.UserName &&
@@ -35,8 +35,23 @@ namespace Rome.Controllers
                             UserName = u.UserName,
                             Email = u.Email
                         }).FirstOrDefault();
+            if (!query.Equals(null))
+            {
+                Session newSession = new Session(query.UserId);
+                db.Sessions.Add(newSession);
+                await db.SaveChangesAsync();
 
-            return query;
+                var sessionQuery = (from s in db.Sessions
+                                   where s.UserId == query.UserId
+                                   orderby s.SessionExpirationDate descending
+                                   select s.SessionId).FirstOrDefault();
+                query.SessionId = sessionQuery;
+                return query;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // PUT: api/Users/5

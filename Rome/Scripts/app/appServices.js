@@ -82,7 +82,11 @@ appServices.service('globalFunctions', function () {
         _createMonths: function (scope) {
             scope.months = [];
             for (var i = 0; i < 12; i++) {
-                scope.months.push(moment({ month: i }).format("MMMM"));
+                scope.months.push({
+                    name: moment({ month: i }).format("MMMM"),
+                    ind: i,
+                    isCurrentMonth: moment().month() === moment({ month: i }).month()
+                });
             };
         },
 
@@ -90,7 +94,10 @@ appServices.service('globalFunctions', function () {
             scope.years = [];
             var currentYear = parseInt(moment().format("YYYY"));
             for (var i = 0; i < 2 * diff + 1; i++) {
-                scope.years.push(currentYear + i - diff);
+                scope.years.push({
+                    name: currentYear + i - diff,
+                    isCurrentYear: currentYear + i - diff == currentYear
+                });
             }
         },
 
@@ -109,8 +116,9 @@ appServices.service('globalFunctions', function () {
 appServices.service('loginService', function () {
 
     var user = function () {
-        this.userId = null,
-        this.loggedIn = false;
+        this.UserId = null,
+        this.LoggedIn = false,
+        this.SessionId = null
     };
 
     return user;

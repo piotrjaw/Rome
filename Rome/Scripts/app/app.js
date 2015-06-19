@@ -24,8 +24,8 @@ var myApp = angular.module('myApp', [
         $mdThemingProvider
             .theme('default')
             .primaryPalette('light-blue', {
-                'default': '800',
-                'hue-1': '900',
+                'default': '900',
+                'hue-1': '800',
                 'hue-2': '200',
                 'hue-3': '100'
             })

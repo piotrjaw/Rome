@@ -47,8 +47,11 @@ appControllers.controller('loginCtrl', [
     }
 ]);
 
-appControllers.controller('tabCtrl',
-    function() {
+appControllers.controller('tabCtrl', [
+    '$scope', 'loginService',
+    function ($scope, loginService) {
+        $scope.User = loginService.User;
+
         this.tab = 1;
 
         this.setTab = function (newValue) {
@@ -59,7 +62,7 @@ appControllers.controller('tabCtrl',
             return this.tab === tabName;
         };
     }
-);
+]);
 
 appControllers.controller('mainCtrl', [
     '$scope', '$mdSidenav',
@@ -77,7 +80,7 @@ appControllers.controller('baseCtrl', [
     function ($scope, $http, loginService) {
         $scope.baseLoading = true;
 
-        var dataBody = JSON.stringify({ "UserId": loginService.user.UserId });
+        var dataBody = JSON.stringify({ "UserId": loginService.user.UserId, "SessionId": loginService.user.SessionId });
 
         var request = {
             method: 'POST',
@@ -147,7 +150,7 @@ appControllers.controller('calendarCtrl', [
         });
 
         function showMonthPicker($event) {
-            var parentE = angular.element('#calendar');
+            var parentE = angular.element(document.querySelector('#calendar'));
             $mdDialog.show({
                 parent: parentE,
                 targetEvent: $event,

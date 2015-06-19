@@ -61,38 +61,50 @@ namespace Rome.Controllers
         [ActionName("getSelectedBases")]
         public IQueryable<BaseDTO> Post(UserQO id)
         {
-            var query = from b in db.Bases
-                        select new BaseDTO
-                        {
-                            BaseId = b.BaseId,
-                            BaseName = b.BaseName,
-                            BaseStart = b.BaseStart,
-                            BaseEnd = b.BaseEnd,
-                            DaysLeft = b.DaysLeft,
-                            IsActive = b.IsActive,
-                            Progress = b.Progress,
-                            Clients =
-                                from ba in b.BaseAssignments
-                                join c in db.Clients on ba.ClientId equals c.ClientId
-                                where ba.UserId == id.UserId
-                                select new ClientDTO
-                                {
-                                    ClientId = c.ClientId,
-                                    CompanyName = c.CompanyName,
-                                    Owner = c.Owner,
-                                    UserId = ba.UserId,
-                                    Events =
-                                    from e in c.Events
-                                    where e.BaseId == b.BaseId && e.UserId == id.UserId
-                                    select new EventDTO
+            var sessionStatus  = (from s in db.Sessions
+                                   where s.UserId == id.UserId &&
+                                         s.SessionExpirationDate < DateTime.Now
+                                   orderby s.SessionExpirationDate descending
+                                   select s.SessionId).FirstOrDefault();
+            if (!sessionStatus.Equals(null))
+            {
+                var query = from b in db.Bases
+                            select new BaseDTO
+                            {
+                                BaseId = b.BaseId,
+                                BaseName = b.BaseName,
+                                BaseStart = b.BaseStart,
+                                BaseEnd = b.BaseEnd,
+                                DaysLeft = b.DaysLeft,
+                                IsActive = b.IsActive,
+                                Progress = b.Progress,
+                                Clients =
+                                    from ba in b.BaseAssignments
+                                    join c in db.Clients on ba.ClientId equals c.ClientId
+                                    where ba.UserId == id.UserId
+                                    select new ClientDTO
                                     {
-                                        EventId = e.EventId,
-                                        EventDate = e.EventDate,
-                                        UserId = e.UserId
+                                        ClientId = c.ClientId,
+                                        CompanyName = c.CompanyName,
+                                        Owner = c.Owner,
+                                        UserId = ba.UserId,
+                                        Events =
+                                        from e in c.Events
+                                        where e.BaseId == b.BaseId && e.UserId == id.UserId
+                                        select new EventDTO
+                                        {
+                                            EventId = e.EventId,
+                                            EventDate = e.EventDate,
+                                            UserId = e.UserId
+                                        }
                                     }
-                                }
-                        };
-            return query;
+                            };
+                return query;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // PUT: api/Bases/5

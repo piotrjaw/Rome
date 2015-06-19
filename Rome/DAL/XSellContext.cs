@@ -26,6 +26,7 @@ namespace Rome.DAL
         public DbSet<UnitRelation> UnitRelations { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleAssignment> RoleAssignments { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -57,6 +58,8 @@ namespace Rome.DAL
             modelBuilder.Entity<UnitType>().HasKey(u => u.UnitTypeId);
 
             modelBuilder.Entity<User>().HasKey(u => u.UserId);
+
+            modelBuilder.Entity<Session>().HasKey(s => s.SessionId);
         }
     }
 }

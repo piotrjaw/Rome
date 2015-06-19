@@ -16,7 +16,7 @@ namespace Rome
                         "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular/angular.min.js",
+                        "~/Scripts/angular/angular.js",
                         "~/Scripts/angular-animate/angular-animate.min.js",
                         "~/Scripts/angular-aria/angular-aria.min.js",
                         "~/Scripts/angular-filter/dist/angular-filter.min.js"));
@@ -28,11 +28,7 @@ namespace Rome
                         "~/Scripts/d3/d3.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/app.js",
-                        "~/Scripts/app/appControllers.js",
-                        "~/Scripts/app/appFilters.js",
-                        "~/Scripts/app/appDirectives.js",
-                        "~/Scripts/app/appServices.js"));
+                        "~/Scripts/app/app.c.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/material").Include(
                         "~/Scripts/angular-material/angular-material.min.js"));

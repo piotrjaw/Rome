@@ -56,6 +56,9 @@
                                 <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(5) }" ng-click="tab.setTab(5)">Struktura</md-button>
                                 <md-button layout-fill class="inner-wrapper" ng-class="{ 'md-primary md-hue-2' :tab.isSet(6) }" ng-click="tab.setTab(6)">Profil</md-button>
                                 <md-button layout-fill class="inner-wrapper md-accent md-hue-2" ng-click="log.tryLogout()">Wyloguj</md-button>
+                                <md-item>
+                                    {{User}}
+                                </md-item>
                             </md-list>
                         </md-item>
                     </md-content>
