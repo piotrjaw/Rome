@@ -17,13 +17,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/material")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/d3")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
 
 </head>
 <body>
         @RenderBody()
-        @Scripts.Render("~/bundles/moment")
-        @Scripts.Render("~/bundles/d3")
-        @Scripts.Render("~/bundles/app")
-        @RenderSection("scripts", required: false)
 </body>
 </html>

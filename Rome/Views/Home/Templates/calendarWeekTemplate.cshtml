@@ -11,9 +11,9 @@
                     <md-item class="md-subhead">{{day.name}}</md-item>
                     <md-item class="md-subhead">{{day.date.local().format("YYYY-MM-DD")}}</md-item>
                 </md-toolbar>
-                <md-item ng-repeat="hour in day.hours" class="paper md-padding">
+                <md-item ng-repeat="hour in day.hours" class="paper" layout-fill flex >
                     <md-divider></md-divider>
-                    <md-item>{{hour.name}}</md-item>
+                    <md-item layout ="row" layout-align="start center"><md-item>{{hour.name}}</md-item></md-item>
                 </md-item>
             </md-item>
         </md-item>

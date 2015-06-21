@@ -14,6 +14,9 @@ var paths = {
     destination: './Scripts/app/'
 }
 
+gulp.task('default', function () {
+});
+
 gulp.task('concat', function () {
     gulp.src(paths.scripts)
         .pipe(concat('app.c.js'))
