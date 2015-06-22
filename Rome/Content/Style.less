@@ -210,6 +210,10 @@ md-sidenav {
     min-width: 176px;
 }
 
+.date-container-right {
+    text-align: right;
+}
+
 .detail-button {
     
     max-width: 44px !important;
@@ -250,12 +254,11 @@ md-sidenav {
     padding: 10px;
     min-width: 300px;
     margin-left: 15px;
-    
 }
 
 .gray-paper {
     background-color: white !important;
-    margin: 0px 5px 2px 5px;
+    margin: 0 5px 2px 5px;
     padding: 10px 10px 10px 10px !important;
 
     &:last-child {
@@ -348,7 +351,7 @@ md-sidenav {
 
 .paper {
     background-color: white !important;
-    height: 64px;
+    height: 96px;
     margin: 2px;
 }
 
@@ -369,11 +372,22 @@ md-sidenav {
     height: 100%;
 }
 
+.Spotkanie {
+    .event-wrapper();
+    background-color: #FF9800 !important;
+}
+
 .small-button {
     height: @small-fab !important;
     min-height: @small-fab !important;
     line-height: @small-fab !important;
     width: @small-fab !important;
+    border-radius: 0 !important;
+}
+
+.Telefon {
+    .event-wrapper();
+    background-color: #8BC34A !important;
 }
 
 .warning {

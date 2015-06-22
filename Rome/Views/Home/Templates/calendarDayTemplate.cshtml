@@ -10,10 +10,10 @@
             <md-item layout="row" layout-align="start center" class="paper md-padding">
                 <md-item>{{hour.name}}</md-item>
                 <md-item ng-repeat="(groupedEventHour, groupedEvents) in events | groupBy: ' EventDate | truncHour'" ng-if='" " + (groupedEventHour | truncHour) == " " + (hour.date | truncHour)' layout="row" layout-align="space-around center">
-                    <md-item ng-repeat="event in groupedEvents" flex class="event-wrapper md-whiteframe-z1">
+                    <md-item ng-repeat="event in groupedEvents" flex class="event-wrapper md-whiteframe-z1" ng-class="event.EventType.EventTypeName">
                         <md-item layout="column" layout-align="space-between center">
-                            <md-item>Wydarzenie: {{event.EventDate | jsDate | date: 'h:mm'}}</md-item>
-                            <md-item>Klient: {{event.Client.Owner}}, {{event.Client.CompanyName}}</md-item>
+                            <md-item>{{event.EventType.EventTypeName}}: {{event.EventDate | jsDate | date: 'h:mm'}}</md-item>
+                            <md-item>{{event.Client.Owner}}, {{event.Client.CompanyName}}</md-item>
                         </md-item>
                     </md-item>
                 </md-item>

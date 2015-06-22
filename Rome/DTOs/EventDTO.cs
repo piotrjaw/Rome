@@ -14,5 +14,6 @@ namespace Rome.DTOs
         public int ClientId { get; set; }
         public int BaseId { get; set; }
         public Client Client { get; set; }
+        public EventType EventType { get; set; }
     }
 }

@@ -26,20 +26,36 @@ namespace Rome.Controllers
         [ActionName("getSelectedEvents")]
         public IQueryable<EventDTO> Post(UserQO id)
         {
-            var query = from e in db.Events
-                        join c in db.Clients on e.ClientId equals c.ClientId
-                        where e.UserId == id.UserId
-                        select new EventDTO
-                        {
-                            EventId = e.EventId,
-                            EventDate = e.EventDate,
-                            UserId = e.UserId,
-                            ClientId = e.ClientId,
-                            BaseId = e.BaseId,
-                            Client = c
-                        };
-
-            return query;
+            var sessionStatus  = (from s in db.Sessions
+                        where s.UserId == id.UserId &&
+                                s.SessionId == id.SessionId &&
+                                s.SessionExpirationDate > DateTime.Now
+                        select s.SessionId).FirstOrDefault();
+            if (!sessionStatus.Equals(null))
+            {
+                var query = from e in db.Events
+                            join c in db.Clients on e.ClientId equals c.ClientId
+                            join t in db.EventTypes on e.EventTypeId equals t.EventTypeId
+                            where e.UserId == id.UserId
+                            select new EventDTO
+                            {
+                                EventId = e.EventId,
+                                EventDate = e.EventDate,
+                                UserId = e.UserId,
+                                ClientId = e.ClientId,
+                                BaseId = e.BaseId,
+                                Client = c,
+                                EventType = t
+                            };
+                var session = db.Sessions.Where(s => s.SessionId == id.SessionId).FirstOrDefault();
+                session.SessionExpirationDate = DateTime.Now.AddHours(1);
+                db.SaveChanges();
+                return query;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // PUT: api/Events/5

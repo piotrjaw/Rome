@@ -15,7 +15,7 @@ namespace Rome
                         "~/Scripts/jquery.validate.min.js",
                         "~/Scripts/jquery.validate.unobtrusive.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+/*            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular/angular.js",
                         "~/Scripts/angular-animate/angular-animate.min.js",
                         "~/Scripts/angular-aria/angular-aria.min.js",
@@ -25,13 +25,23 @@ namespace Rome
                         "~/Scripts/moment/min/moment-with-locales.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/d3").Include(
-                        "~/Scripts/d3/d3.min.js"));
+                        "~/Scripts/d3/d3.min.js"));*/
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/app.c.min.js"));
+                        "~/Scripts/app/vendor.min.js",
+                        "~/Scripts/app/appsrc.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/material").Include(
-                        "~/Scripts/angular-material/angular-material.min.js"));
+
+            /*bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app/vendor.min.js",
+                        "~/Scripts/app/app.js",
+                        "~/Scripts/app/appControllers.js",
+                        "~/Scripts/app/appServices.js",
+                        "~/Scripts/app/appFilters.js",
+                        "~/Scripts/app/appDirectives.js"));*/
+
+/*            bundles.Add(new ScriptBundle("~/bundles/material").Include(
+                        "~/Scripts/angular-material/angular-material.min.js"));*/
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

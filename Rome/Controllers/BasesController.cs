@@ -63,9 +63,9 @@ namespace Rome.Controllers
         {
             var sessionStatus  = (from s in db.Sessions
                                    where s.UserId == id.UserId &&
-                                         s.SessionExpirationDate < DateTime.Now
-                                   orderby s.SessionExpirationDate descending
-                                   select s.SessionId).FirstOrDefault();
+                                         s.SessionId == id.SessionId &&
+                                         s.SessionExpirationDate > DateTime.Now
+                                  select s.SessionId).FirstOrDefault();
             if (!sessionStatus.Equals(null))
             {
                 var query = from b in db.Bases
@@ -99,6 +99,9 @@ namespace Rome.Controllers
                                         }
                                     }
                             };
+                var session = db.Sessions.Where(s => s.SessionId == id.SessionId).FirstOrDefault();
+                session.SessionExpirationDate = DateTime.Now.AddHours(1);
+                db.SaveChanges();
                 return query;
             }
             else

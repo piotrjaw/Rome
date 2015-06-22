@@ -116,18 +116,18 @@ appServices.service('globalFunctions', function () {
 appServices.service('loginService', function () {
 
     var user = function () {
-        this.UserId = null,
-        this.LoggedIn = false,
-        this.SessionId = null
+        this.isLoggedIn = false;
     };
 
-    return user;
+    return {
+        user: user
+    };
 });
 
 appServices.service('selectedDayService', function() {
 
-    var selectedDay = null;
+    var selectedDay;
 
-    return null;
+    return selectedDay;
 
 })

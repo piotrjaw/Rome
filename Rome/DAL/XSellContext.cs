@@ -20,6 +20,7 @@ namespace Rome.DAL
         public DbSet<Base> Bases { get; set; }
         public DbSet<BaseAssignment> BaseAssignments { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
@@ -43,6 +44,9 @@ namespace Rome.DAL
             modelBuilder.Entity<Event>().HasKey(e => e.EventId);
             modelBuilder.Entity<Event>().HasRequired(e => e.Base);
             modelBuilder.Entity<Event>().HasRequired(e => e.Client);
+            modelBuilder.Entity<Event>().HasRequired(e => e.EventType);
+
+            modelBuilder.Entity<EventType>().HasKey(e => e.EventTypeId);
 
             modelBuilder.Entity<Role>().HasKey(r => r.RoleId);
 
