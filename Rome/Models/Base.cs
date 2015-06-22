@@ -9,6 +9,7 @@ namespace Rome.Models
     {
         public int BaseId { get; set; }
         public string BaseName { get; set; }
+        public ResultSet ResultSet { get; set; }
         public bool IsActive
         {
             get
