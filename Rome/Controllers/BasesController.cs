@@ -69,6 +69,9 @@ namespace Rome.Controllers
             if (!sessionStatus.Equals(null))
             {
                 var query = from b in db.Bases
+                            join r in db.ResultSets on b.BaseOptionSet.ResultSetId equals r.ResultSetId
+                            join p in db.ProductSets on b.BaseOptionSet.ProductSetId equals p.ProductSetId
+                            join rr in db.ResignationReasonSets on b.BaseOptionSet.ResignationReasonSetId equals rr.ResignationReasonSetId
                             select new BaseDTO
                             {
                                 BaseId = b.BaseId,
@@ -78,6 +81,41 @@ namespace Rome.Controllers
                                 DaysLeft = b.DaysLeft,
                                 IsActive = b.IsActive,
                                 Progress = b.Progress,
+                                BaseOptionSet = new BaseOptionSetDTO
+                                {
+                                    BaseOptionSetId = b.BaseOptionSet.BaseOptionSetId,
+                                    BaseOptionSetDescription = b.BaseOptionSet.BaseOptionSetDescription,
+                                    ResultSet = new ResultSetDTO
+                                    {
+                                        ResultSetId = r.ResultSetId,
+                                        ResultSetDescription = r.ResultSetDescription,
+                                        Results = 
+                                        from tr in db.Results
+                                        join ra in db.ResultAssignments on tr.ResultId equals ra.ResultId
+                                        where ra.ResultSetId == b.BaseOptionSet.ResultSetId
+                                        select tr
+                                    },
+                                    ResignationReasonSet = new ResignationReasonSetDTO
+                                    {
+                                        ResignationReasonSetId = rr.ResignationReasonSetId,
+                                        ResignationReasonSetDescription = rr.ResignationReasonSetDescription,
+                                        ResignationReasons =
+                                        from trr in db.ResignationReasons
+                                        join rra in db.ResignationReasonAssignments on trr.ResignationReasonId equals rra.ResignationReasonId
+                                        where rra.ResignationReasonSetId == b.BaseOptionSet.ResignationReasonSetId
+                                        select trr
+                                    },
+                                    ProductSet = new ProductSetDTO
+                                    {
+                                        ProductSetId = p.ProductSetId,
+                                        ProductSetDescription = p.ProductSetDescription,
+                                        Products = 
+                                        from tp in db.Products
+                                        join pa in db.ProductAssignments on tp.ProductId equals pa.ProductId
+                                        where pa.ProductSetId == b.BaseOptionSet.ProductSetId
+                                        select tp
+                                    }
+                                },
                                 Clients =
                                     from ba in b.BaseAssignments
                                     join c in db.Clients on ba.ClientId equals c.ClientId

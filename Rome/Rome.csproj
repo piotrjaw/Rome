@@ -141,12 +141,16 @@
     <Compile Include="DAL\XSellInitializer.cs" />
     <Compile Include="DTOs\AdministrationDTO.cs" />
     <Compile Include="DTOs\BaseDTO.cs" />
+    <Compile Include="DTOs\BaseOptionSetDTO.cs" />
     <Compile Include="DTOs\BranchDTO.cs" />
     <Compile Include="DTOs\ClientDTO.cs" />
     <Compile Include="DTOs\CompanyDTO.cs" />
     <Compile Include="DTOs\EventDTO.cs" />
     <Compile Include="DTOs\NetworkDTO.cs" />
+    <Compile Include="DTOs\ProductSetDTO.cs" />
     <Compile Include="DTOs\RegionDTO.cs" />
+    <Compile Include="DTOs\ResignationReasonSetDTO.cs" />
+    <Compile Include="DTOs\ResultSetDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,9 +160,20 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventType.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductAssignment.cs" />
+    <Compile Include="Models\ProductSet.cs" />
+    <Compile Include="Models\ResignationReason.cs" />
+    <Compile Include="Models\ResignationReasonAssignment.cs" />
+    <Compile Include="Models\ResignationReasonSet.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\BaseOptionSet.cs" />
+    <Compile Include="Models\ResultAssignment.cs" />
+    <Compile Include="Models\ResultSet.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoleAssignment.cs" />
     <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\UnitRelation.cs" />
     <Compile Include="Models\UnitType.cs" />
     <Compile Include="Models\User.cs" />

@@ -28,12 +28,24 @@ namespace Rome.DAL
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleAssignment> RoleAssignments { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<BaseOptionSet> BaseOptionSets { get; set; }
+        public DbSet<Result> Results { get; set; }
+        public DbSet<ResignationReason> ResignationReasons { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ResultSet> ResultSets { get; set; }
+        public DbSet<ResignationReasonSet> ResignationReasonSets { get; set; }
+        public DbSet<ProductSet> ProductSets { get; set; }
+        public DbSet<ResultAssignment> ResultAssignments { get; set; }
+        public DbSet<ResignationReasonAssignment> ResignationReasonAssignments { get; set; }
+        public DbSet<ProductAssignment> ProductAssignments { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Entity<Base>().HasKey(b => b.BaseId);
+            modelBuilder.Entity<Base>().HasRequired(b => b.BaseOptionSet);
 
             modelBuilder.Entity<BaseAssignment>().HasKey(b => b.BaseAssignmentId);
             modelBuilder.Entity<BaseAssignment>().HasRequired(b => b.Base);
@@ -64,6 +76,30 @@ namespace Rome.DAL
             modelBuilder.Entity<User>().HasKey(u => u.UserId);
 
             modelBuilder.Entity<Session>().HasKey(s => s.SessionId);
+            
+            modelBuilder.Entity<BaseOptionSet>().HasKey(r => r.BaseOptionSetId);
+            modelBuilder.Entity<BaseOptionSet>().HasRequired(r => r.ResultSet);
+            modelBuilder.Entity<BaseOptionSet>().HasRequired(r => r.ResignationReasonSet);
+            modelBuilder.Entity<BaseOptionSet>().HasRequired(r => r.ProductSet);
+
+            modelBuilder.Entity<ResultSet>().HasKey(r => r.ResultSetId);
+            modelBuilder.Entity<ResignationReasonSet>().HasKey(r => r.ResignationReasonSetId);
+            modelBuilder.Entity<ProductSet>().HasKey(r => r.ProductSetId);
+
+            modelBuilder.Entity<ResultAssignment>().HasKey(r => r.ResultAssignmentId);
+            modelBuilder.Entity<ResultAssignment>().HasRequired(r => r.Result);
+            modelBuilder.Entity<ResultAssignment>().HasRequired(r => r.ResultSet);
+            modelBuilder.Entity<ResignationReasonAssignment>().HasKey(r => r.ResignationReasonAssignmentId);
+            modelBuilder.Entity<ResignationReasonAssignment>().HasRequired(r => r.ResignationReason);
+            modelBuilder.Entity<ResignationReasonAssignment>().HasRequired(r => r.ResignationReasonSet);
+            modelBuilder.Entity<ProductAssignment>().HasKey(r => r.ProductAssignmentId);
+            modelBuilder.Entity<ProductAssignment>().HasRequired(r => r.Product);
+            modelBuilder.Entity<ProductAssignment>().HasRequired(r => r.ProductSet);
+
+            modelBuilder.Entity<Result>().HasKey(r => r.ResultId);
+            modelBuilder.Entity<ResignationReason>().HasKey(r => r.ResignationReasonId);
+            modelBuilder.Entity<Product>().HasKey(r => r.ProductId);
         }
+
     }
 }

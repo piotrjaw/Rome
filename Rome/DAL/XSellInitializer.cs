@@ -32,12 +32,108 @@ namespace Rome.DAL
             clients.ForEach(c => context.Clients.Add(c));
             context.SaveChanges();
 
+            var results = new List<Result>
+            {
+                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventTypeId = 1},
+                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventTypeId = 2},
+                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventTypeId = 1},
+                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventTypeId = 2},
+                new Result {ResultId = 5, ResultName = "Out", IsNegativeEnding = true},
+                new Result {ResultId = 6, ResultName = "In", IsPositiveEnding = true}
+            };
+            results.ForEach(r => context.Results.Add(r));
+            context.SaveChanges();
+
+            var resultsets = new List<ResultSet>
+            {
+                new ResultSet {ResultSetId = 1, ResultSetDescription = "Standardowy proces sprzedażowy (oddziały)"}
+            };
+            resultsets.ForEach(r => context.ResultSets.Add(r));
+            context.SaveChanges();
+
+            var resultassignments = new List<ResultAssignment>
+            {
+                new ResultAssignment {ResultId = 1, ResultSetId = 1},
+                new ResultAssignment {ResultId = 2, ResultSetId = 1},
+                new ResultAssignment {ResultId = 3, ResultSetId = 1},
+                new ResultAssignment {ResultId = 4, ResultSetId = 1},
+                new ResultAssignment {ResultId = 5, ResultSetId = 1},
+                new ResultAssignment {ResultId = 6, ResultSetId = 1}
+            };
+            resultassignments.ForEach(r => context.ResultAssignments.Add(r));
+            context.SaveChanges();
+
+            var resignationreasons = new List<ResignationReason>
+            {
+                new ResignationReason {ResignationReasonId = 1, ResignationReasonDescription = "Błędne dane"},
+                new ResignationReason {ResignationReasonId = 2, ResignationReasonDescription = "Nie spełnia warunków oferty"},
+                new ResignationReason {ResignationReasonId = 3, ResignationReasonDescription = "Niezadowolony z ceny"},
+                new ResignationReason {ResignationReasonId = 4, ResignationReasonDescription = "Niezadowolony z warunków"},
+                new ResignationReason {ResignationReasonId = 5, ResignationReasonDescription = "Niezadowolony z obsługi w Tax Care"},
+                new ResignationReason {ResignationReasonId = 5, ResignationReasonDescription = "Niezadowolony z obsługi w Grupie"},
+            };
+            resignationreasons.ForEach(r => context.ResignationReasons.Add(r));
+            context.SaveChanges();
+
+            var resignationsets = new List<ResignationReasonSet>
+            {
+                new ResignationReasonSet {ResignationReasonSetId = 1, ResignationReasonSetDescription = "Standardowa lista rezygnacji"}
+            };
+            resignationsets.ForEach(r => context.ResignationReasonSets.Add(r));
+            context.SaveChanges();
+
+            var resignationreasoassignments = new List<ResignationReasonAssignment>
+            {
+                new ResignationReasonAssignment {ResignationReasonId = 1, ResignationReasonSetId = 1},
+                new ResignationReasonAssignment {ResignationReasonId = 2, ResignationReasonSetId = 1},
+                new ResignationReasonAssignment {ResignationReasonId = 3, ResignationReasonSetId = 1},
+                new ResignationReasonAssignment {ResignationReasonId = 4, ResignationReasonSetId = 1},
+                new ResignationReasonAssignment {ResignationReasonId = 5, ResignationReasonSetId = 1},
+                new ResignationReasonAssignment {ResignationReasonId = 6, ResignationReasonSetId = 1},
+            };
+            resignationreasoassignments.ForEach(r => context.ResignationReasonAssignments.Add(r));
+            context.SaveChanges();
+
+            var products = new List<Product>
+            {
+                new Product {ProductId = 1, ProductName = "Abonament Księgowy"},
+                new Product {ProductId = 2, ProductName = "Abonament Prawny"},
+                new Product {ProductId = 3, ProductName = "Kontomierz"},
+                new Product {ProductId = 4, ProductName = "Limit"},
+            };
+            products.ForEach(p => context.Products.Add(p));
+            context.SaveChanges();
+
+            var productsets = new List<ProductSet>
+            {
+                new ProductSet {ProductSetId = 1, ProductSetDescription = "Standardowy zestaw produktów"},
+            };
+            productsets.ForEach(p => context.ProductSets.Add(p));
+            context.SaveChanges();
+
+            var productassignments = new List<ProductAssignment>
+            {
+                new ProductAssignment {ProductId = 1, ProductSetId = 1},
+                new ProductAssignment {ProductId = 2, ProductSetId = 1},
+                new ProductAssignment {ProductId = 3, ProductSetId = 1},
+                new ProductAssignment {ProductId = 4, ProductSetId = 1}
+            };
+            productassignments.ForEach(p => context.ProductAssignments.Add(p));
+            context.SaveChanges();
+
+            var baseoptionsets = new List<BaseOptionSet>
+            {
+                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1}
+            };
+            baseoptionsets.ForEach(p => context.BaseOptionSets.Add(p));
+            context.SaveChanges();
+
             var bases = new List<Base>
             {
-                new Base{BaseId=1,BaseName="Upsell BKI",BaseStart=DateTime.Parse("2015-05-20"),BaseEnd=DateTime.Parse("2015-07-20")},
-                new Base{BaseId=2,BaseName="Odnowienie limitów",BaseStart=DateTime.Parse("2015-04-23"),BaseEnd=DateTime.Parse("2015-06-21")},
-                new Base{BaseId=3,BaseName="Taniej z Księgowością 2",BaseStart=DateTime.Parse("2015-04-25"),BaseEnd=DateTime.Parse("2015-06-24")},
-                new Base{BaseId=3,BaseName="Taniej z Księgowością 1",BaseStart=DateTime.Parse("2015-04-20"),BaseEnd=DateTime.Parse("2015-05-29")}
+                new Base{BaseId=1,BaseName="Upsell BKI",BaseStart=DateTime.Parse("2015-05-20"),BaseEnd=DateTime.Parse("2015-07-20"), BaseOptionSetId = 1},
+                new Base{BaseId=2,BaseName="Odnowienie limitów",BaseStart=DateTime.Parse("2015-04-23"),BaseEnd=DateTime.Parse("2015-06-21"), BaseOptionSetId = 1},
+                new Base{BaseId=3,BaseName="Taniej z Księgowością 2",BaseStart=DateTime.Parse("2015-04-25"),BaseEnd=DateTime.Parse("2015-06-24"), BaseOptionSetId = 1},
+                new Base{BaseId=3,BaseName="Taniej z Księgowością 1",BaseStart=DateTime.Parse("2015-04-20"),BaseEnd=DateTime.Parse("2015-05-29"), BaseOptionSetId = 1}
             };
             bases.ForEach(b => context.Bases.Add(b));
             context.SaveChanges();

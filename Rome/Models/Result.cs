@@ -9,10 +9,10 @@ namespace Rome.Models
     {
         public int ResultId { get; set; }
         public string ResultName { get; set; }
-        public int NextResultListId { get; set; }
-        public int StatusId { get; set; }
 
-        public virtual ResultList NextResultList { get; set; }
-        public virtual Status Status { get; set; }
+        public bool IsPositiveEnding { get; set; }
+        public bool IsNegativeEnding { get; set; }
+        public int SpecificToEventTypeId { get; set; }
+        public int ResultingEventTypeId { get; set; }
     }
 }

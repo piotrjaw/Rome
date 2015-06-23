@@ -17,5 +17,6 @@ namespace Rome.DTOs
         public int Progress { get; set; }
         public bool IsActive { get; set; }
         public IEnumerable<ClientDTO> Clients { get; set; }
+        public BaseOptionSetDTO BaseOptionSet { get; set; }
     }
 }
