@@ -1,0 +1,45 @@
+﻿<md-item>
+    <form name="newEvent" layout="column">
+        <h5>DODAJ KONTAKT</h5>
+        <md-item layout="row" layout-align="space-between center" layout-fill>
+            <md-item layout="column" flex>
+                <label for="result">Rezultat zdarzenia</label>
+                <md-select name="result" ng-model="submittedEvent.Result" aria-label="rezultat zdarzenia" required>
+                    <md-option ng-repeat="Result in baseoptionset.ResultSet.Results" ng-value="Result" ng-click="clearSelect()">
+                        {{Result.ResultName}}
+                    </md-option>
+                </md-select>
+            </md-item>
+            <md-item ng-if="submittedEvent.Result.IsNegativeEnding" layout="column" flex class="animate">
+                <label for="resignation">Powód rezygnacji</label>
+                <md-select name="resignation" ng-model="submittedEvent.ResignationReason" aria-label="powód rezygnacji" required>
+                    <md-option ng-repeat="ResignationReason in baseoptionset.ResignationReasonSet.ResignationReasons" ng-value="ResignationReason">
+                        {{ResignationReason.ResignationReasonDescription}}
+                    </md-option>
+                </md-select>
+            </md-item>
+            <md-item ng-if="submittedEvent.Result.IsPositiveEnding" layout="column" flex class="animate">
+                <label>Produkty</label>
+                <md-item ng-repeat="SubmittedProduct in submittedEvent.Products" layout="row">
+                    <md-select ng-model="SubmittedProduct.Product" aria-label="zakupione produkty" required>
+                        <md-option ng-repeat="Product in baseoptionset.ProductSet.Products | orderBy:Product.ProductName" ng-value="Product" class="animate">
+                            {{Product.ProductName}}
+                        </md-option>
+                    </md-select>
+                    <md-input-container>
+                        <label for="value">Wartość</label>
+                        <input name="value" ng-model="SubmittedProduct.Value" type="number" required autocomplete="off" />
+                    </md-input-container>
+                    <md-button ng-if="$last" ng-form="null" ng-click="removeProduct()" class="animate">DEL</md-button>
+                </md-item>
+                <md-button ng-click="addProduct()">Dodaj produkt</md-button>
+            </md-item>
+            <md-input-container layout="column" flex>
+                <label>Komentarz</label>
+                <textarea ng-model="submittedEvent.Comment" type="text" rows="3" autocomplete="off"></textarea>
+            </md-input-container>
+            <md-button ng-disabled="newEvent.$invalid" flex>Wyślij</md-button>
+        </md-item>
+    </form>
+    <span>{{submittedEvent}}</span>
+</md-item>

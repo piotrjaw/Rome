@@ -122,7 +122,7 @@ appControllers.controller('baseCtrl', [
     '$scope', '$http', 'loginService',
     function ($scope, $http, loginService) {
         $scope.baseLoading = true;
-
+        
         var dataBody = JSON.stringify(loginService.user);
 
         var request = {
@@ -367,7 +367,7 @@ appServices.service('loginService', function () {
     };
 });
 
-appServices.service('selectedDayService', function() {
+appServices.service('selectedDayService', function () {
 
     var selectedDay;
 
@@ -413,7 +413,7 @@ appDirectives.directive('calendar', ['globalFunctions', 'selectedDayService', fu
     return {
         controller: "calendarCtrl",
         restrict: 'E',
-        templateUrl: '/Home/Templates/calendarTemplate',
+        templateUrl: '/Home/Directives/calendarTemplate',
         scope: {
             selected: '=',
             events: '=',
@@ -459,7 +459,7 @@ appDirectives.directive('calendarWeek', ['globalFunctions', 'selectedDayService'
     return {
         controller: "calendarCtrl",
         restrict: 'E',
-        templateUrl: '/Home/Templates/calendarWeekTemplate',
+        templateUrl: '/Home/Directives/calendarWeekTemplate',
         scope: {
             selected: '=',
             events: '=',
@@ -493,7 +493,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
     return {
         controller: "calendarCtrl",
         restrict: 'E',
-        templateUrl: '/Home/Templates/calendarDayTemplate',
+        templateUrl: '/Home/Directives/calendarDayTemplate',
         scope: {
             selected: '=',
             events: '=',
@@ -503,9 +503,9 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
 
             scope.$watch(function () { return selectedDayService.selectedDay },
             function (newValue, oldValue) {
-                    var today = angular.copy(moment(selectedDayService.selectedDay).startOf('day'));
-                    globalFunctions._buildDay(scope, today);
-                }
+                var today = angular.copy(moment(selectedDayService.selectedDay).startOf('day'));
+                globalFunctions._buildDay(scope, today);
+            }
             );
 
             scope.nextDay = function () {
@@ -522,4 +522,38 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
             };
         }
     }
-}])
+}]);
+
+appDirectives.directive('eventForm', [function () {
+
+    return {
+        controller: "baseCtrl",
+        restrict: 'E',
+        templateUrl: '/Home/Directives/eventForm',
+        scope: {
+            baseoptionset: '=',
+            client: '='
+        },
+        link: function (scope) {
+
+            scope.submittedEvent = {
+                Client: scope.client,
+                Products: []
+            };
+
+            scope.clearSelect = function () {
+                scope.submittedEvent.Products = [];
+                scope.submittedEvent.ResignationReason = undefined;
+            };
+
+            scope.addProduct = function () {
+                scope.submittedEvent.Products.push({ Count: scope.submittedEvent.Products.length + 1, Product: {}, Value: null });
+            };
+
+            scope.removeProduct = function () {
+                var lastProductIndex = scope.submittedEvent.Products.length - 1;
+                scope.submittedEvent.Products.splice(lastProductIndex);
+            };
+        }
+    }
+}]);

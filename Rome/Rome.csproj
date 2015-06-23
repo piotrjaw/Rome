@@ -1108,7 +1108,7 @@
     <Content Include="Scripts\moment\LICENSE" />
     <Content Include="Scripts\moment\package.json" />
     <Content Include="Scripts\moment\README.md" />
-    <Content Include="Views\Home\Templates\calendarTemplate.cshtml" />
+    <Content Include="Views\Home\Directives\calendarTemplate.cshtml" />
     <Content Include="Scripts\d3\.gitattributes" />
     <Content Include="Scripts\d3\.npmignore" />
     <Content Include="Scripts\d3\.spmignore" />
@@ -1168,10 +1168,13 @@
     <Content Include="Views\Home\Templates\Calendar.cshtml" />
     <Content Include="Views\Home\Templates\Meetings.cshtml" />
     <Content Include="Views\Home\Templates\Branches.cshtml" />
-    <Content Include="Views\Home\Templates\calendarWeekTemplate.cshtml" />
-    <Content Include="Views\Home\Templates\calendarDayTemplate.cshtml" />
+    <Content Include="Views\Home\Directives\calendarWeekTemplate.cshtml" />
+    <Content Include="Views\Home\Directives\calendarDayTemplate.cshtml" />
     <Content Include="Views\Home\Templates\Profile.cshtml" />
-    <Content Include="Views\Home\Templates\monthPicker.cshtml" />
+    <Content Include="Views\Home\Directives\monthPicker.cshtml" />
+    <Content Include="Views\Home\Directives\eventForm.cshtml" />
+    <Content Include="Views\Home\Directives\error.cshtml" />
+    <Content Include="Views\Home\Templates\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

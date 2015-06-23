@@ -79,7 +79,7 @@ appControllers.controller('baseCtrl', [
     '$scope', '$http', 'loginService',
     function ($scope, $http, loginService) {
         $scope.baseLoading = true;
-
+        
         var dataBody = JSON.stringify(loginService.user);
 
         var request = {

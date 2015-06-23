@@ -124,7 +124,7 @@ appServices.service('loginService', function () {
     };
 });
 
-appServices.service('selectedDayService', function() {
+appServices.service('selectedDayService', function () {
 
     var selectedDay;
 

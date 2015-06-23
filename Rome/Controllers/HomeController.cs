@@ -17,28 +17,38 @@ namespace Rome.Controllers
         {
             switch (id.ToLower())
             {
-                case "clientlist":
-                    return PartialView("~/Views/Home/Templates/ClientList.cshtml");
-                case "calendar":
-                    return PartialView("~/Views/Home/Templates/Calendar.cshtml");
-                case "meetings":
-                    return PartialView("~/Views/Home/Templates/Meetings.cshtml");
                 case "accountcreation":
                     return PartialView("~/Views/Home/Templates/AccountCreation.cshtml");
                 case "branches":
                     return PartialView("~/Views/Home/Templates/Branches.cshtml");
-                case "calendartemplate":
-                    return PartialView("~/Views/Home/Templates/calendarTemplate.cshtml");
-                case "calendarweektemplate":
-                    return PartialView("~/Views/Home/Templates/calendarWeekTemplate.cshtml");
-                case "calendardaytemplate":
-                    return PartialView("~/Views/Home/Templates/calendarDayTemplate.cshtml");
-                case "monthpicker":
-                    return PartialView("~/Views/Home/Templates/monthPicker.cshtml");
+                case "calendar":
+                    return PartialView("~/Views/Home/Templates/Calendar.cshtml");
+                case "clientlist":
+                    return PartialView("~/Views/Home/Templates/ClientList.cshtml");
+                case "meetings":
+                    return PartialView("~/Views/Home/Templates/Meetings.cshtml");
                 case "profile":
                     return PartialView("~/Views/Home/Templates/Profile.cshtml");
                 default:
-                    return PartialView("~/Views/Home/Templates/ClientList.cshtml");
+                    return PartialView("~/Views/Home/Templates/Error.cshtml");
+            }
+        }
+        public ActionResult Directives(string id)
+        {
+            switch (id.ToLower())
+            {
+                case "calendardaytemplate":
+                    return PartialView("~/Views/Home/Directives/calendarDayTemplate.cshtml");
+                case "calendarweektemplate":
+                    return PartialView("~/Views/Home/Directives/calendarWeekTemplate.cshtml");
+                case "calendartemplate":
+                    return PartialView("~/Views/Home/Directives/calendarTemplate.cshtml");
+                case "eventform":
+                    return PartialView("~/Views/Home/Directives/eventForm.cshtml");
+                case "monthpicker":
+                    return PartialView("~/Views/Home/Directives/monthPicker.cshtml");
+                default:
+                    return PartialView("~/Views/Home/Directives/error.cshtml");
             }
         }
     }
