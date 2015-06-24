@@ -128,18 +128,18 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
         templateUrl: '/Home/Directives/eventForm',
         scope: {
             baseoptionset: '=',
-            client: '='
+            client: '=',
+            baseid: '='
         },
         link: function (scope) {
 
-            scope.now = null;
-
-            $interval(function () {
-                scope.now = moment().format('YYYY-MM-DD hh:mm:ss');
-            }, 1000);
+            scope.now = moment().startOf('hour').toDate();
+            scope.max = moment().add(10, 'years').startOf('day').format('YYYY-MM-DD hh:mm:ss');
 
             scope.submittedEvent = {
+                NextEventDate: scope.now,
                 Client: scope.client,
+                BaseId: scope.baseid,
                 Products: []
             };
 
@@ -161,6 +161,9 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
             scope.removeProduct = function () {
                 var lastProductIndex = scope.submittedEvent.Products.length - 1;
                 scope.submittedEvent.Products.splice(lastProductIndex);
+            };
+
+            scope.submitEvent = function () {
             };
         }
     }

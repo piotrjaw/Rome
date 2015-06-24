@@ -2,49 +2,46 @@
     <form name="newEvent" layout="column">
         <h5>DODAJ KONTAKT {{now}}</h5>
         <md-item layout="column" layout-align="space-around start" layout-fill>
-            <md-item layout-column>
-                <label for="event">Typ zdarzenia</label>
-                <md-select name="event" ng-model="submittedEvent.Event" aria-label="typ zdarzenia" required>
+            <md-item layout="column" layout-align="center">
+                <md-select placeholder="Typ zdarzenia" name="event" ng-model="submittedEvent.Event" aria-label="typ zdarzenia" required>
                     <md-option ng-repeat="Event in baseoptionset.EventSet.Events" ng-value="Event" ng-click="clearSelectType()">
                         {{Event.EventName}}
                     </md-option>
                 </md-select>
             </md-item>
-            <md-item ng-if="submittedEvent.Event" layout="column">
-                <label for="result">Rezultat zdarzenia</label>
-                <md-select name="result" ng-model="submittedEvent.Result" aria-label="rezultat zdarzenia" required>
+            <md-item ng-if="submittedEvent.Event" layout="column" layout-align="center">
+                <md-select placeholder="Rezultat zdarzenia" name="result" ng-model="submittedEvent.Result" aria-label="rezultat zdarzenia" required>
                     <md-option ng-repeat="Result in baseoptionset.ResultSet.Results" ng-value="Result" ng-click="clearSelectResult()" ng-if="Result.SpecificToEventId == 0 || Result.SpecificToEventId == submittedEvent.Event.EventId">
                         {{Result.ResultName}}
                     </md-option>
                 </md-select>
             </md-item>
-            <md-item ng-if="submittedEvent.Result.IsNegativeEnding" layout="column" class="animate">
-                <label for="resignation">Powód rezygnacji</label>
-                <md-select name="resignation" ng-model="submittedEvent.ResignationReason" aria-label="powód rezygnacji" required>
+            <md-item ng-if="submittedEvent.Result.IsNegativeEnding" layout="column" layout-align="center" class="animate">
+                <md-select placeholder="Powód rezygnacji" name="resignation" ng-model="submittedEvent.ResignationReason" aria-label="powód rezygnacji" required>
                     <md-option ng-repeat="ResignationReason in baseoptionset.ResignationReasonSet.ResignationReasons" ng-value="ResignationReason">
                         {{ResignationReason.ResignationReasonDescription}}
                     </md-option>
                 </md-select>
             </md-item>
-            <md-item ng-if="submittedEvent.Result.IsPositiveEnding" layout="column" class="animate">
-                <label>Produkty</label>
-                <md-item ng-repeat="SubmittedProduct in submittedEvent.Products" layout="row">
-                    <md-select ng-model="SubmittedProduct.Product" aria-label="zakupione produkty" required>
+            <md-item ng-if="submittedEvent.Result.IsPositiveEnding" layout="column" layout-align="center" class="animate">
+                <md-item ng-repeat="SubmittedProduct in submittedEvent.Products" layout="row" layout-align="start">
+                    <md-select flex="50" ng-model="SubmittedProduct.Product" aria-label="zakupione produkty" required>
                         <md-option ng-repeat="Product in baseoptionset.ProductSet.Products | orderBy:Product.ProductName" ng-value="Product" class="animate">
                             {{Product.ProductName}}
                         </md-option>
                     </md-select>
-                    <md-input-container>
+                    <md-input-container flex="45">
                         <label for="value">Wartość</label>
                         <input name="value" ng-model="SubmittedProduct.Value" type="number" required autocomplete="off" />
                     </md-input-container>
-                    <md-button ng-if="$last" ng-form="null" ng-click="removeProduct()" class="animate">DEL</md-button>
+                    <md-item flex="5" ng-if="!$last"></md-item>
+                    <md-button layout layout-align="center" class="md-primary md-raised" flex="10" type="button" ng-if="$last" ng-form="null" ng-click="removeProduct()" class="animate"><span>X</span></md-button>
                 </md-item>
                 <md-button ng-click="addProduct()">Dodaj produkt</md-button>
             </md-item>
-            <md-input-container layout="column">
+            <md-input-container layout="column" layout-align="center">
                 <label>Komentarz</label>
-                <textarea ng-model="submittedEvent.Comment" type="text" rows="3" autocomplete="off"></textarea>
+                <textarea ng-model="submittedEvent.Comment" type="text" rows="1" autocomplete="off"></textarea>
             </md-input-container>
             <md-item ng-if="submittedEvent.Result && !submittedEvent.Result.IsNegativeEnding && !submittedEvent.Result.IsPositiveEnding">
                 <label for="nextevent">Następne zdarzenie</label>
@@ -53,15 +50,19 @@
                         {{Event.EventName}}
                     </md-option>
                 </md-select>
-                <md-input-container>
+                <md-input-container layout="column" layout-align="center">
                     <label for="nexteventdate">Data następnego zdarzenia</label>
-                    <input name="nexteventdate" ng-model="submittedEvent.NextEventDate" type="datetime-local" required autocomplete="off" min="moment()"/>
+                    <input name="nexteventdate" ng-model="submittedEvent.NextEventDate" type="datetime-local" required autocomplete="off" value="{{now}}" min="{{now}}" max="{{max}}" />
                     <md-item ng-messages="newEvent.nexteventdate.$error" layout="column">
-                        <md-item ng-message="min">Data następnego zdarzenia nie może być wcześniejsza niż teraz</md-item>
+                        <md-item ng-message="min" ng-if="newEvent.nexteventdate.$error.min">
+                            Data następnego zdarzenia nie może być wcześniejsza niż teraz.
+                        </md-item>
+
+
                     </md-item>
                 </md-input-container>
             </md-item>
-            <md-button ng-disabled="newEvent.$invalid" flex>Wyślij</md-button>
+            <md-button ng-click="submitEvent()" ng-disabled="newEvent.$invalid" flex>Wyślij</md-button>
         </md-item>
     </form>
     <span>{{submittedEvent}}</span>
