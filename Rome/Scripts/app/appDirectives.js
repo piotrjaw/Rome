@@ -12,7 +12,7 @@ appDirectives.directive('calendar', ['globalFunctions', 'selectedDayService', fu
         templateUrl: '/Home/Directives/calendarTemplate',
         scope: {
             selected: '=',
-            events: '=',
+            eventactions: '=',
             selectedindex: '='
         },
         link: function (scope) {
@@ -58,7 +58,7 @@ appDirectives.directive('calendarWeek', ['globalFunctions', 'selectedDayService'
         templateUrl: '/Home/Directives/calendarWeekTemplate',
         scope: {
             selected: '=',
-            events: '=',
+            eventactions: '=',
             selectedindex: '='
         },
         link: function (scope) {
@@ -92,7 +92,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
         templateUrl: '/Home/Directives/calendarDayTemplate',
         scope: {
             selected: '=',
-            events: '=',
+            eventactions: '=',
             selectedindex: '='
         },
         link: function (scope) {
@@ -120,7 +120,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
     }
 }]);
 
-appDirectives.directive('eventForm', [function () {
+appDirectives.directive('eventForm', ['$interval', function ($interval) {
 
     return {
         controller: "baseCtrl",
@@ -132,15 +132,27 @@ appDirectives.directive('eventForm', [function () {
         },
         link: function (scope) {
 
+            scope.now = null;
+
+            $interval(function () {
+                scope.now = moment().format('YYYY-MM-DD hh:mm:ss');
+            }, 1000);
+
             scope.submittedEvent = {
                 Client: scope.client,
                 Products: []
             };
 
-            scope.clearSelect = function () {
+            scope.clearSelectResult = function () {
                 scope.submittedEvent.Products = [];
                 scope.submittedEvent.ResignationReason = undefined;
+                scope.submittedEvent.NextEvent = undefined;
             };
+
+            scope.clearSelectType = function () {
+                scope.clearSelectResult();
+                scope.submittedEvent.Result = undefined;
+            }
 
             scope.addProduct = function () {
                 scope.submittedEvent.Products.push({ Count: scope.submittedEvent.Products.length + 1, Product: {}, Value: null });

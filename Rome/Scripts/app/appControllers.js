@@ -128,13 +128,8 @@ appControllers.controller('calendarCtrl', [
             }
         );
 
-        $scope.selectedIndex = 0;
-        $scope.loading = true;
-
-        $scope.showMonthPicker = showMonthPicker;
-
         var dataBody = JSON.stringify(loginService.user);
-
+        
         var request = {
             method: 'POST',
             url: '/api/Events/getSelectedEvents/',
@@ -142,19 +137,21 @@ appControllers.controller('calendarCtrl', [
         }
 
         $http(request).success(function (data) {
-            $scope.Events = data;
+            $scope.EventActions = data;
             $scope.loading = false;
         }).error(function (data) {
             $scope.Error = data;
             $scope.loading = false;
         });
 
+        $scope.showMonthPicker = showMonthPicker;
+
         function showMonthPicker($event) {
             var parentE = angular.element(document.querySelector('#calendar'));
             $mdDialog.show({
                 parent: parentE,
                 targetEvent: $event,
-                templateUrl: '/Home/Templates/monthPicker',
+                templateUrl: '/Home/Directives/monthPicker',
                 locals: {
                     years: $scope.years,
                     months: $scope.months

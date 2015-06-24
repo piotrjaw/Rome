@@ -12,7 +12,7 @@ namespace Rome.Models
 
         public bool IsPositiveEnding { get; set; }
         public bool IsNegativeEnding { get; set; }
-        public int SpecificToEventTypeId { get; set; }
-        public int ResultingEventTypeId { get; set; }
+        public int SpecificToEventId { get; set; }
+        public int ResultingEventId { get; set; }
     }
 }

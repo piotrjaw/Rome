@@ -51,7 +51,7 @@ namespace Rome.Models
         }
 
         public virtual ICollection<BaseAssignment> BaseAssignments { get; set; }
-        public virtual ICollection<Event> Events { get; set; }
+        public virtual ICollection<EventAction> Events { get; set; }
         public virtual BaseOptionSet BaseOptionSet { get; set; }
     }
 }

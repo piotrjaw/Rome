@@ -34,10 +34,10 @@ namespace Rome.DAL
 
             var results = new List<Result>
             {
-                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventTypeId = 1},
-                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventTypeId = 2},
-                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventTypeId = 1},
-                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventTypeId = 2},
+                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventId = 1},
+                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventId = 2},
+                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventId = 1},
+                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventId = 2},
                 new Result {ResultId = 5, ResultName = "Out", IsNegativeEnding = true},
                 new Result {ResultId = 6, ResultName = "In", IsPositiveEnding = true}
             };
@@ -121,9 +121,33 @@ namespace Rome.DAL
             productassignments.ForEach(p => context.ProductAssignments.Add(p));
             context.SaveChanges();
 
+            var events = new List<Event>
+            {
+                new Event {EventName = "Telefon"},
+                new Event {EventName = "Spotkanie"},
+                new Event {EventName = "Lead"}
+            };
+            events.ForEach(e => context.Events.Add(e));
+            context.SaveChanges();
+
+            var eventsets = new List<EventSet>
+            {
+                new EventSet {EventSetId = 1, EventSetDescription = "Standardowy zestaw zdarzeń"}
+            };
+            eventsets.ForEach(e => context.EventSets.Add(e));
+            context.SaveChanges();
+
+            var eventassignments = new List<EventAssignment>
+            {
+                new EventAssignment {EventId = 1, EventSetId = 1},
+                new EventAssignment {EventId = 2, EventSetId = 1}
+            };
+            eventassignments.ForEach(e => context.EventAssignments.Add(e));
+            context.SaveChanges();
+
             var baseoptionsets = new List<BaseOptionSet>
             {
-                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1}
+                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1, EventSetId = 1}
             };
             baseoptionsets.ForEach(p => context.BaseOptionSets.Add(p));
             context.SaveChanges();
@@ -199,31 +223,22 @@ namespace Rome.DAL
             baseAssignments.ForEach(b => context.BaseAssignments.Add(b));
             context.SaveChanges();
 
-            var eventTypes = new List<EventType>
+            var eventactions = new List<EventAction>
             {
-                new EventType {EventTypeName = "Telefon"},
-                new EventType {EventTypeName = "Spotkanie"},
-                new EventType {EventTypeName = "Lead"}
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2},
+                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 4, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1},
+                new EventAction {ClientId = 5, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2}
             };
-            eventTypes.ForEach(e => context.EventTypes.Add(e));
-            context.SaveChanges();
-
-            var events = new List<Event>
-            {
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventTypeId = 2},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventTypeId = 2},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventTypeId = 2},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventTypeId = 2},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 4, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventTypeId = 1},
-                new Event {ClientId = 5, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventTypeId = 2}
-            };
-            events.ForEach(e => context.Events.Add(e));
+            eventactions.ForEach(e => context.EventActions.Add(e));
             context.SaveChanges();
 
             var roles = new List<Role>

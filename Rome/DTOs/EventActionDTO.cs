@@ -6,14 +6,14 @@ using Rome.Models;
 
 namespace Rome.DTOs
 {
-    public class EventDTO
+    public class EventActionDTO
     {
-        public int EventId { get; set; }
-        public DateTime EventDate { get; set; }
+        public int EventActionId { get; set; }
+        public DateTime EventActionDate { get; set; }
         public int UserId { get; set; }
         public int ClientId { get; set; }
         public int BaseId { get; set; }
         public Client Client { get; set; }
-        public EventType EventType { get; set; }
+        public Event Event { get; set; }
     }
 }

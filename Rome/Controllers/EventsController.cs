@@ -24,7 +24,7 @@ namespace Rome.Controllers
 
         [HttpPost]
         [ActionName("getSelectedEvents")]
-        public IQueryable<EventDTO> Post(UserQO id)
+        public IQueryable<EventActionDTO> Post(UserQO id)
         {
             var sessionStatus  = (from s in db.Sessions
                         where s.UserId == id.UserId &&
@@ -33,19 +33,19 @@ namespace Rome.Controllers
                         select s.SessionId).FirstOrDefault();
             if (!sessionStatus.Equals(null))
             {
-                var query = from e in db.Events
+                var query = from e in db.EventActions
                             join c in db.Clients on e.ClientId equals c.ClientId
-                            join t in db.EventTypes on e.EventTypeId equals t.EventTypeId
+                            join t in db.Events on e.EventId equals t.EventId
                             where e.UserId == id.UserId
-                            select new EventDTO
+                            select new EventActionDTO
                             {
-                                EventId = e.EventId,
-                                EventDate = e.EventDate,
+                                EventActionId = e.EventActionId,
+                                EventActionDate = e.EventActionDate,
                                 UserId = e.UserId,
                                 ClientId = e.ClientId,
                                 BaseId = e.BaseId,
                                 Client = c,
-                                EventType = t
+                                Event = t
                             };
                 var session = db.Sessions.Where(s => s.SessionId == id.SessionId).FirstOrDefault();
                 session.SessionExpirationDate = DateTime.Now.AddHours(1);
@@ -60,14 +60,14 @@ namespace Rome.Controllers
 
         // PUT: api/Events/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutEvent(int id, Event @event)
+        public async Task<IHttpActionResult> PutEvent(int id, EventAction @event)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != @event.EventId)
+            if (id != @event.EventActionId)
             {
                 return BadRequest();
             }
@@ -94,31 +94,31 @@ namespace Rome.Controllers
         }
 
         // POST: api/Events
-        [ResponseType(typeof(Event))]
-        public async Task<IHttpActionResult> PostEvent(Event @event)
+        [ResponseType(typeof(EventAction))]
+        public async Task<IHttpActionResult> PostEvent(EventAction @event)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Events.Add(@event);
+            db.EventActions.Add(@event);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = @event.EventId }, @event);
+            return CreatedAtRoute("DefaultApi", new { id = @event.EventActionId }, @event);
         }
 
         // DELETE: api/Events/5
-        [ResponseType(typeof(Event))]
+        [ResponseType(typeof(EventAction))]
         public async Task<IHttpActionResult> DeleteEvent(int id)
         {
-            Event @event = await db.Events.FindAsync(id);
+            EventAction @event = await db.EventActions.FindAsync(id);
             if (@event == null)
             {
                 return NotFound();
             }
 
-            db.Events.Remove(@event);
+            db.EventActions.Remove(@event);
             await db.SaveChangesAsync();
 
             return Ok(@event);
@@ -135,7 +135,7 @@ namespace Rome.Controllers
 
         private bool EventExists(int id)
         {
-            return db.Events.Count(e => e.EventId == id) > 0;
+            return db.EventActions.Count(e => e.EventActionId == id) > 0;
         }
     }
 }

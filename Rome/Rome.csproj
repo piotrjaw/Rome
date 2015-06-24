@@ -145,7 +145,8 @@
     <Compile Include="DTOs\BranchDTO.cs" />
     <Compile Include="DTOs\ClientDTO.cs" />
     <Compile Include="DTOs\CompanyDTO.cs" />
-    <Compile Include="DTOs\EventDTO.cs" />
+    <Compile Include="DTOs\EventActionDTO.cs" />
+    <Compile Include="DTOs\EventSetDTO.cs" />
     <Compile Include="DTOs\NetworkDTO.cs" />
     <Compile Include="DTOs\ProductSetDTO.cs" />
     <Compile Include="DTOs\RegionDTO.cs" />
@@ -158,8 +159,10 @@
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\BaseAssignment.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\EventAction.cs" />
+    <Compile Include="Models\EventAssignment.cs" />
+    <Compile Include="Models\EventSet.cs" />
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAssignment.cs" />
     <Compile Include="Models\ProductSet.cs" />

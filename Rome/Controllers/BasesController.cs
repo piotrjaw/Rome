@@ -44,12 +44,12 @@ namespace Rome.Controllers
                             Owner = c.Owner,
                             UserId = ba.UserId,
                             Events = 
-                            from e in c.Events
+                            from e in c.EventActions
                             where e.BaseId == b.BaseId
-                            select new EventDTO
+                            select new EventActionDTO
                             {
-                                EventId = e.EventId,
-                                EventDate = e.EventDate,
+                                EventActionId = e.EventActionId,
+                                EventActionDate = e.EventActionDate,
                                 UserId = e.UserId
                             }
                         }
@@ -72,6 +72,7 @@ namespace Rome.Controllers
                             join r in db.ResultSets on b.BaseOptionSet.ResultSetId equals r.ResultSetId
                             join p in db.ProductSets on b.BaseOptionSet.ProductSetId equals p.ProductSetId
                             join rr in db.ResignationReasonSets on b.BaseOptionSet.ResignationReasonSetId equals rr.ResignationReasonSetId
+                            join e in db.EventSets on b.BaseOptionSet.EventSetId equals e.EventSetId
                             select new BaseDTO
                             {
                                 BaseId = b.BaseId,
@@ -114,6 +115,16 @@ namespace Rome.Controllers
                                         join pa in db.ProductAssignments on tp.ProductId equals pa.ProductId
                                         where pa.ProductSetId == b.BaseOptionSet.ProductSetId
                                         select tp
+                                    },
+                                    EventSet = new EventSetDTO
+                                    {   
+                                        EventSetId = e.EventSetId,
+                                        EventSetDescription = e.EventSetDescription,
+                                        Events =
+                                        from te in db.Events
+                                        join ea in db.EventAssignments on te.EventId equals ea.EventId
+                                        where ea.EventSetId == b.BaseOptionSet.EventSetId
+                                        select te   
                                     }
                                 },
                                 Clients =
@@ -127,13 +138,13 @@ namespace Rome.Controllers
                                         Owner = c.Owner,
                                         UserId = ba.UserId,
                                         Events =
-                                        from e in c.Events
-                                        where e.BaseId == b.BaseId && e.UserId == id.UserId
-                                        select new EventDTO
+                                        from ea in c.EventActions
+                                        where ea.BaseId == b.BaseId && ea.UserId == id.UserId
+                                        select new EventActionDTO
                                         {
-                                            EventId = e.EventId,
-                                            EventDate = e.EventDate,
-                                            UserId = e.UserId
+                                            EventActionId = ea.EventActionId,
+                                            EventActionDate = ea.EventActionDate,
+                                            UserId = ea.UserId
                                         }
                                     }
                             };

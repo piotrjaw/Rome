@@ -12,7 +12,7 @@ namespace Rome.DTOs
         public int ClientId { get; set; }
         public string Owner { get; set; }
         public string CompanyName { get; set; }
-        public IEnumerable<EventDTO> Events { get; set; }
+        public IEnumerable<EventActionDTO> Events { get; set; }
         public int UserId { get; set; }
     }
 }

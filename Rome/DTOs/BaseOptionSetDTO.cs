@@ -11,6 +11,7 @@ namespace Rome.DTOs
         public int BaseOptionSetId { get; set; }
         public string BaseOptionSetDescription { get; set; }
 
+        public EventSetDTO EventSet { get; set; }
         public ResultSetDTO ResultSet { get; set; }
         public ResignationReasonSetDTO ResignationReasonSet { get; set; }
         public ProductSetDTO ProductSet { get; set; }

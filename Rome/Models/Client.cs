@@ -12,6 +12,6 @@ namespace Rome.Models
         public string CompanyName { get; set; }
 
         public virtual ICollection<BaseAssignment> BaseAssignments { get; set; }
-        public virtual ICollection<Event> Events { get; set; }
+        public virtual ICollection<EventAction> EventActions { get; set; }
     }
 }
