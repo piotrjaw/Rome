@@ -134,7 +134,7 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
         link: function (scope) {
 
             scope.now = moment().startOf('hour').toDate();
-            scope.max = moment().add(10, 'years').startOf('day').format('YYYY-MM-DD hh:mm:ss');
+            scope.max = moment().add(10, 'years').startOf('day').toDate();
 
             scope.submittedEvent = {
                 NextEventDate: scope.now,
@@ -147,6 +147,7 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
                 scope.submittedEvent.Products = [];
                 scope.submittedEvent.ResignationReason = undefined;
                 scope.submittedEvent.NextEvent = undefined;
+                scope.submittedEvent.NextEventDate = scope.now;
             };
 
             scope.clearSelectType = function () {
