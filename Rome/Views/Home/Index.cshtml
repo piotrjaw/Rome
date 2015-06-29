@@ -1,6 +1,6 @@
 ﻿<md-content class="wrapper">
     <md-item data-ng-controller="loginCtrl as log">
-        <md-content ng-if="!isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login" md-theme="altTheme">
+        <md-content ng-if="!variables.isLoggedIn" layout="column" layout-align="center center" class="content-wrapper animate-login" md-theme="altTheme">
             <!--<iframe src="https://www.youtube.com/v/a-PqJTAqba0?iv_load_policy=3&version=3&rel=0&autoplay=1&controls=0&loop=1&playlist=a-PqJTAqba0" frameborder="0" allowfullscreen></iframe>-->
             <!--<iframe src="http://gfycat.com/ifr/AccurateVapidGrunion" frameborder="0" scrolling="no" width="1920" height="1080" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1.2);"></iframe>-->
             <md-item id="control-blocker"></md-item>
@@ -8,39 +8,45 @@
                 <md-toolbar layout="row" layout-align="start center">
                     <md-icon class="logo" md-svg-src="logo" aria-hidden="true"></md-icon>
                     <md-item layout="row" layout-align="center center">
-                        <md-item layout="row" layout-align="center">Aplikacja</md-item>
+                        <md-item layout="row" layout-align="center">Nowy Cross-sell</md-item>
                     </md-item>
                 </md-toolbar>
-                <md-item ng-if="!passwordForgot" class="animate" layout="column" layout-align="center center">
-                    <form name="loginForm" layout="column" layout-align="center center">
-                        <md-item layout="row" layout-align="center center">
-                            <md-input-container md-padding md-primary>
-                                <label for="login">Login</label>
-                                <input name="login" type="text" ng-model="login" ng-required="true" autocomplete="off" />
-                            </md-input-container>
-                            <md-input-container md-padding md-primary>
-                                <label for="password" md-padding>Hasło</label>
-                                <input name="password" type="password" ng-model="password" ng-required="true" autocomplete="off" />
-                            </md-input-container>
+                <md-item id="switch-box">
+                    <md-item ng-if="!variables.passwordForgotten" class="animate-blur switch-box" layout="column" layout-align="center center">
+                        <form name="loginForm" layout="column" layout-align="center center">
+                            <md-item layout="row" layout-align="center center">
+                                <md-input-container md-padding md-primary>
+                                    <label for="login">Login</label>
+                                    <input name="login" type="text" ng-model="login" ng-required="true" autocomplete="off" />
+                                </md-input-container>
+                                <md-input-container md-padding md-primary>
+                                    <label for="password" md-padding>Hasło</label>
+                                    <input name="password" type="password" ng-model="password" ng-required="true" autocomplete="off" />
+                                </md-input-container>
+                            </md-item>
+                            <md-item ng-if="variables.invalidPassword" class="warning animate">Błędny login lub hasło!</md-item>
+                            <md-button class="md-raised md-primary" id="login-submit" ng-click="log.tryLogin(login, password)">Zaloguj się</md-button>
+                        </form>
+                        <md-button ng-click="log.passwordForgotToggle()" class="md-primary">Nie pamiętam hasła</md-button>
+                    </md-item>
+                    <md-item ng-if="variables.passwordForgotten" class="animate-blur switch-box" layout="row">
+                        <md-item class="login-glue"></md-item>
+                        <md-item layout="column" layout-align="center center">
+                            <form name="remindForm" layout="column" layout-allign="center center">
+                                <md-input-container md-padding md-primary>
+                                    <label for="email">E-mail</label>
+                                    <input name="email" type="email" ng-model="email" ng-required="true" autocomplete="off" />
+                                </md-input-container>
+                                <md-button class="md-raised md-primary" id="remind-submit" ng-click="">Przypomnij hasło</md-button>
+                            </form>
+                            <md-button ng-click="log.passwordForgotToggle()" class="md-primary">Chcę się zalogować</md-button>
                         </md-item>
-                        <md-item ng-if="invalidPassword" class="warning animate">Błędny login lub hasło!</md-item>
-                        <md-button class="md-raised md-primary" id="login-submit" ng-click="log.tryLogin(login, password)">Zaloguj się</md-button>
-                    </form>
-                    <md-button ng-click="passwordForgot = !passwordForgot" class="md-primary">Nie pamiętam hasła</md-button>
-                </md-item>
-                <md-item ng-if="passwordForgot" class="animate" layout="column" layout-align="center center">
-                    <form name="remindForm" layout="column" layout-allign="center center">
-                        <md-input-container md-padding md-primary>
-                            <label for="email">E-mail</label>
-                            <input name="email" type="email" ng-model="email" ng-required="true" autocomplete="off" />
-                        </md-input-container>
-                        <md-button class="md-raised md-primary" id="remind-submit" ng-click="">Przypomnij hasło</md-button>
-                    </form>
-                    <md-button ng-click="passwordForgot = !passwordForgot" class="md-primary">Chcę się zalogować</md-button>
+                        <md-item class="login-glue"></md-item>
+                    </md-item>
                 </md-item>
             </md-item>
         </md-content>
-        <md-content data-ng-controller="tabCtrl as tab" ng-if="isLoggedIn" class="animate-login">
+        <md-content data-ng-controller="tabCtrl as tab" ng-if="variables.isLoggedIn" class="animate-login">
             <md-item layout="row" data-ng-controller="mainCtrl" class="layout-wrapper">
                 <md-sidenav layout="column" class="sidenav-wrapper md-whiteframe-z1" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left">
                     <md-toolbar>

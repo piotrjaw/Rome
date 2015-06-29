@@ -38,41 +38,36 @@
                     </md-list>
                     <md-content ng-if="BaseShowStatus" class="client-list md-whiteframe-z1 gray-paper animate">
                         <md-list>
-                            <md-item><h5>LISTA KLIENTÓW:</h5></md-item>
                             <md-item ng-repeat="Client in Base.Clients track by Client.ClientId">
                                 <md-item-content layout="column" layout-align="space-between start">
                                     <md-item-content layout-fill layout="row">
-                                        <md-button layout-fill ng-click="ContactShowStatus = !ContactShowStatus" aria-label="historia kontaktów">
+                                        <md-button layout-fill ng-click="ClientShowStatus = !ClientShowStatus" aria-label="historia kontaktów">
                                             <span class="md-body-2">{{Client.CompanyName}} ({{Client.UserId}})</span>
                                             <md-tooltip md-delay="100" md-autohide="true">Historia kontaktów</md-tooltip>
                                         </md-button>
-                                        <md-button class="detail-button-2" ng-click="ClientShowStatus = !ClientShowStatus" layout-align="center center" aria-label="dane klienta">
-                                            <md-icon md-svg-icon="/Img/Icons/information-outline.svg" class="icon-grey"></md-icon>
-                                            <md-tooltip md-delay="100" md-autohide="true">Dane klienta</md-tooltip>
-                                        </md-button>
                                     </md-item-content>
-                                    <md-item ng-if="ClientShowStatus" class="animate">
-                                        <md-item-content layout="column">
+                                    <md-item ng-if="ClientShowStatus" class="animate" layout="row" layout-fill>
+                                        <md-item layout="column" flex="65">
+                                            <md-item ng-repeat="Event in Client.Events track by Event.EventId">
+                                                <md-item-content>
+                                                    <md-list class="contact-list" layout-align="space-between start">
+                                                        <md-item class="list-item">Id zdarzenia: {{Event.EventId}}</md-item>
+                                                        <md-item class="list-item">Data zdarzenia: {{Event.EventDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
+                                                        <md-item class="list-item">Id Doradcy: {{Event.UserId}}</md-item>
+                                                    </md-list>
+                                                </md-item-content>
+                                            </md-item>
+                                            <md-button ng-click="showSubmitForm = !showSubmitForm" class="animate">Dodaj kontakt</md-button>
+                                            <event-form ng-if="showSubmitForm" baseoptionset="Base.BaseOptionSet" client="Client" baseid="Base.BaseId" class="animate"></event-form>
+                                        </md-item>
+                                        <md-item layout="column" flex="35">
                                             <md-list class="attribute-list" layout="column" layout-align="space-between start">
                                                 <md-item><h5>DANE KLIENTA:</h5></md-item>
                                                 <md-item class="list-item">Id Klienta: {{Client.ClientId}}</md-item>
                                                 <md-item class="list-item">Właściciel: {{Client.Owner}}</md-item>
                                                 <md-item class="list-item">Nazwa firmy: {{Client.CompanyName}}</md-item>
                                             </md-list>
-                                        </md-item-content>
-                                    </md-item>
-                                    <md-item ng-if="ContactShowStatus" class="animate">
-                                        <md-item><h5>HISTORIA KONTAKTÓW:</h5></md-item>
-                                        <md-item ng-repeat="Event in Client.Events track by Event.EventId">
-                                            <md-item-content>
-                                                <md-list class="contact-list" layout="column" layout-align="space-between start">
-                                                    <md-item class="list-item">Id zdarzenia: {{Event.EventId}}</md-item>
-                                                    <md-item class="list-item">Data zdarzenia: {{Event.EventDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
-                                                    <md-item class="list-item">Id Doradcy: {{Event.UserId}}</md-item>
-                                                </md-list>
-                                            </md-item-content>
                                         </md-item>
-                                        <event-form baseoptionset="Base.BaseOptionSet" client="Client" baseid="Base.BaseId"></event-form>
                                     </md-item>
                                 </md-item-content>
                                 <md-divider ng-if="!$last"></md-divider>

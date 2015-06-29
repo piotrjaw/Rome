@@ -48,12 +48,22 @@ var appControllers = angular.module('appControllers', ['appServices']);
 appControllers.controller('loginCtrl', [
     '$scope', '$http', 'loginService', 'selectedDayService',
     function ($scope, $http, loginService, selectedDayService) {
-        $scope.invalidPassword = false;
+        $scope.variables = {
+            invalidPassword: false,
+            passwordForgotten: false,
+            isLoggedIn: false,
+            Error: undefined
+        };
+
         $scope.$watch(function () { return loginService.user.isLoggedIn },
             function (newValue, oldValue) {
-                $scope.isLoggedIn = loginService.user.isLoggedIn;
+                $scope.variables.isLoggedIn = loginService.user.isLoggedIn;
             }
         );
+
+        this.passwordForgotToggle = function () {
+            $scope.variables.passwordForgotten = !$scope.variables.passwordForgotten;
+        };
 
         this.tryLogin = function (login, password) {
             var userInput = {
@@ -75,12 +85,12 @@ appControllers.controller('loginCtrl', [
                 if (data != null) {
                     loginService.user = data;
                     loginService.user.isLoggedIn = true;
-                    $scope.invalidPassword = false;
+                    $scope.variables.invalidPassword = false;
                 } else {
-                    $scope.invalidPassword = true;
+                    $scope.variables.invalidPassword = true;
                 }
             }).error(function (error) {
-                $scope.Error = error
+                $scope.variables.Error = error
             });
         };
 

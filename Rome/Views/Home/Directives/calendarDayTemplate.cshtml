@@ -12,7 +12,7 @@
                 <md-item ng-repeat="(groupedEventHour, groupedEvents) in eventactions | groupBy: ' EventActionDate | truncHour'" ng-if='" " + (groupedEventHour | truncHour) == " " + (hour.date | truncHour)' layout="row" layout-align="space-around center">
                     <md-item ng-repeat="event in groupedEvents" flex class="event-wrapper md-whiteframe-z1" ng-class="event.Event.EventName">
                         <md-item layout="column" layout-align="space-between center">
-                            <md-item>{{event.Event.EventName}}: {{event.EventDate | jsDate | date: 'h:mm'}}</md-item>
+                            <md-item>{{event.Event.EventName}}: {{event.EventActionDate | jsDate | date: 'h:mm'}}</md-item>
                             <md-item>{{event.Client.Owner}}, {{event.Client.CompanyName}}</md-item>
                         </md-item>
                     </md-item>

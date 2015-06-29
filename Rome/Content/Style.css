@@ -45,6 +45,9 @@ md-sidenav {
   top: -10%;
   left: -10%;
 }
+#event-submit {
+  margin-top: 15px;
+}
 #login-submit {
   padding: 0 15px;
 }
@@ -56,6 +59,14 @@ md-sidenav {
 }
 #primary-col .cell {
   flex: 1 1 auto;
+}
+#switch-box {
+  display: block;
+  height: 173px !important;
+  width: 380px !important;
+}
+#switch-box > .switch-box {
+  position: absolute;
 }
 .animate.ng-leave {
   -webkit-animation: 0.4s hide;
@@ -81,14 +92,32 @@ md-sidenav {
     max-height: 0;
   }
 }
-@keyframes show {
+.animate-blur.ng-leave {
+  -webkit-animation: 0.5s hide-blur;
+  animation: 0.5s hide-blur;
+}
+.animate-blur.ng-enter {
+  -webkit-animation: 0.5s show-blur;
+  animation: 0.5s show-blur;
+}
+@keyframes hide-blur {
+  0% {
+    opacity: 1;
+    z-index: 99;
+  }
+  100% {
+    opacity: 0;
+    z-index: -99;
+  }
+}
+@keyframes show-blur {
   0% {
     opacity: 0;
-    max-height: 0;
+    z-index: -99;
   }
   100% {
     opacity: 1;
-    max-height: 9999px;
+    z-index: 99;
   }
 }
 .animate-login.ng-enter {
@@ -99,17 +128,45 @@ md-sidenav {
   -webkit-animation: hide-login 0.3s ease normal;
   animation: hide-login 0.3s ease normal;
 }
-@keyframes show-login {
+@-webkit-keyframes show-login {
   0% {
+    opacity: 0;
+  }
+  75% {
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
 }
+@keyframes show-login {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes hide-login {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 @keyframes hide-login {
   0% {
     opacity: 1;
+  }
+  25% {
+    opacity: 0;
   }
   100% {
     opacity: 0;
@@ -224,6 +281,11 @@ md-sidenav {
 .layout-wrapper {
   height: 100%;
 }
+.login-glue {
+  width: 95px;
+  height: 1px;
+  opacity: 0;
+}
 .login-form {
   background-color: white !important;
   z-index: 99;
@@ -271,7 +333,7 @@ md-sidenav {
 }
 .paper {
   background-color: white !important;
-  height: 48px;
+  height: 64px;
   margin: 2px;
 }
 .paper2 {
