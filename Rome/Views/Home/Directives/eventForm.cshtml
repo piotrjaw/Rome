@@ -1,24 +1,24 @@
 ﻿<md-item layout-padding>
-   <md-item>{{client}}</md-item>
+   <md-item>{{showSubmitForm}}</md-item>
     <form name="newEvent" layout="column">
         <md-item layout="column" layout-align="space-around start" layout-fill>
             <md-item layout="column" layout-align="center">
                 <md-select placeholder="Typ zdarzenia" name="event" ng-model="submittedEvent.Event" aria-label="typ zdarzenia" required>
-                    <md-option ng-repeat="Event in baseoptionset.EventSet.Events" ng-value="Event" ng-click="clearSelectType()">
+                    <md-option ng-repeat="Event in Base.BaseOptionSet.EventSet.Events" ng-value="Event" ng-click="clearSelectType()">
                         {{Event.EventName}}
                     </md-option>
                 </md-select>
             </md-item>
             <md-item ng-if="submittedEvent.Event" layout="column" layout-align="center" class="animate">
                 <md-select placeholder="Rezultat zdarzenia" name="result" ng-model="submittedEvent.Result" aria-label="rezultat zdarzenia" required>
-                    <md-option ng-repeat="Result in baseoptionset.ResultSet.Results" ng-value="Result" ng-click="clearSelectResult()" ng-if="Result.SpecificToEventId == 0 || Result.SpecificToEventId == submittedEvent.Event.EventId">
+                    <md-option ng-repeat="Result in Base.BaseOptionSet.ResultSet.Results" ng-value="Result" ng-click="clearSelectResult()" ng-if="Result.SpecificToEventId == 0 || Result.SpecificToEventId == submittedEvent.Event.EventId">
                         {{Result.ResultName}}
                     </md-option>
                 </md-select>
             </md-item>
             <md-item ng-if="submittedEvent.Result.IsNegativeEnding" layout="column" layout-align="center" class="animate">
                 <md-select placeholder="Powód rezygnacji" name="resignation" ng-model="submittedEvent.ResignationReason" aria-label="powód rezygnacji" required>
-                    <md-option ng-repeat="ResignationReason in baseoptionset.ResignationReasonSet.ResignationReasons" ng-value="ResignationReason">
+                    <md-option ng-repeat="ResignationReason in Base.BaseOptionSet.ResignationReasonSet.ResignationReasons" ng-value="ResignationReason">
                         {{ResignationReason.ResignationReasonDescription}}
                     </md-option>
                 </md-select>
@@ -26,7 +26,7 @@
             <md-item ng-if="submittedEvent.Result.IsPositiveEnding" layout="column" layout-align="center" class="animate">
                 <md-item ng-repeat="SubmittedProduct in submittedEvent.Products" layout="row" layout-align="start">
                     <md-select flex="50" ng-model="SubmittedProduct.Product" aria-label="zakupione produkty" required>
-                        <md-option ng-repeat="Product in baseoptionset.ProductSet.Products | orderBy:Product.ProductName" ng-value="Product" class="animate">
+                        <md-option ng-repeat="Product in Base.BaseOptionSet.ProductSet.Products | orderBy:Product.ProductName" ng-value="Product" class="animate">
                             {{Product.ProductName}}
                         </md-option>
                     </md-select>
@@ -48,7 +48,7 @@
             <md-item ng-if="submittedEvent.Result && !submittedEvent.Result.IsNegativeEnding && !submittedEvent.Result.IsPositiveEnding">
                 <label for="nextevent">Następne zdarzenie</label>
                 <md-select ng-model="submittedEvent.NextEvent" aria-label="następne zdarzenie" required ng-disabled="submittedEvent.Result.ResultingEventId != 0">
-                    <md-option ng-repeat="Event in baseoptionset.EventSet.Events" ng-value="Event" ng-selected="submittedEvent.Result.ResultingEventId != 0" ng-if="submittedEvent.Result.ResultingEventId == 0 || submittedEvent.Result.ResultingEventId == Event.EventId">
+                    <md-option ng-repeat="Event in Base.BaseOptionSet.EventSet.Events" ng-value="Event" ng-selected="submittedEvent.Result.ResultingEventId != 0" ng-if="submittedEvent.Result.ResultingEventId == 0 || submittedEvent.Result.ResultingEventId == Event.EventId">
                         {{Event.EventName}}
                     </md-option>
                 </md-select>
@@ -65,7 +65,7 @@
                     </md-item>
                 </md-input-container>
             </md-item>
-            <md-button class="md-raised md-primary" ng-click="submitEvent(); $parent.showSubmitForm = !$parent.showSubmitForm" ng-disabled="newEvent.$invalid" flex id="event-submit">Wyślij</md-button>
+            <md-button class="md-raised md-primary" ng-click="submitEvent(); show = !show" ng-disabled="newEvent.$invalid" flex id="event-submit">Wyślij</md-button>
         </md-item>
         <md-item>{{submittedEvent}}</md-item>
     </form>

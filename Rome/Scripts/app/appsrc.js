@@ -534,76 +534,70 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
 appDirectives.directive('eventForm', ['$http', 'loginService', function ($http, loginService) {
 
     return {
-        controller: "baseCtrl",
         restrict: 'E',
         templateUrl: '/Home/Directives/eventForm',
-        scope: {
-            baseoptionset: '=',
-            client: '=',
-            baseid: '='
-        },
-        link: function (scope) {
+        link: function ($scope) {
 
-            scope.now = moment().startOf('hour').toDate();
-            scope.max = moment().add(10, 'years').startOf('day').toDate();
+            $scope.now = moment().startOf('hour').toDate();
+            $scope.max = moment().add(10, 'years').startOf('day').toDate();
 
-            scope.submittedEvent = {
-                NextEventDate: scope.now,
-                Client: scope.client,
-                BaseId: scope.baseid,
+            $scope.submittedEvent = {
+                NextEventDate: $scope.now,
+                Client: $scope.Client,
+                BaseId: $scope.Base.BaseId,
                 Products: []
             };
 
-            scope.clearSelectResult = function () {
-                scope.submittedEvent.Products = [];
-                scope.submittedEvent.ResignationReason = undefined;
-                scope.submittedEvent.NextEvent = undefined;
-                scope.submittedEvent.NextEventDate = scope.now;
+            $scope.clearSelectResult = function () {
+                $scope.submittedEvent.Products = [];
+                $scope.submittedEvent.ResignationReason = undefined;
+                $scope.submittedEvent.NextEvent = undefined;
+                $scope.submittedEvent.NextEventDate = $scope.now;
             };
 
-            scope.clearSelectType = function () {
-                scope.clearSelectResult();
-                scope.submittedEvent.Result = undefined;
+            $scope.clearSelectType = function () {
+                $scope.clearSelectResult();
+                $scope.submittedEvent.Result = undefined;
             };
 
-            scope.clearAll = function () {
-                scope.submittedEvent = {
-                    NextEventDate: scope.now,
-                    Client: scope.client,
-                    BaseId: scope.baseid,
+            $scope.clearAll = function () {
+                $scope.submittedEvent = {
+                    NextEventDate: $scope.now,
+                    Client: $scope.client,
+                    BaseId: $scope.baseid,
                     Products: []
                 }
             };
 
-            scope.addProduct = function () {
-                scope.submittedEvent.Products.push({ Count: scope.submittedEvent.Products.length + 1, Product: {}, Value: null });
+            $scope.addProduct = function () {
+                $scope.submittedEvent.Products.push({ Count: $scope.submittedEvent.Products.length + 1, Product: {}, Value: null });
             };
 
-            scope.removeProduct = function () {
-                var lastProductIndex = scope.submittedEvent.Products.length - 1;
-                scope.submittedEvent.Products.splice(lastProductIndex);
+            $scope.removeProduct = function () {
+                var lastProductIndex = scope$scopesubmittedEvent.Products.length - 1;
+                $scope.submittedEvent.Products.splice(lastProductIndex);
             };
 
-            scope.submitEvent = function () {
+            $scope.submitEvent = function () {
                 var now = "/Date(" + moment().format('x') + ")/";
                 var finalNextEventDate;
                 var finalNextEventId;
 
-                if (scope.submittedEvent.NextEvent === undefined) {
+                if ($scope.submittedEvent.NextEvent === undefined) {
                     finalNextEventDate = null;
                     finalNextEventId = null;
                 } else {
-                    finalNextEventDate = "/Date(" + moment(scope.submittedEvent.NextEventDate).format('x') + ")/";
-                    finalNextEventId = scope.submittedEvent.NextEvent.EventId;
+                    finalNextEventDate = "/Date(" + moment($scope.submittedEvent.NextEventDate).format('x') + ")/";
+                    finalNextEventId = $scope.submittedEvent.NextEvent.EventId;
                 };
 
                 var userInput = {
                     EventActionDate: now,
-                    EventId: scope.submittedEvent.Event.EventId,
-                    ClientId: scope.submittedEvent.Client.ClientId,
-                    BaseId: scope.submittedEvent.BaseId,
-                    ResultId: scope.submittedEvent.Result.ResultId,
-                    StatusId: scope.submittedEvent.Result.ResultingStatusId,
+                    EventId: $scope.submittedEvent.Event.EventId,
+                    ClientId: $scope.submittedEvent.Client.ClientId,
+                    BaseId: $scope.submittedEvent.BaseId,
+                    ResultId: $scope.submittedEvent.Result.ResultId,
+                    StatusId: $scope.submittedEvent.Result.ResultingStatusId,
                     SetEventId: finalNextEventId,
                     SetEventActionDate: finalNextEventDate,
                     UserId: loginService.user.UserId
@@ -618,13 +612,16 @@ appDirectives.directive('eventForm', ['$http', 'loginService', function ($http, 
                 };
 
                 $http(request).success(function (data) {
-                    scope.client.EventActions.push(data);
+                    $scope.Client.EventActions.push(data);
                 }).error(function (error) {
-                    scope.response = error;
+                    $scope.response = error;
                 });
 
-                scope.clearAll();
-                scope.showsubmitform = false;
+                alert($scope.showSubmitForm);
+
+                $scope.clearAll();
+                $scope.showSubmitForm = false;
+                alert($scope.showSubmitForm);
             };
         }
     }
