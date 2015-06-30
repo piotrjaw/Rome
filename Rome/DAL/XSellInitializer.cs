@@ -34,12 +34,12 @@ namespace Rome.DAL
 
             var results = new List<Result>
             {
-                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventId = 1},
-                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventId = 2},
-                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventId = 1},
-                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventId = 2},
-                new Result {ResultId = 5, ResultName = "Out", IsNegativeEnding = true},
-                new Result {ResultId = 6, ResultName = "In", IsPositiveEnding = true}
+                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventId = 1, ResultingStatusId = 3},
+                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventId = 2, ResultingStatusId = 4},
+                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventId = 1, ResultingStatusId = 2},
+                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventId = 2, ResultingStatusId = 4},
+                new Result {ResultId = 5, ResultName = "Out", IsNegativeEnding = true, ResultingStatusId = 7},
+                new Result {ResultId = 6, ResultName = "In", IsPositiveEnding = true, ResultingStatusId = 6}
             };
             results.ForEach(r => context.Results.Add(r));
             context.SaveChanges();

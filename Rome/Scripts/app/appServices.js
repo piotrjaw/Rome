@@ -130,4 +130,4 @@ appServices.service('selectedDayService', function () {
 
     return selectedDay;
 
-})
+});

@@ -61,16 +61,14 @@ namespace Rome.Controllers
         // POST: api/postEvent/{event}
         [HttpPost]
         [ActionName("postEvent")]
-        public async Task<IHttpActionResult> PostEvent(string eaqo)
+        public async Task<IHttpActionResult> Post(EventActionQO eaqo)
         {
-            /*if(!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }*/
+            }
 
-            EventAction ea = JsonConvert.DeserializeObject<EventAction>(eaqo);
-
-            /*var ea = new EventAction
+            var @ea = new EventAction
             {
                 EventActionDate = eaqo.EventActionDate,
                 EventId = eaqo.EventId,
@@ -81,12 +79,12 @@ namespace Rome.Controllers
                 StatusId = eaqo.StatusId,
                 SetEventId = eaqo.SetEventId,
                 SetEventActionDate = eaqo.SetEventActionDate
-            };*/
+            };
 
             db.EventActions.Add(ea);
             await db.SaveChangesAsync();
 
-            return StatusCode(HttpStatusCode.Created);
+            return CreatedAtRoute("DefaultApi", new { id = @ea.EventActionId }, @ea);
         }
 
         // PUT: api/Events/5

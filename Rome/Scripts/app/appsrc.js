@@ -380,7 +380,7 @@ appServices.service('selectedDayService', function () {
 
     return selectedDay;
 
-})
+});
 'use strict';
 
 var appFilters = angular.module('appFilters', [])
@@ -531,7 +531,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
     }
 }]);
 
-appDirectives.directive('eventForm', ['$http', function ($http) {
+appDirectives.directive('eventForm', ['$http', 'loginService', function ($http, loginService) {
 
     return {
         controller: "baseCtrl",
@@ -546,7 +546,6 @@ appDirectives.directive('eventForm', ['$http', function ($http) {
 
             scope.now = moment().startOf('hour').toDate();
             scope.max = moment().add(10, 'years').startOf('day').toDate();
-            scope.response = {};
 
             scope.submittedEvent = {
                 NextEventDate: scope.now,
@@ -565,7 +564,16 @@ appDirectives.directive('eventForm', ['$http', function ($http) {
             scope.clearSelectType = function () {
                 scope.clearSelectResult();
                 scope.submittedEvent.Result = undefined;
-            }
+            };
+
+            scope.clearAll = function () {
+                scope.submittedEvent = {
+                    NextEventDate: scope.now,
+                    Client: scope.client,
+                    BaseId: scope.baseid,
+                    Products: []
+                }
+            };
 
             scope.addProduct = function () {
                 scope.submittedEvent.Products.push({ Count: scope.submittedEvent.Products.length + 1, Product: {}, Value: null });
@@ -577,15 +585,15 @@ appDirectives.directive('eventForm', ['$http', function ($http) {
             };
 
             scope.submitEvent = function () {
-                var now = moment().toDate();
+                var now = "/Date(" + moment().format('x') + ")/";
                 var finalNextEventDate;
                 var finalNextEventId;
 
                 if (scope.submittedEvent.NextEvent === undefined) {
-                    finalNextEventDate = moment(null);
-                    finalNextEventId = moment(null)
+                    finalNextEventDate = null;
+                    finalNextEventId = null;
                 } else {
-                    finalNextEventDate = scope.submittedEvent.NextEventDate;
+                    finalNextEventDate = "/Date(" + moment(scope.submittedEvent.NextEventDate).format('x') + ")/";
                     finalNextEventId = scope.submittedEvent.NextEvent.EventId;
                 };
 
@@ -597,7 +605,8 @@ appDirectives.directive('eventForm', ['$http', function ($http) {
                     ResultId: scope.submittedEvent.Result.ResultId,
                     StatusId: scope.submittedEvent.Result.ResultingStatusId,
                     SetEventId: finalNextEventId,
-                    SetEventActionDate: finalNextEventDate
+                    SetEventActionDate: finalNextEventDate,
+                    UserId: loginService.user.UserId
                 };
 
                 var requestBody = JSON.stringify(userInput);
@@ -605,14 +614,17 @@ appDirectives.directive('eventForm', ['$http', function ($http) {
                 var request = {
                     method: 'POST',
                     url: '/api/Events/postEvent/',
-                    data: requestBody
+                    data: userInput
                 };
 
                 $http(request).success(function (data) {
-                    scope.response = data;
+                    scope.client.EventActions.push(data);
                 }).error(function (error) {
                     scope.response = error;
-                }).then(alert(scope.response));
+                });
+
+                scope.clearAll();
+                scope.showsubmitform = false;
             };
         }
     }

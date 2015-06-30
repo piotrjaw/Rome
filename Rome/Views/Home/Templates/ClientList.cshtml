@@ -51,7 +51,7 @@
                                             <md-item ng-repeat="EventAction in Client.EventActions track by EventAction.EventActionId">
                                                 <md-item-content>
                                                     <md-list class="contact-list" layout-align="space-between start">
-                                                        <md-item class="list-item">Id zdarzenia: {{EventAction.EventActionId}}</md-item>
+                                                        <md-item class="list-item">Typ zdarzenia: {{EventAction}}</md-item>
                                                         <md-item class="list-item">Data zdarzenia: {{EventAction.EventActionDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
                                                         <md-item class="list-item">Id Doradcy: {{EventAction.UserId}}</md-item>
                                                     </md-list>

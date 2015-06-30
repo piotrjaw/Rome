@@ -1,4 +1,5 @@
 ﻿<md-item layout-padding>
+   <md-item>{{client}}</md-item>
     <form name="newEvent" layout="column">
         <md-item layout="column" layout-align="space-around start" layout-fill>
             <md-item layout="column" layout-align="center">
@@ -64,7 +65,7 @@
                     </md-item>
                 </md-input-container>
             </md-item>
-            <md-button class="md-raised md-primary" ng-click="submitEvent()" ng-disabled="newEvent.$invalid" flex id="event-submit">Wyślij</md-button>
+            <md-button class="md-raised md-primary" ng-click="submitEvent(); $parent.showSubmitForm = !$parent.showSubmitForm" ng-disabled="newEvent.$invalid" flex id="event-submit">Wyślij</md-button>
         </md-item>
         <md-item>{{submittedEvent}}</md-item>
     </form>

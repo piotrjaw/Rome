@@ -14,7 +14,7 @@ namespace Rome.QueryObjects
         public int UserId { get; set; }
         public int ResultId { get; set; }
         public int StatusId { get; set; }
-        public int SetEventId { get; set; }
+        public int? SetEventId { get; set; }
         public DateTime? SetEventActionDate { get; set; }
     }
 }

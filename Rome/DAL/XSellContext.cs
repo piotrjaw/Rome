@@ -65,7 +65,7 @@ namespace Rome.DAL
 
             modelBuilder.Entity<Event>().HasKey(e => e.EventId);
             modelBuilder.Entity<Event>().HasMany(e => e.EventActions).WithRequired(e => e.Event);
-            modelBuilder.Entity<Event>().HasMany(e => e.EventActions).WithRequired(e => e.SetEvent).HasForeignKey(e => e.SetEventId);
+            modelBuilder.Entity<Event>().HasMany(e => e.EventActions).WithOptional(e => e.SetEvent).HasForeignKey(e => e.SetEventId);
 
             modelBuilder.Entity<EventAction>().HasKey(e => e.EventActionId);
             modelBuilder.Entity<EventAction>().HasRequired(e => e.Base);
