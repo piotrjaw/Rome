@@ -58,6 +58,37 @@ namespace Rome.Controllers
             }
         }
 
+        // POST: api/postEvent/{event}
+        [HttpPost]
+        [ActionName("postEvent")]
+        public async Task<IHttpActionResult> PostEvent(string eaqo)
+        {
+            /*if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }*/
+
+            EventAction ea = JsonConvert.DeserializeObject<EventAction>(eaqo);
+
+            /*var ea = new EventAction
+            {
+                EventActionDate = eaqo.EventActionDate,
+                EventId = eaqo.EventId,
+                ClientId = eaqo.ClientId,
+                BaseId = eaqo.BaseId,
+                UserId = eaqo.UserId,
+                ResultId = eaqo.ResultId,
+                StatusId = eaqo.StatusId,
+                SetEventId = eaqo.SetEventId,
+                SetEventActionDate = eaqo.SetEventActionDate
+            };*/
+
+            db.EventActions.Add(ea);
+            await db.SaveChangesAsync();
+
+            return StatusCode(HttpStatusCode.Created);
+        }
+
         // PUT: api/Events/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutEvent(int id, EventAction @event)
@@ -91,21 +122,6 @@ namespace Rome.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Events
-        [ResponseType(typeof(EventAction))]
-        public async Task<IHttpActionResult> PostEvent(EventAction @event)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.EventActions.Add(@event);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = @event.EventActionId }, @event);
         }
 
         // DELETE: api/Events/5

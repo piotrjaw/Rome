@@ -9,5 +9,7 @@ namespace Rome.Models
     {
         public int EventId { get; set; }
         public string EventName { get; set; }
+
+        public virtual ICollection<EventAction> EventActions { get; set; }
     }
 }

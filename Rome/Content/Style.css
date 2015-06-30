@@ -62,8 +62,8 @@ md-sidenav {
 }
 #switch-box {
   display: block;
-  height: 173px !important;
-  width: 380px !important;
+  height: 185px !important;
+  width: 386px !important;
 }
 #switch-box > .switch-box {
   position: absolute;
@@ -219,6 +219,15 @@ md-sidenav {
 .date-container-right {
   text-align: right;
 }
+.delete-button {
+  max-width: 48px;
+  max-height: 48px;
+  text-align: center !important;
+}
+.delete-button > md-icon {
+  max-width: 36px;
+  max-height: 36px;
+}
 .detail-button {
   max-width: 44px !important;
   min-width: 44px !important;
@@ -282,7 +291,7 @@ md-sidenav {
   height: 100%;
 }
 .login-glue {
-  width: 95px;
+  width: 98px;
   height: 1px;
   opacity: 0;
 }

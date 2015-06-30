@@ -26,12 +26,12 @@ var myApp = angular.module('myApp', [
             .primaryPalette('light-blue', {
                 'default': '900',
                 'hue-1': '800',
-                'hue-2': '200',
-                'hue-3': '100'
+                'hue-2': '100',
+                'hue-3': '500'
             })
             .accentPalette('deep-orange', {
-                'default': 'A400',
-                'hue-1': 'A100',
+                'default': 'A100',
+                'hue-1': 'A400',
                 'hue-2': 'A700'
             });
         $mdThemingProvider

@@ -15,5 +15,6 @@ namespace Rome.DTOs
         public ResultSetDTO ResultSet { get; set; }
         public ResignationReasonSetDTO ResignationReasonSet { get; set; }
         public ProductSetDTO ProductSet { get; set; }
+        public StatusSetDTO StatusSet { get; set; }
     }
 }

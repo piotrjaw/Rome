@@ -11,16 +11,16 @@
                         <md-item layout="row" layout-align="center">Nowy Cross-sell</md-item>
                     </md-item>
                 </md-toolbar>
-                <md-item id="switch-box">
+                <md-item id="switch-box" layout="row" layout-fill layout-align="center center" layout-padding>
                     <md-item ng-if="!variables.passwordForgotten" class="animate-blur switch-box" layout="column" layout-align="center center">
                         <form name="loginForm" layout="column" layout-align="center center">
-                            <md-item layout="row" layout-align="center center">
-                                <md-input-container md-padding md-primary>
+                            <md-item layout="row" layout-align="space-between center" layout-fill>
+                                <md-input-container md-primary flex>
                                     <label for="login">Login</label>
                                     <input name="login" type="text" ng-model="login" ng-required="true" autocomplete="off" />
                                 </md-input-container>
-                                <md-input-container md-padding md-primary>
-                                    <label for="password" md-padding>Hasło</label>
+                                <md-input-container md-primary flex>
+                                    <label for="password">Hasło</label>
                                     <input name="password" type="password" ng-model="password" ng-required="true" autocomplete="off" />
                                 </md-input-container>
                             </md-item>
@@ -33,7 +33,7 @@
                         <md-item class="login-glue"></md-item>
                         <md-item layout="column" layout-align="center center">
                             <form name="remindForm" layout="column" layout-allign="center center">
-                                <md-input-container md-padding md-primary>
+                                <md-input-container md-primary>
                                     <label for="email">E-mail</label>
                                     <input name="email" type="email" ng-model="email" ng-required="true" autocomplete="off" />
                                 </md-input-container>

@@ -123,9 +123,9 @@ namespace Rome.DAL
 
             var events = new List<Event>
             {
-                new Event {EventName = "Telefon"},
-                new Event {EventName = "Spotkanie"},
-                new Event {EventName = "Lead"}
+                new Event {EventId = 1, EventName = "Telefon"},
+                new Event {EventId = 2, EventName = "Spotkanie"},
+                new Event {EventId = 3, EventName = "Lead"}
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();
@@ -145,9 +145,43 @@ namespace Rome.DAL
             eventassignments.ForEach(e => context.EventAssignments.Add(e));
             context.SaveChanges();
 
+            var statuses = new List<Status>
+            {
+                new Status {StatusId = 1, StatusName = "Nowy", StatusValue = 1},
+                new Status {StatusId = 2, StatusName = "Brak kontaktu", StatusValue = 2},
+                new Status {StatusId = 3, StatusName = "Umówiony telefon", StatusValue = 3},
+                new Status {StatusId = 4, StatusName = "Umówione spotkanie", StatusValue = 4},
+                new Status {StatusId = 5, StatusName = "Odbyte spotkanie", StatusValue = 5},
+                new Status {StatusId = 6, StatusName = "In", StatusValue = 6},
+                new Status {StatusId = 7, StatusName = "Out", StatusValue = 7},
+                new Status {StatusId = 8, StatusName = "Lead przekazany", StatusValue = 6}
+            };
+            statuses.ForEach(s => context.Statuses.Add(s));
+            context.SaveChanges();
+
+            var statussets = new List<StatusSet>
+            {
+                new StatusSet {StatusSetId = 1, StatusSetDescription = "Standardowy zestaw statusów"}
+            };
+            statussets.ForEach(s => context.StatusSets.Add(s));
+            context.SaveChanges();
+
+            var statusassignments = new List<StatusAssignment>
+            {
+                new StatusAssignment {StatusId = 1, StatusSetId = 1},
+                new StatusAssignment {StatusId = 2, StatusSetId = 1},
+                new StatusAssignment {StatusId = 3, StatusSetId = 1},
+                new StatusAssignment {StatusId = 4, StatusSetId = 1},
+                new StatusAssignment {StatusId = 5, StatusSetId = 1},
+                new StatusAssignment {StatusId = 6, StatusSetId = 1},
+                new StatusAssignment {StatusId = 7, StatusSetId = 1}
+            };
+            statusassignments.ForEach(s => context.StatusAssignments.Add(s));
+            context.SaveChanges();
+
             var baseoptionsets = new List<BaseOptionSet>
             {
-                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1, EventSetId = 1}
+                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1, EventSetId = 1, StatusSetId = 1}
             };
             baseoptionsets.ForEach(p => context.BaseOptionSets.Add(p));
             context.SaveChanges();
@@ -189,54 +223,54 @@ namespace Rome.DAL
 
             var baseAssignments = new List<BaseAssignment>
             {
-                new BaseAssignment {ClientId = 1, BaseId = 1, UserId = 18},
-                new BaseAssignment {ClientId = 2, BaseId = 2, UserId = 18},
-                new BaseAssignment {ClientId = 3, BaseId = 2, UserId = 18},
-                new BaseAssignment {ClientId = 4, BaseId = 1, UserId = 18},
-                new BaseAssignment {ClientId = 5, BaseId = 2, UserId = 18},
-                new BaseAssignment {ClientId = 6, BaseId = 1, UserId = 18},
-                new BaseAssignment {ClientId = 7, BaseId = 1, UserId = 18},
-                new BaseAssignment {ClientId = 8, BaseId = 2, UserId = 18},
-                new BaseAssignment {ClientId = 9, BaseId = 2, UserId = 18},
-                new BaseAssignment {ClientId = 10, BaseId = 1, UserId = 19},
-                new BaseAssignment {ClientId = 11, BaseId = 1, UserId = 19},
-                new BaseAssignment {ClientId = 12, BaseId = 1, UserId = 19},
-                new BaseAssignment {ClientId = 13, BaseId = 2, UserId = 19},
-                new BaseAssignment {ClientId = 14, BaseId = 2, UserId = 19},
-                new BaseAssignment {ClientId = 15, BaseId = 1, UserId = 19},
-                new BaseAssignment {ClientId = 1, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 2, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 3, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 4, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 5, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 6, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 7, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 8, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 9, BaseId = 3, UserId = 19},
-                new BaseAssignment {ClientId = 10, BaseId = 4, UserId = 18},
-                new BaseAssignment {ClientId = 11, BaseId = 4, UserId = 18},
-                new BaseAssignment {ClientId = 12, BaseId = 4, UserId = 18},
-                new BaseAssignment {ClientId = 13, BaseId = 4, UserId = 18},
-                new BaseAssignment {ClientId = 14, BaseId = 4, UserId = 18},
-                new BaseAssignment {ClientId = 15, BaseId = 4, UserId = 18}
+                new BaseAssignment {ClientId = 1, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 2, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 3, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 4, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 5, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 6, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 7, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 8, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 9, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 10, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 11, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 12, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 13, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 14, BaseId = 2, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 15, BaseId = 1, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 1, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 2, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 3, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 4, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 5, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 6, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 7, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 8, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 9, BaseId = 3, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 10, BaseId = 4, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 11, BaseId = 4, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 12, BaseId = 4, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 13, BaseId = 4, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 14, BaseId = 4, UserId = 19, StatusId = 1},
+                new BaseAssignment {ClientId = 15, BaseId = 4, UserId = 19, StatusId = 1}
             };
             baseAssignments.ForEach(b => context.BaseAssignments.Add(b));
             context.SaveChanges();
 
             var eventactions = new List<EventAction>
             {
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2},
-                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 4, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1},
-                new EventAction {ClientId = 5, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2}
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 4, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new EventAction {ClientId = 5, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4}
             };
             eventactions.ForEach(e => context.EventActions.Add(e));
             context.SaveChanges();

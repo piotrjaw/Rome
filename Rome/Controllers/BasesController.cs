@@ -43,7 +43,7 @@ namespace Rome.Controllers
                             CompanyName = c.CompanyName,
                             Owner = c.Owner,
                             UserId = ba.UserId,
-                            Events = 
+                            EventActions = 
                             from e in c.EventActions
                             where e.BaseId == b.BaseId
                             select new EventActionDTO
@@ -72,6 +72,7 @@ namespace Rome.Controllers
                             join r in db.ResultSets on b.BaseOptionSet.ResultSetId equals r.ResultSetId
                             join p in db.ProductSets on b.BaseOptionSet.ProductSetId equals p.ProductSetId
                             join rr in db.ResignationReasonSets on b.BaseOptionSet.ResignationReasonSetId equals rr.ResignationReasonSetId
+                            join ss in db.StatusSets on b.BaseOptionSet.StatusSetId equals ss.StatusSetId
                             join e in db.EventSets on b.BaseOptionSet.EventSetId equals e.EventSetId
                             select new BaseDTO
                             {
@@ -125,11 +126,22 @@ namespace Rome.Controllers
                                         join ea in db.EventAssignments on te.EventId equals ea.EventId
                                         where ea.EventSetId == b.BaseOptionSet.EventSetId
                                         select te   
+                                    },
+                                    StatusSet = new StatusSetDTO
+                                    {
+                                        StatusSetId = ss.StatusSetId,
+                                        StatusSetDescription = ss.StatusSetDescription,
+                                        Statuses =
+                                        from tss in db.Statuses
+                                        join ssa in db.StatusAssignments on tss.StatusId equals ssa.StatusId
+                                        where ssa.StatusSetId == b.BaseOptionSet.StatusSetId
+                                        select tss
                                     }
                                 },
                                 Clients =
                                     from ba in b.BaseAssignments
                                     join c in db.Clients on ba.ClientId equals c.ClientId
+                                    join s in db.Statuses on ba.StatusId equals s.StatusId
                                     where ba.UserId == id.UserId
                                     select new ClientDTO
                                     {
@@ -137,7 +149,8 @@ namespace Rome.Controllers
                                         CompanyName = c.CompanyName,
                                         Owner = c.Owner,
                                         UserId = ba.UserId,
-                                        Events =
+                                        Status = s,
+                                        EventActions =
                                         from ea in c.EventActions
                                         where ea.BaseId == b.BaseId && ea.UserId == id.UserId
                                         select new EventActionDTO

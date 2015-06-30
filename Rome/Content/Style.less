@@ -2,6 +2,7 @@
 @logo-size: 64px;
 @button-size: 36px;
 @button-size2: 24px;
+@button-size3: 48px;
 @small-fab: 24px;
 
 body {
@@ -85,8 +86,8 @@ md-sidenav {
 
 #switch-box {
     display: block;
-    height: 173px !important;
-    width: 380px !important;
+    height: 185px !important;
+    width: 386px !important;
 
     >.switch-box {
         position: absolute;
@@ -258,6 +259,17 @@ md-sidenav {
     text-align: right;
 }
 
+.delete-button {
+    max-width: @button-size3;
+    max-height: @button-size3;
+    text-align: center !important;
+
+    >md-icon {
+        max-width: @button-size;
+        max-height: @button-size;
+    }
+}
+
 .detail-button {
     
     max-width: 44px !important;
@@ -335,7 +347,7 @@ md-sidenav {
 }
 
 .login-glue {
-    width: 95px;
+    width: 98px;
     height: 1px;
     opacity: 0;
 }

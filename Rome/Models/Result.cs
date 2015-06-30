@@ -14,5 +14,6 @@ namespace Rome.Models
         public bool IsNegativeEnding { get; set; }
         public int SpecificToEventId { get; set; }
         public int ResultingEventId { get; set; }
+        public int ResultingStatusId { get; set; }
     }
 }

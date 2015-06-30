@@ -13,11 +13,13 @@ namespace Rome.Models
         public int ResignationReasonSetId { get; set; }
         public int ProductSetId { get; set; }
         public int EventSetId { get; set; }
+        public int StatusSetId { get; set; }
 
         public ResultSet ResultSet { get; set; }
         public ResignationReasonSet ResignationReasonSet { get; set; }
         public ProductSet ProductSet { get; set; }
         public EventSet EventSet { get; set; }
+        public StatusSet StatusSet { get; set; }
         public ICollection<Base> Bases { get; set; }
     }
 }

@@ -48,12 +48,12 @@
                                     </md-item-content>
                                     <md-item ng-if="ClientShowStatus" class="animate" layout="row" layout-fill>
                                         <md-item layout="column" flex="65">
-                                            <md-item ng-repeat="Event in Client.Events track by Event.EventId">
+                                            <md-item ng-repeat="EventAction in Client.EventActions track by EventAction.EventActionId">
                                                 <md-item-content>
                                                     <md-list class="contact-list" layout-align="space-between start">
-                                                        <md-item class="list-item">Id zdarzenia: {{Event.EventId}}</md-item>
-                                                        <md-item class="list-item">Data zdarzenia: {{Event.EventDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
-                                                        <md-item class="list-item">Id Doradcy: {{Event.UserId}}</md-item>
+                                                        <md-item class="list-item">Id zdarzenia: {{EventAction.EventActionId}}</md-item>
+                                                        <md-item class="list-item">Data zdarzenia: {{EventAction.EventActionDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
+                                                        <md-item class="list-item">Id Doradcy: {{EventAction.UserId}}</md-item>
                                                     </md-list>
                                                 </md-item-content>
                                             </md-item>

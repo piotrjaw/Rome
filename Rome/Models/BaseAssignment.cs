@@ -11,9 +11,11 @@ namespace Rome.Models
         public int BaseId { get; set; }
         public int ClientId { get; set; }
         public int UserId { get; set; }
+        public int StatusId { get; set; }
 
         public virtual Base Base { get; set; }
         public virtual Client Client { get; set; }
         public virtual User User { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

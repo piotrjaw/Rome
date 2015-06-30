@@ -1,4 +1,4 @@
-﻿<md-item>
+﻿<md-item layout-padding>
     <form name="newEvent" layout="column">
         <md-item layout="column" layout-align="space-around start" layout-fill>
             <md-item layout="column" layout-align="center">
@@ -34,7 +34,9 @@
                         <input name="value" ng-model="SubmittedProduct.Value" type="number" required autocomplete="off" />
                     </md-input-container>
                     <md-item flex="5" ng-if="!$last"></md-item>
-                    <md-button layout layout-align="center" class="md-primary md-raised animate" flex="10" type="button" ng-if="$last" ng-form="null" ng-click="removeProduct()"><span>X</span></md-button>
+                    <md-button layout layout-align="center" class="md-primary md-raised animate delete-button" flex="10" type="button" ng-if="$last" ng-form="null" ng-click="removeProduct()">
+                        <md-icon md-svg-icon="/Img/Icons/delete.svg" aria-hidden="true"></md-icon>
+                    </md-button>
                 </md-item>
                 <md-button ng-click="addProduct()">Dodaj produkt</md-button>
             </md-item>
@@ -64,5 +66,6 @@
             </md-item>
             <md-button class="md-raised md-primary" ng-click="submitEvent()" ng-disabled="newEvent.$invalid" flex id="event-submit">Wyślij</md-button>
         </md-item>
+        <md-item>{{submittedEvent}}</md-item>
     </form>
 </md-item>

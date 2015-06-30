@@ -26,12 +26,12 @@ var myApp = angular.module('myApp', [
             .primaryPalette('light-blue', {
                 'default': '900',
                 'hue-1': '800',
-                'hue-2': '200',
-                'hue-3': '100'
+                'hue-2': '100',
+                'hue-3': '500'
             })
             .accentPalette('deep-orange', {
-                'default': 'A400',
-                'hue-1': 'A100',
+                'default': 'A100',
+                'hue-1': 'A400',
                 'hue-2': 'A700'
             });
         $mdThemingProvider
@@ -531,7 +531,7 @@ appDirectives.directive('calendarDay', ['globalFunctions', 'selectedDayService',
     }
 }]);
 
-appDirectives.directive('eventForm', ['$interval', function ($interval) {
+appDirectives.directive('eventForm', ['$http', function ($http) {
 
     return {
         controller: "baseCtrl",
@@ -546,6 +546,7 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
 
             scope.now = moment().startOf('hour').toDate();
             scope.max = moment().add(10, 'years').startOf('day').toDate();
+            scope.response = {};
 
             scope.submittedEvent = {
                 NextEventDate: scope.now,
@@ -576,6 +577,42 @@ appDirectives.directive('eventForm', ['$interval', function ($interval) {
             };
 
             scope.submitEvent = function () {
+                var now = moment().toDate();
+                var finalNextEventDate;
+                var finalNextEventId;
+
+                if (scope.submittedEvent.NextEvent === undefined) {
+                    finalNextEventDate = moment(null);
+                    finalNextEventId = moment(null)
+                } else {
+                    finalNextEventDate = scope.submittedEvent.NextEventDate;
+                    finalNextEventId = scope.submittedEvent.NextEvent.EventId;
+                };
+
+                var userInput = {
+                    EventActionDate: now,
+                    EventId: scope.submittedEvent.Event.EventId,
+                    ClientId: scope.submittedEvent.Client.ClientId,
+                    BaseId: scope.submittedEvent.BaseId,
+                    ResultId: scope.submittedEvent.Result.ResultId,
+                    StatusId: scope.submittedEvent.Result.ResultingStatusId,
+                    SetEventId: finalNextEventId,
+                    SetEventActionDate: finalNextEventDate
+                };
+
+                var requestBody = JSON.stringify(userInput);
+
+                var request = {
+                    method: 'POST',
+                    url: '/api/Events/postEvent/',
+                    data: requestBody
+                };
+
+                $http(request).success(function (data) {
+                    scope.response = data;
+                }).error(function (error) {
+                    scope.response = error;
+                }).then(alert(scope.response));
             };
         }
     }

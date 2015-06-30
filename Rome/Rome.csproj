@@ -152,6 +152,7 @@
     <Compile Include="DTOs\RegionDTO.cs" />
     <Compile Include="DTOs\ResignationReasonSetDTO.cs" />
     <Compile Include="DTOs\ResultSetDTO.cs" />
+    <Compile Include="DTOs\StatusSetDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,10 +178,13 @@
     <Compile Include="Models\RoleAssignment.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\StatusAssignment.cs" />
+    <Compile Include="Models\StatusSet.cs" />
     <Compile Include="Models\UnitRelation.cs" />
     <Compile Include="Models\UnitType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\EventActionQO.cs" />
     <Compile Include="QueryObjects\UserQO.cs" />
     <Compile Include="QueryObjects\LoginQO.cs" />
   </ItemGroup>
@@ -200,6 +204,7 @@
     <Content Include="Img\Icons\chevron-right.svg" />
     <Content Include="Img\Icons\chevron-up.svg" />
     <Content Include="Img\Icons\close.svg" />
+    <Content Include="Img\Icons\delete.svg" />
     <Content Include="Img\Icons\information-outline.svg" />
     <Content Include="Img\Icons\menu.svg" />
     <Content Include="Img\Svg\TaxCare.svg" />
