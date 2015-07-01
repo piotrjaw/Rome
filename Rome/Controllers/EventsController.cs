@@ -92,7 +92,30 @@ namespace Rome.Controllers
             db.EventActions.Add(ea);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = @ea.EventActionId }, @ea);
+            var result = from e in db.EventActions
+                        join c in db.Clients on e.ClientId equals c.ClientId
+                        join t in db.Events on e.EventId equals t.EventId
+                        join st in db.Statuses on e.StatusId equals st.StatusId
+                        where e.EventActionId == @ea.EventActionId
+                        select new EventActionDTO
+                        {
+                            EventActionId = e.EventActionId,
+                            EventActionDate = e.EventActionDate,
+                            EventId = e.EventId,
+                            ClientId = e.ClientId,
+                            BaseId = e.BaseId,
+                            UserId = e.UserId,
+                            ResultId = e.ResultId,
+                            StatusId = e.StatusId,
+                            SetEventId = e.SetEventId,
+                            SetEventActionDate = e.SetEventActionDate,
+                            Comment = e.Comment,
+                            Status = st,
+                            Client = c,
+                            Event = t
+                        };
+
+            return CreatedAtRoute("DefaultApi", new { id = @ea.EventActionId }, result);
         }
 
         // PUT: api/Events/5

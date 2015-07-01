@@ -10,8 +10,5 @@ namespace Rome.Models
         public int ClientId { get; set; }
         public string Owner { get; set; }
         public string CompanyName { get; set; }
-
-        public virtual ICollection<BaseAssignment> BaseAssignments { get; set; }
-        public virtual ICollection<EventAction> EventActions { get; set; }
     }
 }

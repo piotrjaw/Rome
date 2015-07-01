@@ -42,16 +42,7 @@ namespace Rome.Controllers
                             ClientId = c.ClientId,
                             CompanyName = c.CompanyName,
                             Owner = c.Owner,
-                            UserId = ba.UserId,
-                            EventActions = 
-                            from e in c.EventActions
-                            where e.BaseId == b.BaseId
-                            select new EventActionDTO
-                            {
-                                EventActionId = e.EventActionId,
-                                EventActionDate = e.EventActionDate,
-                                UserId = e.UserId
-                            }
+                            UserId = ba.UserId
                         }
                 };
             return query;
@@ -149,29 +140,7 @@ namespace Rome.Controllers
                                         CompanyName = c.CompanyName,
                                         Owner = c.Owner,
                                         UserId = ba.UserId,
-                                        Status = s,
-                                        EventActions =
-                                        from ea in c.EventActions
-                                        join t in db.Events on ea.EventId equals t.EventId
-                                        join st in db.Statuses on ea.StatusId equals st.StatusId
-                                        where ea.BaseId == b.BaseId && ea.UserId == id.UserId
-                                        select new EventActionDTO
-                                        {
-                                            EventActionId = ea.EventActionId,
-                                            EventActionDate = ea.EventActionDate,
-                                            EventId = ea.EventId,
-                                            ClientId = ea.ClientId,
-                                            BaseId = ea.BaseId,
-                                            UserId = ea.UserId,
-                                            ResultId = ea.ResultId,
-                                            StatusId = ea.StatusId,
-                                            SetEventId = ea.SetEventId,
-                                            SetEventActionDate = ea.SetEventActionDate,
-                                            Comment = ea.Comment,
-                                            Status = st,
-                                            Client = c,
-                                            Event = t
-                                        }
+                                        Status = s
                                     }
                             };
                 var session = db.Sessions.Where(s => s.SessionId == id.SessionId).FirstOrDefault();

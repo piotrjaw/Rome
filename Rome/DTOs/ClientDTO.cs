@@ -12,7 +12,6 @@ namespace Rome.DTOs
         public int ClientId { get; set; }
         public string Owner { get; set; }
         public string CompanyName { get; set; }
-        public IEnumerable<EventActionDTO> EventActions { get; set; }
         public Status Status { get; set; }
         public int UserId { get; set; }
     }

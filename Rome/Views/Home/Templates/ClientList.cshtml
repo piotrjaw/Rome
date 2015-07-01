@@ -48,6 +48,7 @@
                                     </md-item-content>
                                     <md-item ng-if="ClientShowStatus" class="animate" layout="row" layout-fill>
                                         <md-item layout="column" flex="65">
+                                            <md-item>{{Client.EventActions}}</md-item>
                                             <md-list ng-repeat="EventAction in Client.EventActions track by EventAction.EventActionId" layout="column" layout-align="space-between start">
                                                 <md-item class="contact-list" layout="row" layout-align="start start">
                                                     <md-item>{{EventAction.Event.EventName}}&nbsp;</md-item>
