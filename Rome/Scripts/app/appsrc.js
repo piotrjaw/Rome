@@ -612,7 +612,7 @@ appDirectives.directive('eventForm', ['$http', 'loginService', function ($http, 
                 };
 
                 $http(request).success(function (data) {
-                    $scope.Client.EventActions.push(data);
+                    $scope.Client.EventActions.push($scope.submittedEvent);
                 }).error(function (error) {
                     $scope.response = error;
                 });

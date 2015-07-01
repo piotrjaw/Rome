@@ -36,14 +36,22 @@ namespace Rome.Controllers
                 var query = from e in db.EventActions
                             join c in db.Clients on e.ClientId equals c.ClientId
                             join t in db.Events on e.EventId equals t.EventId
+                            join st in db.Statuses on e.StatusId equals st.StatusId
                             where e.UserId == id.UserId
                             select new EventActionDTO
                             {
                                 EventActionId = e.EventActionId,
                                 EventActionDate = e.EventActionDate,
-                                UserId = e.UserId,
+                                EventId = e.EventId,
                                 ClientId = e.ClientId,
                                 BaseId = e.BaseId,
+                                UserId = e.UserId,
+                                ResultId = e.ResultId,
+                                StatusId = e.StatusId,
+                                SetEventId = e.SetEventId,
+                                SetEventActionDate = e.SetEventActionDate,
+                                Comment = e.Comment,
+                                Status = st,
                                 Client = c,
                                 Event = t
                             };

@@ -48,15 +48,14 @@
                                     </md-item-content>
                                     <md-item ng-if="ClientShowStatus" class="animate" layout="row" layout-fill>
                                         <md-item layout="column" flex="65">
-                                            <md-item ng-repeat="EventAction in Client.EventActions track by EventAction.EventActionId">
-                                                <md-item-content>
-                                                    <md-list class="contact-list" layout-align="space-between start">
-                                                        <md-item class="list-item">Typ zdarzenia: {{EventAction}}</md-item>
-                                                        <md-item class="list-item">Data zdarzenia: {{EventAction.EventActionDate | jsDate | date : 'yyyy-MM-dd hh:mm'}}</md-item>
-                                                        <md-item class="list-item">Id Doradcy: {{EventAction.UserId}}</md-item>
-                                                    </md-list>
-                                                </md-item-content>
-                                            </md-item>
+                                            <md-list ng-repeat="EventAction in Client.EventActions track by EventAction.EventActionId" layout="column" layout-align="space-between start">
+                                                <md-item class="contact-list" layout="row" layout-align="start start">
+                                                    <md-item>{{EventAction.Event.EventName}}&nbsp;</md-item>
+                                                    <md-item>{{EventAction.EventActionDate | jsDate | date : 'yyyy-MM-dd hh:mm:ss'}}:&nbsp;</md-item>
+                                                    <md-item>{{EventAction.Status.StatusName}}&nbsp;</md-item>
+                                                    <md-item>{{EventAction.SetEventActionDate | jsDate | date : 'yyyy-MM-dd hh:mm:ss'}}&nbsp;</md-item>
+                                                </md-item>
+                                            </md-list>
                                             <md-button ng-click="showSubmitForm = !showSubmitForm" class="animate">Dodaj kontakt</md-button>
                                             <event-form ng-if="showSubmitForm" baseoptionset="Base.BaseOptionSet" client="Client" baseid="Base.BaseId" show="showSubmitForm" class="animate"></event-form>
                                         </md-item>

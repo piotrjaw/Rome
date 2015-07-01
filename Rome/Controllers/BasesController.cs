@@ -152,12 +152,25 @@ namespace Rome.Controllers
                                         Status = s,
                                         EventActions =
                                         from ea in c.EventActions
+                                        join t in db.Events on ea.EventId equals t.EventId
+                                        join st in db.Statuses on ea.StatusId equals st.StatusId
                                         where ea.BaseId == b.BaseId && ea.UserId == id.UserId
                                         select new EventActionDTO
                                         {
                                             EventActionId = ea.EventActionId,
                                             EventActionDate = ea.EventActionDate,
-                                            UserId = ea.UserId
+                                            EventId = ea.EventId,
+                                            ClientId = ea.ClientId,
+                                            BaseId = ea.BaseId,
+                                            UserId = ea.UserId,
+                                            ResultId = ea.ResultId,
+                                            StatusId = ea.StatusId,
+                                            SetEventId = ea.SetEventId,
+                                            SetEventActionDate = ea.SetEventActionDate,
+                                            Comment = ea.Comment,
+                                            Status = st,
+                                            Client = c,
+                                            Event = t
                                         }
                                     }
                             };
