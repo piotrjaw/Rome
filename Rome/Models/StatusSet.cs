@@ -9,7 +9,5 @@ namespace Rome.Models
     {
         public int StatusSetId { get; set; }
         public string StatusSetDescription { get; set; }
-
-        public virtual ICollection<StatusAssignment> StatusAssignments { get; set; }
     }
 }

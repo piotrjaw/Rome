@@ -34,10 +34,10 @@ namespace Rome.DAL
 
             var results = new List<Result>
             {
-                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingEventId = 1, ResultingStatusId = 3},
-                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingEventId = 2, ResultingStatusId = 4},
-                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToEventId = 1, ResultingStatusId = 2},
-                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToEventId = 2, ResultingStatusId = 4},
+                new Result {ResultId = 1, ResultName = "Telefon w przyszłości", ResultingActionId = 1, ResultingStatusId = 3},
+                new Result {ResultId = 2, ResultName = "Umówione spotkanie", ResultingActionId = 2, ResultingStatusId = 4},
+                new Result {ResultId = 3, ResultName = "Nie odebrano", SpecificToActionId = 1, ResultingStatusId = 2},
+                new Result {ResultId = 4, ResultName = "Nie odbyło się", SpecificToActionId = 2, ResultingStatusId = 4},
                 new Result {ResultId = 5, ResultName = "Out", IsNegativeEnding = true, ResultingStatusId = 7},
                 new Result {ResultId = 6, ResultName = "In", IsPositiveEnding = true, ResultingStatusId = 6}
             };
@@ -121,26 +121,26 @@ namespace Rome.DAL
             productassignments.ForEach(p => context.ProductAssignments.Add(p));
             context.SaveChanges();
 
-            var events = new List<Event>
+            var eventtypes = new List<EventType>
             {
-                new Event {EventId = 1, EventName = "Telefon"},
-                new Event {EventId = 2, EventName = "Spotkanie"},
-                new Event {EventId = 3, EventName = "Lead"}
+                new EventType {EventTypeId = 1, EventTypeName = "Telefon"},
+                new EventType {EventTypeId = 2, EventTypeName = "Spotkanie"},
+                new EventType {EventTypeId = 3, EventTypeName = "Lead"}
             };
-            events.ForEach(e => context.Events.Add(e));
+            eventtypes.ForEach(e => context.EventTypes.Add(e));
             context.SaveChanges();
 
-            var eventsets = new List<EventSet>
+            var eventtypesets = new List<EventTypeSet>
             {
-                new EventSet {EventSetId = 1, EventSetDescription = "Standardowy zestaw zdarzeń"}
+                new EventTypeSet {EventTypeSetId = 1, EventTypeSetDescription = "Standardowy zestaw zdarzeń"}
             };
-            eventsets.ForEach(e => context.EventSets.Add(e));
+            eventtypesets.ForEach(e => context.EventSets.Add(e));
             context.SaveChanges();
 
-            var eventassignments = new List<EventAssignment>
+            var eventassignments = new List<EventTypeAssignment>
             {
-                new EventAssignment {EventId = 1, EventSetId = 1},
-                new EventAssignment {EventId = 2, EventSetId = 1}
+                new EventTypeAssignment {EventTypeId = 1, EventTypeSetId = 1},
+                new EventTypeAssignment {EventTypeId = 2, EventTypeSetId = 1}
             };
             eventassignments.ForEach(e => context.EventAssignments.Add(e));
             context.SaveChanges();
@@ -257,22 +257,22 @@ namespace Rome.DAL
             baseAssignments.ForEach(b => context.BaseAssignments.Add(b));
             context.SaveChanges();
 
-            var eventactions = new List<EventAction>
+            var events = new List<Event>
             {
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 1, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 1, BaseId = 1, EventActionDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 2, BaseId = 2, EventActionDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 2, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 4, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new EventAction {ClientId = 5, BaseId = 3, EventActionDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventId = 2, SetEventActionDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4}
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 4, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 5, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4}
             };
-            eventactions.ForEach(e => context.EventActions.Add(e));
+            events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();
 
             var roles = new List<Role>
@@ -287,96 +287,67 @@ namespace Rome.DAL
             var units = new List<Unit>
             {
                 new Unit {UnitId = 1, UnitTypeId = 1, UnitName = "Adminitstration"},
-                new Unit {UnitId = 2, UnitTypeId = 2, UnitName = "Tax Care SA"},
-                new Unit {UnitId = 3, UnitTypeId = 2, UnitName = "Idea Bank SA"},
-                new Unit {UnitId = 4, UnitTypeId = 3, UnitName = "TCS"},
-                new Unit {UnitId = 5, UnitTypeId = 3, UnitName = "TCP"},
-                new Unit {UnitId = 6, UnitTypeId = 3, UnitName = "IBS"},
-                new Unit {UnitId = 7, UnitTypeId = 4, UnitName = "Region 1"},
-                new Unit {UnitId = 8, UnitTypeId = 4, UnitName = "Region 2"},
-                new Unit {UnitId = 9, UnitTypeId = 4, UnitName = "Region 1"},
-                new Unit {UnitId = 10, UnitTypeId = 4, UnitName = "Region 2"},
-                new Unit {UnitId = 11, UnitTypeId = 4, UnitName = "Region 1"},
-                new Unit {UnitId = 12, UnitTypeId = 4, UnitName = "Region 2"},
-                new Unit {UnitId = 13, UnitTypeId = 5, UnitName = "TAXBIA1"},
-                new Unit {UnitId = 14, UnitTypeId = 5, UnitName = "TAXGDA1"},
-                new Unit {UnitId = 15, UnitTypeId = 5, UnitName = "TAXKRA1"},
-                new Unit {UnitId = 16, UnitTypeId = 5, UnitName = "TAXSOS1"},
-                new Unit {UnitId = 17, UnitTypeId = 5, UnitName = "TCPBIA1"},
-                new Unit {UnitId = 18, UnitTypeId = 5, UnitName = "TCPSUW1"},
-                new Unit {UnitId = 19, UnitTypeId = 5, UnitName = "TCPWAW1"},
-                new Unit {UnitId = 20, UnitTypeId = 5, UnitName = "TCPPIA1"},
-                new Unit {UnitId = 21, UnitTypeId = 5, UnitName = "TCIB WAW1"},
-                new Unit {UnitId = 22, UnitTypeId = 5, UnitName = "TCIB WAW6"},
-                new Unit {UnitId = 23, UnitTypeId = 5, UnitName = "TCIB KRA1"},
-                new Unit {UnitId = 24, UnitTypeId = 5, UnitName = "TCIB WRO2"}
+                new Unit {UnitId = 2, SuperiorUnitId = 1, UnitTypeId = 2, UnitName = "Tax Care SA"},
+                new Unit {UnitId = 3, SuperiorUnitId = 1, UnitTypeId = 2, UnitName = "Idea Bank SA"},
+                new Unit {UnitId = 4, SuperiorUnitId = 2, UnitTypeId = 3, UnitName = "TCS"},
+                new Unit {UnitId = 5, SuperiorUnitId = 2, UnitTypeId = 3, UnitName = "TCP"},
+                new Unit {UnitId = 6, SuperiorUnitId = 3, UnitTypeId = 3, UnitName = "IBS"},
+                new Unit {UnitId = 7, SuperiorUnitId = 4, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 8, SuperiorUnitId = 4, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 9, SuperiorUnitId = 5, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 10, SuperiorUnitId = 5, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 11, SuperiorUnitId = 6, UnitTypeId = 4, UnitName = "Region 1"},
+                new Unit {UnitId = 12, SuperiorUnitId = 6, UnitTypeId = 4, UnitName = "Region 2"},
+                new Unit {UnitId = 13, SuperiorUnitId = 7, UnitTypeId = 5, UnitName = "TAXBIA1"},
+                new Unit {UnitId = 14, SuperiorUnitId = 7, UnitTypeId = 5, UnitName = "TAXGDA1"},
+                new Unit {UnitId = 15, SuperiorUnitId = 8, UnitTypeId = 5, UnitName = "TAXKRA1"},
+                new Unit {UnitId = 16, SuperiorUnitId = 8, UnitTypeId = 5, UnitName = "TAXSOS1"},
+                new Unit {UnitId = 17, SuperiorUnitId = 9, UnitTypeId = 5, UnitName = "TCPBIA1"},
+                new Unit {UnitId = 18, SuperiorUnitId = 9, UnitTypeId = 5, UnitName = "TCPSUW1"},
+                new Unit {UnitId = 19, SuperiorUnitId = 10, UnitTypeId = 5, UnitName = "TCPWAW1"},
+                new Unit {UnitId = 20, SuperiorUnitId = 10, UnitTypeId = 5, UnitName = "TCPPIA1"},
+                new Unit {UnitId = 21, SuperiorUnitId = 11, UnitTypeId = 5, UnitName = "TCIB WAW1"},
+                new Unit {UnitId = 22, SuperiorUnitId = 11, UnitTypeId = 5, UnitName = "TCIB WAW6"},
+                new Unit {UnitId = 23, SuperiorUnitId = 12, UnitTypeId = 5, UnitName = "TCIB KRA1"},
+                new Unit {UnitId = 24, SuperiorUnitId = 12, UnitTypeId = 5, UnitName = "TCIB WRO2"}
             };
             units.ForEach(u => context.Units.Add(u));
             context.SaveChanges();
 
-            var unitrelations = new List<UnitRelation>
-            {
-                new UnitRelation {UnitId = 1, ChildUnitId = 2},
-                new UnitRelation {UnitId = 1, ChildUnitId = 3},
-                new UnitRelation {UnitId = 2, ChildUnitId = 4},
-                new UnitRelation {UnitId = 2, ChildUnitId = 5},
-                new UnitRelation {UnitId = 3, ChildUnitId = 6},
-                new UnitRelation {UnitId = 4, ChildUnitId = 7},
-                new UnitRelation {UnitId = 4, ChildUnitId = 8},
-                new UnitRelation {UnitId = 5, ChildUnitId = 9},
-                new UnitRelation {UnitId = 5, ChildUnitId = 10},
-                new UnitRelation {UnitId = 6, ChildUnitId = 11},
-                new UnitRelation {UnitId = 6, ChildUnitId = 12},
-                new UnitRelation {UnitId = 7, ChildUnitId = 13},
-                new UnitRelation {UnitId = 7, ChildUnitId = 14},
-                new UnitRelation {UnitId = 8, ChildUnitId = 15},
-                new UnitRelation {UnitId = 8, ChildUnitId = 16},
-                new UnitRelation {UnitId = 9, ChildUnitId = 17},
-                new UnitRelation {UnitId = 9, ChildUnitId = 18},
-                new UnitRelation {UnitId = 10, ChildUnitId = 19},
-                new UnitRelation {UnitId = 10, ChildUnitId = 20},
-                new UnitRelation {UnitId = 11, ChildUnitId = 21},
-                new UnitRelation {UnitId = 11, ChildUnitId = 22},
-                new UnitRelation {UnitId = 12, ChildUnitId = 23},
-                new UnitRelation {UnitId = 12, ChildUnitId = 24}
-            };
-            unitrelations.ForEach(u => context.UnitRelations.Add(u));
-            context.SaveChanges();
-
             var unittypes = new List<UnitType>
             {
-                new UnitType {UnitTypeId = 1, UnitTypeName = "Administration"},
-                new UnitType {UnitTypeId = 2, UnitTypeName = "Company"},
-                new UnitType {UnitTypeId = 3, UnitTypeName = "Network"},
-                new UnitType {UnitTypeId = 4, UnitTypeName = "Region"},
-                new UnitType {UnitTypeId = 5, UnitTypeName = "Branch"}
+                new UnitType {UnitTypeId = 1, FirstRoleName = "Administrator", SecondRoleName = "", ThirdRoleName = "", UnitTypeName = "Administration"},
+                new UnitType {UnitTypeId = 2, FirstRoleName = "Prezes Zarządu", SecondRoleName = "Wiceprezes Zarządu", ThirdRoleName = "Członek Zarządu", UnitTypeName = "Company", SuperiorUnitTypeId = 1},
+                new UnitType {UnitTypeId = 3, FirstRoleName = "Dyrektor Sieci", SecondRoleName = "Zastępca Dyrektora Sieci", ThirdRoleName = "", UnitTypeName = "Network", SuperiorUnitTypeId = 2},
+                new UnitType {UnitTypeId = 4, FirstRoleName = "Dyrektor Regionu", SecondRoleName = "Zastępca Dyrektora Regionu", ThirdRoleName = "", UnitTypeName = "Region", SuperiorUnitTypeId = 3},
+                new UnitType {UnitTypeId = 5, FirstRoleName = "Dyrektor Oddziału", SecondRoleName = "Zastępca Dyrektora Oddziału", ThirdRoleName = "Doradca", UnitTypeName = "Branch", SuperiorUnitTypeId = 4}
             };
             unittypes.ForEach(u => context.UnitTypes.Add(u));
             context.SaveChanges();
 
-            var roleassignments = new List<RoleAssignment>
+            var userassignments = new List<UserAssignment>
             {
-                new RoleAssignment {RoleAssignmentId = 1, UnitId = 2, RoleId = 1, UserId = 1},
-                new RoleAssignment {RoleAssignmentId = 2, UnitId = 2, RoleId = 1, UserId = 2},
-                new RoleAssignment {RoleAssignmentId = 3, UnitId = 4, RoleId = 1, UserId = 3},
-                new RoleAssignment {RoleAssignmentId = 4, UnitId = 5, RoleId = 1, UserId = 4},
-                new RoleAssignment {RoleAssignmentId = 5, UnitId = 1, RoleId = 1, UserId = 5},
-                new RoleAssignment {RoleAssignmentId = 6, UnitId = 6, RoleId = 1, UserId = 6},
-                new RoleAssignment {RoleAssignmentId = 7, UnitId = 7, RoleId = 1, UserId = 7},
-                new RoleAssignment {RoleAssignmentId = 8, UnitId = 7, RoleId = 2, UserId = 8},
-                new RoleAssignment {RoleAssignmentId = 9, UnitId = 7, RoleId = 2, UserId = 9},
-                new RoleAssignment {RoleAssignmentId = 10, UnitId = 8, RoleId = 1, UserId = 10},
-                new RoleAssignment {RoleAssignmentId = 11, UnitId = 8, RoleId = 2, UserId = 11},
-                new RoleAssignment {RoleAssignmentId = 12, UnitId = 8, RoleId = 2, UserId = 12},
-                new RoleAssignment {RoleAssignmentId = 13, UnitId = 13, RoleId = 1, UserId = 13},
-                new RoleAssignment {RoleAssignmentId = 14, UnitId = 13, RoleId = 2, UserId = 14},
-                new RoleAssignment {RoleAssignmentId = 15, UnitId = 13, RoleId = 2, UserId = 15},
-                new RoleAssignment {RoleAssignmentId = 16, UnitId = 13, RoleId = 3, UserId = 16},
-                new RoleAssignment {RoleAssignmentId = 17, UnitId = 13, RoleId = 3, UserId = 17},
-                new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 18},
-                new RoleAssignment {RoleAssignmentId = 18, UnitId = 13, RoleId = 3, UserId = 19}
+                new UserAssignment {UserId = 1, UnitId = 2, RoleId = 1},
+                new UserAssignment {UserId = 2, UnitId = 2, RoleId = 1},
+                new UserAssignment {UserId = 3, UnitId = 4, RoleId = 1},
+                new UserAssignment {UserId = 4, UnitId = 5, RoleId = 1},
+                new UserAssignment {UserId = 5, UnitId = 1, RoleId = 1},
+                new UserAssignment {UserId = 6, UnitId = 6, RoleId = 1},
+                new UserAssignment {UserId = 7, UnitId = 7, RoleId = 1},
+                new UserAssignment {UserId = 8, UnitId = 7, RoleId = 2},
+                new UserAssignment {UserId = 9, UnitId = 7, RoleId = 2},
+                new UserAssignment {UserId = 10, UnitId = 8, RoleId = 1},
+                new UserAssignment {UserId = 11, UnitId = 8, RoleId = 2},
+                new UserAssignment {UserId = 12, UnitId = 8, RoleId = 2},
+                new UserAssignment {UserId = 13, UnitId = 13, RoleId = 1},
+                new UserAssignment {UserId = 14, UnitId = 13, RoleId = 2},
+                new UserAssignment {UserId = 15, UnitId = 13, RoleId = 2},
+                new UserAssignment {UserId = 16, UnitId = 13, RoleId = 3},
+                new UserAssignment {UserId = 17, UnitId = 13, RoleId = 3},
+                new UserAssignment {UserId = 18, UnitId = 13, RoleId = 3},
+                new UserAssignment {UserId = 19, UnitId = 13, RoleId = 3}
             };
-            roleassignments.ForEach(r => context.RoleAssignments.Add(r));
+            userassignments.ForEach(u => context.UserAssignments.Add(u));
             context.SaveChanges();
         }
     }

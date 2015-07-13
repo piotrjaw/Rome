@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace Rome.Models
 {
@@ -9,7 +10,5 @@ namespace Rome.Models
     {
         public int ResultSetId { get; set; }
         public string ResultSetDescription { get; set; }
-
-        public virtual ICollection<ResultAssignment> ResultAssignments { get; set; }
     }
 }

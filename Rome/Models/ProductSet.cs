@@ -9,7 +9,5 @@ namespace Rome.Models
     {
         public int ProductSetId { get; set; }
         public string ProductSetDescription { get; set; }
-
-        public virtual ICollection<ProductAssignment> ProductAssignments { get; set; }
     }
 }

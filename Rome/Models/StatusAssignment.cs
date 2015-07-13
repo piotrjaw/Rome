@@ -7,7 +7,6 @@ namespace Rome.Models
 {
     public class StatusAssignment
     {
-        public int StatusAssignmentId { get; set; }
         public int StatusId { get; set; }
         public int StatusSetId { get; set; }
 

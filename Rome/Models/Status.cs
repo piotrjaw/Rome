@@ -10,7 +10,5 @@ namespace Rome.Models
         public int StatusId { get; set; }
         public string StatusName { get; set; }
         public int StatusValue { get; set; }
-
-        public virtual Client Client { get; set; }
     }
 }

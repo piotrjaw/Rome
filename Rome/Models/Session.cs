@@ -9,7 +9,10 @@ namespace Rome.Models
     {
         public int UserId {get; set;}
         public Guid SessionId { get; set; }
+        public DateTime SessionStartDate { get; set; }
         public DateTime SessionExpirationDate { get; set; }
+
+        public virtual User User { get; set; }
 
         public Session()
         {
@@ -19,7 +22,8 @@ namespace Rome.Models
         {
             this.UserId = UserId;
             this.SessionId = Guid.NewGuid();
-            this.SessionExpirationDate = DateTime.Now.AddHours(1);
+            this.SessionStartDate = DateTime.Now;
+            this.SessionExpirationDate = this.SessionStartDate.AddHours(1);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace Rome.Models
 {
     public class ResultAssignment
     {
-        public int ResultAssignmentId { get; set; }
         public int ResultId { get; set; }
         public int ResultSetId { get; set; }
 

@@ -7,7 +7,6 @@ namespace Rome.Models
 {
     public class ProductAssignment
     {
-        public int ProductAssignmentId { get; set; }
         public int ProductId { get; set; }
         public int ProductSetId { get; set; }
 

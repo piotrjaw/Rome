@@ -7,7 +7,6 @@ namespace Rome.Models
 {
     public class ResignationReasonAssignment
     {
-        public int ResignationReasonAssignmentId { get; set; }
         public int ResignationReasonId { get; set; }
         public int ResignationReasonSetId { get; set; }
 

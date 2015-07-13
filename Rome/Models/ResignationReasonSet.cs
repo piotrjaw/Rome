@@ -9,7 +9,5 @@ namespace Rome.Models
     {
         public int ResignationReasonSetId { get; set; }
         public string ResignationReasonSetDescription { get; set; }
-
-        public virtual ICollection<ResignationReasonAssignment> ResignationReasonAssignments { get; set; }
     }
 }
