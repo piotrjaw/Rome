@@ -138,11 +138,17 @@ appControllers.controller('calendarCtrl', [
             }
         );
 
-        var dataBody = JSON.stringify(loginService.user);
+        var tempDataBody = {
+            UserId: loginService.user.UserId,
+            SessionId: loginService.user.SessionId,
+            Year: parserInt($scope.day.format("YYYY")),
+            Month: parseInt($scope.day.format("MM"))
+        }
+        var dataBody = JSON.stringify(tempDataBody);
         
         var request = {
             method: 'POST',
-            url: '/api/Events/getSelectedEvents/',
+            url: '/api/Events/getUserEvents/',
             data: dataBody
         }
 

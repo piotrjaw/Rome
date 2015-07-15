@@ -181,7 +181,7 @@ namespace Rome.DAL
 
             var baseoptionsets = new List<BaseOptionSet>
             {
-                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1, EventSetId = 1, StatusSetId = 1}
+                new BaseOptionSet {BaseOptionSetId = 1, BaseOptionSetDescription = "Standardowy zestaw opcji", ProductSetId = 1, ResignationReasonSetId = 1, ResultSetId = 1, EventTypeSetId = 1, StatusSetId = 1}
             };
             baseoptionsets.ForEach(p => context.BaseOptionSets.Add(p));
             context.SaveChanges();
@@ -259,18 +259,18 @@ namespace Rome.DAL
 
             var events = new List<Event>
             {
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 4, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
-                new Event {ClientId = 5, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4}
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-23 12:00:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-24 14:00:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-15 09:30:00"), UserId = 19, EventTypeId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 3, EventDate = DateTime.Parse("2015-04-20 15:30:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 1, BaseId = 1, EventDate = DateTime.Parse("2015-05-17 12:30:00"), UserId = 19, EventTypeId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-13 15:30:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-28 11:30:00"), UserId = 19, EventTypeId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-04-26 10:00:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 2, EventDate = DateTime.Parse("2015-05-24 11:00:00"), UserId = 19, EventTypeId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 2, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 08:30:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 4, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:30:00"), UserId = 19, EventTypeId = 1, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4},
+                new Event {ClientId = 5, BaseId = 3, EventDate = DateTime.Parse("2015-05-23 12:45:00"), UserId = 19, EventTypeId = 2, ResultId = 2, SetEventTypeId = 2, SetEventDate = DateTime.Parse("2015-07-15 12:00:00"), StatusId = 4}
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();
@@ -282,6 +282,17 @@ namespace Rome.DAL
                 new Role {RoleId = 3, RoleName = "Advisor"}
             };
             roles.ForEach(r => context.Roles.Add(r));
+            context.SaveChanges();
+
+            var unittypes = new List<UnitType>
+            {
+                new UnitType {UnitTypeId = 1, FirstRoleName = "Administrator", SecondRoleName = "", ThirdRoleName = "", UnitTypeName = "Administration"},
+                new UnitType {UnitTypeId = 2, FirstRoleName = "Prezes Zarządu", SecondRoleName = "Wiceprezes Zarządu", ThirdRoleName = "Członek Zarządu", UnitTypeName = "Company", SuperiorUnitTypeId = 1},
+                new UnitType {UnitTypeId = 3, FirstRoleName = "Dyrektor Sieci", SecondRoleName = "Zastępca Dyrektora Sieci", ThirdRoleName = "", UnitTypeName = "Network", SuperiorUnitTypeId = 2},
+                new UnitType {UnitTypeId = 4, FirstRoleName = "Dyrektor Regionu", SecondRoleName = "Zastępca Dyrektora Regionu", ThirdRoleName = "", UnitTypeName = "Region", SuperiorUnitTypeId = 3},
+                new UnitType {UnitTypeId = 5, FirstRoleName = "Dyrektor Oddziału", SecondRoleName = "Zastępca Dyrektora Oddziału", ThirdRoleName = "Doradca", UnitTypeName = "Branch", SuperiorUnitTypeId = 4}
+            };
+            unittypes.ForEach(u => context.UnitTypes.Add(u));
             context.SaveChanges();
 
             var units = new List<Unit>
@@ -312,17 +323,6 @@ namespace Rome.DAL
                 new Unit {UnitId = 24, SuperiorUnitId = 12, UnitTypeId = 5, UnitName = "TCIB WRO2"}
             };
             units.ForEach(u => context.Units.Add(u));
-            context.SaveChanges();
-
-            var unittypes = new List<UnitType>
-            {
-                new UnitType {UnitTypeId = 1, FirstRoleName = "Administrator", SecondRoleName = "", ThirdRoleName = "", UnitTypeName = "Administration"},
-                new UnitType {UnitTypeId = 2, FirstRoleName = "Prezes Zarządu", SecondRoleName = "Wiceprezes Zarządu", ThirdRoleName = "Członek Zarządu", UnitTypeName = "Company", SuperiorUnitTypeId = 1},
-                new UnitType {UnitTypeId = 3, FirstRoleName = "Dyrektor Sieci", SecondRoleName = "Zastępca Dyrektora Sieci", ThirdRoleName = "", UnitTypeName = "Network", SuperiorUnitTypeId = 2},
-                new UnitType {UnitTypeId = 4, FirstRoleName = "Dyrektor Regionu", SecondRoleName = "Zastępca Dyrektora Regionu", ThirdRoleName = "", UnitTypeName = "Region", SuperiorUnitTypeId = 3},
-                new UnitType {UnitTypeId = 5, FirstRoleName = "Dyrektor Oddziału", SecondRoleName = "Zastępca Dyrektora Oddziału", ThirdRoleName = "Doradca", UnitTypeName = "Branch", SuperiorUnitTypeId = 4}
-            };
-            unittypes.ForEach(u => context.UnitTypes.Add(u));
             context.SaveChanges();
 
             var userassignments = new List<UserAssignment>

@@ -50,8 +50,7 @@ namespace Rome.DAL
             modelBuilder.Entity<Base>().HasKey(b => b.BaseId);
             modelBuilder.Entity<Base>().HasRequired(b => b.BaseOptionSet);
 
-            modelBuilder.Entity<BaseAssignment>().HasKey(b => b.ClientId);
-            modelBuilder.Entity<BaseAssignment>().HasKey(b => b.BaseId);
+            modelBuilder.Entity<BaseAssignment>().HasKey(b => new { b.ClientId, b.BaseId });
             modelBuilder.Entity<BaseAssignment>().HasRequired(b => b.User);
             modelBuilder.Entity<BaseAssignment>().HasRequired(b => b.Status);
 
@@ -64,8 +63,6 @@ namespace Rome.DAL
 
             modelBuilder.Entity<Client>().HasKey(c => c.ClientId);
 
-            modelBuilder.Entity<EventType>().HasKey(e => e.EventTypeId);
-
             modelBuilder.Entity<Event>().HasKey(e => e.EventId);
             modelBuilder.Entity<Event>().HasRequired(e => e.User);
             modelBuilder.Entity<Event>().HasRequired(e => e.Base);
@@ -73,42 +70,38 @@ namespace Rome.DAL
             modelBuilder.Entity<Event>().HasOptional(e => e.ResignationReason).WithMany().HasForeignKey(e => e.ResignationReasonId);
             modelBuilder.Entity<Event>().HasRequired(e => e.Result);
             modelBuilder.Entity<Event>().HasRequired(e => e.Client);
-            modelBuilder.Entity<Event>().HasRequired(e => e.EventType);
+            modelBuilder.Entity<Event>().HasRequired(e => e.EventType).WithMany().HasForeignKey(e => e.EventTypeId);
             modelBuilder.Entity<Event>().HasOptional(e => e.SetEventType).WithMany().HasForeignKey(e => e.SetEventTypeId);
 
-            modelBuilder.Entity<EventTypeAssignment>().HasKey(e => e.EventTypeId);
-            modelBuilder.Entity<EventTypeAssignment>().HasKey(e => e.EventTypeSetId);
+            modelBuilder.Entity<EventType>().HasKey(e => e.EventTypeId);
+            modelBuilder.Entity<EventTypeSet>().HasKey(e => e.EventTypeSetId);
+
+            modelBuilder.Entity<EventTypeAssignment>().HasKey(e => new { e.EventTypeId, e.EventTypeSetId });
             modelBuilder.Entity<EventTypeAssignment>().HasRequired(e => e.EventType);
             modelBuilder.Entity<EventTypeAssignment>().HasRequired(e => e.EventTypeSet);
 
-            modelBuilder.Entity<EventTypeSet>().HasKey(e => e.EventTypeSetId);
-
             modelBuilder.Entity<Product>().HasKey(p => p.ProductId);
+            modelBuilder.Entity<ProductSet>().HasKey(p => p.ProductSetId);
 
-            modelBuilder.Entity<ProductAssignment>().HasKey(p => p.ProductId);
-            modelBuilder.Entity<ProductAssignment>().HasKey(p => p.ProductSetId);
+            modelBuilder.Entity<ProductAssignment>().HasKey(p => new { p.ProductId, p.ProductSetId });
             modelBuilder.Entity<ProductAssignment>().HasRequired(p => p.Product);
             modelBuilder.Entity<ProductAssignment>().HasRequired(p => p.ProductSet);
 
-            modelBuilder.Entity<ProductSet>().HasKey(p => p.ProductSetId);
 
             modelBuilder.Entity<ResignationReason>().HasKey(r => r.ResignationReasonId);
 
-            modelBuilder.Entity<ResignationReasonAssignment>().HasKey(r => r.ResignationReasonId);
-            modelBuilder.Entity<ResignationReasonAssignment>().HasKey(r => r.ResignationReasonSetId);
+            modelBuilder.Entity<ResignationReasonAssignment>().HasKey(r => new { r.ResignationReasonId, r.ResignationReasonSetId });
             modelBuilder.Entity<ResignationReasonAssignment>().HasRequired(r => r.ResignationReason);
             modelBuilder.Entity<ResignationReasonAssignment>().HasRequired(r => r.ResignationReasonSet);
 
             modelBuilder.Entity<ResignationReasonSet>().HasKey(r => r.ResignationReasonSetId);
 
             modelBuilder.Entity<Result>().HasKey(r => r.ResultId);
+            modelBuilder.Entity<ResultSet>().HasKey(r => r.ResultSetId);
 
-            modelBuilder.Entity<ResultAssignment>().HasKey(r => r.ResultId);
-            modelBuilder.Entity<ResultAssignment>().HasKey(r => r.ResultSetId);
+            modelBuilder.Entity<ResultAssignment>().HasKey(r => new { r.ResultId, r.ResultSetId });
             modelBuilder.Entity<ResultAssignment>().HasRequired(r => r.Result);
             modelBuilder.Entity<ResultAssignment>().HasRequired(r => r.ResultSet);
-
-            modelBuilder.Entity<ResultSet>().HasKey(r => r.ResultSetId);
 
             modelBuilder.Entity<Role>().HasKey(r => r.RoleId);
 
@@ -116,13 +109,11 @@ namespace Rome.DAL
             modelBuilder.Entity<Session>().HasRequired(s => s.User);
 
             modelBuilder.Entity<Status>().HasKey(s => s.StatusId);
+            modelBuilder.Entity<StatusSet>().HasKey(s => s.StatusSetId);
 
-            modelBuilder.Entity<StatusAssignment>().HasKey(s => s.StatusId);
-            modelBuilder.Entity<StatusAssignment>().HasKey(s => s.StatusSetId);
+            modelBuilder.Entity<StatusAssignment>().HasKey(s => new { s.StatusId, s.StatusSetId });
             modelBuilder.Entity<StatusAssignment>().HasRequired(s => s.Status);
             modelBuilder.Entity<StatusAssignment>().HasRequired(s => s.StatusSet);
-
-            modelBuilder.Entity<StatusSet>().HasKey(s => s.StatusSetId);
 
             modelBuilder.Entity<Unit>().HasKey(u => u.UnitId);
             modelBuilder.Entity<Unit>().HasRequired(u => u.UnitType);
@@ -133,8 +124,7 @@ namespace Rome.DAL
 
             modelBuilder.Entity<User>().HasKey(u => u.UserId);
 
-            modelBuilder.Entity<UserAssignment>().HasKey(u => u.UserId);
-            modelBuilder.Entity<UserAssignment>().HasKey(u => u.UnitId);
+            modelBuilder.Entity<UserAssignment>().HasKey(u => new { u.UserId, u.UnitId });
             modelBuilder.Entity<UserAssignment>().HasRequired(u => u.Unit);
             modelBuilder.Entity<UserAssignment>().HasRequired(u => u.Role);
 

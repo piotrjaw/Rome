@@ -12,7 +12,7 @@ namespace Rome.Models
         public int ResultSetId { get; set; }
         public int ResignationReasonSetId { get; set; }
         public int ProductSetId { get; set; }
-        public int EventSetId { get; set; }
+        public int EventTypeSetId { get; set; }
         public int StatusSetId { get; set; }
 
         public ResultSet ResultSet { get; set; }
