@@ -34,7 +34,7 @@ appControllers.controller('loginCtrl', [
 
             var request = {
                 method: 'POST',
-                url: '/api/Users/getUser/',
+                url: '/api/Users/login/',
                 data: requestBody
             }
 

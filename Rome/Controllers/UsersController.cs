@@ -21,7 +21,7 @@ namespace Rome.Controllers
         private XSellContext db = new XSellContext();
 
         [HttpPost]
-        [ActionName("getUser")]
+        [ActionName("login")]
         public async Task<UserDTO> Post(LoginQO id)
         {
             var query = (from u in db.Users
@@ -53,5 +53,7 @@ namespace Rome.Controllers
                 return null;
             }
         }
+
+
     }
 }
